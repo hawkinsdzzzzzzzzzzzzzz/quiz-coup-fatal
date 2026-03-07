@@ -41,7 +41,40 @@ function demarrerChrono(io, codeSalon, salon) {
 
         if (salon.temps[salon.joueurActif] <= 0) {
             clearInterval(salon.intervalle);
-            io.to(codeSalon).emit('fin_partie', `Temps écoulé pour ${salon.pseudos[salon.joueurActif]} !`);
+
+            if (salon.mode === 'buzzer') {
+                salon.scores[salon.joueurActif] -= 5;
+                const exJoueur = salon.joueurActif;
+                salon.joueurActif = 'bloque';
+
+                io.to(codeSalon).emit('message_serveur', `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}. Suivante...`);
+                io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
+                setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
+            } else {
+                // ÉLIMINATION EN MODE CLASSIQUE
+                const joueurElimine = salon.joueurActif;
+
+                io.to(codeSalon).emit('message_serveur', `👋 ${salon.pseudos[joueurElimine]} n'a plus de temps et est éliminé !`);
+
+                // Envoie la pop-up uniquement au perdant
+                io.to(joueurElimine).emit('afficher_ecran_defaite');
+
+                // On le retire des joueurs actifs
+                salon.ordreJoueurs = salon.ordreJoueurs.filter(id => id !== joueurElimine);
+
+                // On recule l'index pour que le joueur suivant prenne la main correctement
+                salon.indexTour -= 1;
+                if (salon.indexTour < -1) salon.indexTour = -1;
+
+                // Vérification de fin de partie
+                if (salon.ordreJoueurs.length === 1 && salon.mode !== 'presentateur' && salon.joueurs.length > 1) {
+                    io.to(codeSalon).emit('fin_partie', `🏆 Victoire de ${salon.pseudos[salon.ordreJoueurs[0]]} !`);
+                } else if (salon.ordreJoueurs.length === 0) {
+                    io.to(codeSalon).emit('fin_partie', `🏁 La partie est terminée !`);
+                } else {
+                    setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
+                }
+            }
         }
     }, 1000);
 }
@@ -50,7 +83,7 @@ function lancerProchainTour(io, codeSalon, salon) {
     clearInterval(salon.intervalle);
 
     salon.votesSkip = [];
-    io.to(codeSalon).emit('maj_votes_skip', { votes: 0, total: salon.joueurs.length });
+    io.to(codeSalon).emit('maj_votes_skip', { votes: 0, total: salon.ordreJoueurs.length });
 
     if (salon.mode === 'classique' || salon.mode === 'presentateur') {
         salon.indexTour = (salon.indexTour + 1) % salon.ordreJoueurs.length;
@@ -98,7 +131,7 @@ io.on('connection', (socket) => {
                 options: optionsBonus || { voirQuestions: false },
                 estPublic: estPublic,
                 intervalle: null, joueurActif: null,
-                reponsesAttendues: [], votesSkip: [], aBuzze: [],
+                reponsesAttendues: [], votesSkip: [],
                 partieCommencee: false, ordreJoueurs: [], indexTour: -1,
                 createur: socket.id,
                 questionsRestantes: [...questionsList]
@@ -141,9 +174,10 @@ io.on('connection', (socket) => {
     socket.on('clic_buzzer', (codeSalon) => {
         const salon = salons[codeSalon];
         if (!salon || salon.mode !== 'buzzer' || salon.joueurActif !== null) return;
+        if (!salon.ordreJoueurs.includes(socket.id) && salon.temps[socket.id] <= 0) return; // Un mort ne buzz pas
 
         salon.joueurActif = socket.id;
-        io.to(codeSalon).emit('message_serveur', `🚨 ${salon.pseudos[socket.id]} A BUZZÉ ! 5 secondes !`);
+        io.to(codeSalon).emit('message_serveur', `🚨 ${salon.pseudos[socket.id]} a buzzé ! (5s)`);
         io.to(codeSalon).emit('changement_tour', { idJoueurActif: salon.joueurActif });
 
         let tempsRestant = 5;
@@ -160,9 +194,8 @@ io.on('connection', (socket) => {
                 const exJoueur = salon.joueurActif;
                 salon.joueurActif = 'bloque';
 
-                io.to(codeSalon).emit('message_serveur', `⏰ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}. Suivante...`);
+                io.to(codeSalon).emit('message_serveur', `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}. Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
-
                 setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
             }
         }, 1000);
@@ -201,13 +234,13 @@ io.on('connection', (socket) => {
                 const exJoueur = socket.id;
                 salon.joueurActif = 'bloque';
 
-                socket.emit('mauvaise_reponse', "❌ Faux ! -5 Points.");
+                socket.emit('mauvaise_reponse', "Faux ! -5 Points.");
                 io.to(codeSalon).emit('message_serveur', `❌ ${salon.pseudos[exJoueur]} s'est trompé (-5 pts). Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
                 setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
             } else {
-                socket.emit('mauvaise_reponse', "❌ Faux, essaie encore !");
+                socket.emit('mauvaise_reponse', "Ce n'est pas ça, réessaie !");
             }
         }
     });
@@ -221,12 +254,9 @@ io.on('connection', (socket) => {
             io.to(codeSalon).emit('bonne_reponse', `✅ Le présentateur a validé !`);
             lancerProchainTour(io, codeSalon, salon);
         } else {
-            // CORRECTION : Si c'est faux, on pioche une nouvelle question MAIS on ne passe pas le tour !
             io.to(codeSalon).emit('mauvaise_reponse', "❌ FAUX ! Nouvelle question...");
-
             const questionTiree = tirerQuestion(salon);
             salon.reponsesAttendues = questionTiree.reponses;
-
             io.to(codeSalon).emit('nouvelle_question', {
                 question: questionTiree.question,
                 reponses: questionTiree.reponses,
@@ -248,20 +278,17 @@ io.on('connection', (socket) => {
 
             if (!salon.votesSkip.includes(socket.id)) {
                 salon.votesSkip.push(socket.id);
-                io.to(codeSalon).emit('maj_votes_skip', { votes: salon.votesSkip.length, total: salon.joueurs.length });
+                io.to(codeSalon).emit('maj_votes_skip', { votes: salon.votesSkip.length, total: salon.ordreJoueurs.length });
 
-                if (salon.votesSkip.length > salon.joueurs.length / 2) {
+                if (salon.votesSkip.length > salon.ordreJoueurs.length / 2) {
                     io.to(codeSalon).emit('message_serveur', `⏭️ Majorité atteinte ! On passe la question...`);
                     setTimeout(() => lancerProchainTour(io, codeSalon, salon), 1500);
                 }
             }
         } else {
-            // CORRECTION : Mode Classique/Presentateur -> Skip ne fait que piocher une nouvelle question sans passer le tour
             if (socket.id !== salon.joueurActif && socket.id !== salon.createur) return;
-
             const questionTiree = tirerQuestion(salon);
             salon.reponsesAttendues = questionTiree.reponses;
-
             io.to(codeSalon).emit('nouvelle_question', {
                 question: questionTiree.question,
                 reponses: questionTiree.reponses,
@@ -282,7 +309,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         const codeSalon = socket.codeSalon;
         if (codeSalon && salons[codeSalon]) {
-            io.to(codeSalon).emit('message_serveur', `${socket.pseudo || 'Un joueur'} a quitté la partie.`);
+            io.to(codeSalon).emit('message_serveur', `👋 ${socket.pseudo || 'Un joueur'} a quitté le salon.`);
             if (salons[codeSalon].temps[socket.id]) {
                 delete salons[codeSalon].temps[socket.id];
                 delete salons[codeSalon].pseudos[socket.id];
@@ -290,14 +317,13 @@ io.on('connection', (socket) => {
 
                 salons[codeSalon].votesSkip = salons[codeSalon].votesSkip.filter(id => id !== socket.id);
                 salons[codeSalon].joueurs = salons[codeSalon].joueurs.filter(id => id !== socket.id);
+                salons[codeSalon].ordreJoueurs = salons[codeSalon].ordreJoueurs.filter(id => id !== socket.id);
 
                 io.to(codeSalon).emit('maj_temps', { temps: salons[codeSalon].temps, pseudos: salons[codeSalon].pseudos, scores: salons[codeSalon].scores });
                 io.to(codeSalon).emit('maj_lobby', Object.values(salons[codeSalon].pseudos));
 
                 if (salons[codeSalon].joueurs.length === 0 && salons[codeSalon].createur !== socket.id) {
                     delete salons[codeSalon];
-                } else {
-                    io.to(codeSalon).emit('maj_votes_skip', { votes: salons[codeSalon].votesSkip.length, total: salons[codeSalon].joueurs.length });
                 }
                 diffuserSalonsPublics();
             }
