@@ -34,6 +34,8 @@ function tirerQuestion(salon) {
 function demarrerChrono(io, codeSalon, salon) {
     clearInterval(salon.intervalle);
     salon.intervalle = setInterval(() => {
+        if (salon.enPause) return; // NOUVEAU : Bloque le temps si pause
+
         if (salon.temps[salon.joueurActif] > 0) {
             salon.temps[salon.joueurActif] -= 1;
             io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
@@ -46,27 +48,20 @@ function demarrerChrono(io, codeSalon, salon) {
                 salon.scores[salon.joueurActif] -= 5;
                 const exJoueur = salon.joueurActif;
                 salon.joueurActif = 'bloque';
-
                 io.to(codeSalon).emit('message_serveur', `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}. Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
                 setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
             } else {
-                // ÉLIMINATION EN MODE CLASSIQUE
                 const joueurElimine = salon.joueurActif;
-
                 io.to(codeSalon).emit('message_serveur', `👋 ${salon.pseudos[joueurElimine]} n'a plus de temps et est éliminé !`);
 
-                // Envoie la pop-up uniquement au perdant
-                io.to(joueurElimine).emit('afficher_ecran_defaite');
+                // Ne pas envoyer l'écran de défaite aux bots
+                if (!joueurElimine.startsWith('BOT_')) io.to(joueurElimine).emit('afficher_ecran_defaite');
 
-                // On le retire des joueurs actifs
                 salon.ordreJoueurs = salon.ordreJoueurs.filter(id => id !== joueurElimine);
-
-                // On recule l'index pour que le joueur suivant prenne la main correctement
                 salon.indexTour -= 1;
                 if (salon.indexTour < -1) salon.indexTour = -1;
 
-                // Vérification de fin de partie
                 if (salon.ordreJoueurs.length === 1 && salon.mode !== 'presentateur' && salon.joueurs.length > 1) {
                     io.to(codeSalon).emit('fin_partie', `🏆 Victoire de ${salon.pseudos[salon.ordreJoueurs[0]]} !`);
                 } else if (salon.ordreJoueurs.length === 0) {
@@ -81,6 +76,7 @@ function demarrerChrono(io, codeSalon, salon) {
 
 function lancerProchainTour(io, codeSalon, salon) {
     clearInterval(salon.intervalle);
+    clearTimeout(salon.botTimeout);
 
     salon.votesSkip = [];
     io.to(codeSalon).emit('maj_votes_skip', { votes: 0, total: salon.ordreJoueurs.length });
@@ -109,6 +105,51 @@ function lancerProchainTour(io, codeSalon, salon) {
 
     if (salon.joueurActif !== null && salon.mode !== 'buzzer') {
         demarrerChrono(io, codeSalon, salon);
+
+        // NOUVEAU : INTELLIGENCE ARTIFICIELLE DES BOTS (Si le joueur actif est un bot)
+        if (salon.joueurActif.startsWith('BOT_') && !salon.enPause) {
+            salon.botTimeout = setTimeout(() => {
+                if (!salon.enPause && salon.joueurActif.startsWith('BOT_')) {
+                    io.to(codeSalon).emit('message_serveur', `🤖 ${salon.pseudos[salon.joueurActif]} passe son tour...`);
+                    lancerProchainTour(io, codeSalon, salon);
+                }
+            }, 4000); // Le bot réfléchit 4 secondes puis passe la question
+        }
+    }
+}
+
+// NOUVEAU : Fonction globale pour gérer un départ (Quitter, Kick, Déco)
+function gererDepartJoueur(io, id, codeSalon, estKick = false) {
+    const salon = salons[codeSalon];
+    if (!salon) return;
+    const pseudo = salon.pseudos[id];
+    if (!pseudo) return;
+
+    if (estKick) io.to(id).emit('tu_es_kick'); // Envoie l'ordre au joueur de recharger sa page
+
+    io.to(codeSalon).emit('message_serveur', `🚪 ${pseudo} a quitté le jeu.`);
+
+    delete salon.temps[id];
+    delete salon.pseudos[id];
+    delete salon.scores[id];
+    salon.votesSkip = salon.votesSkip.filter(j => j !== id);
+    salon.joueurs = salon.joueurs.filter(j => j !== id);
+    salon.ordreJoueurs = salon.ordreJoueurs.filter(j => j !== id);
+
+    io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
+    io.to(codeSalon).emit('maj_lobby', Object.values(salon.pseudos));
+
+    if (salon.joueurs.length === 0 && salon.createur !== id) {
+        delete salons[codeSalon];
+        diffuserSalonsPublics();
+        return;
+    }
+
+    // Si c'était son tour, on passe la main
+    if (salon.partieCommencee && salon.joueurActif === id) {
+        salon.indexTour -= 1;
+        if (salon.indexTour < -1) salon.indexTour = -1;
+        setTimeout(() => lancerProchainTour(io, codeSalon, salon), 1000);
     }
 }
 
@@ -117,7 +158,7 @@ io.on('connection', (socket) => {
 
     socket.on('rejoindre_salon', (data) => {
         if (!data) return;
-        const { codeSalon, pseudo, tempsChoisi, modeChoisi, optionsBonus, estPublic } = data;
+        const { codeSalon, pseudo, tempsChoisi, modeChoisi, optionsBonus, estPublic, isBotTest } = data;
 
         socket.join(codeSalon);
         socket.pseudo = pseudo;
@@ -130,7 +171,7 @@ io.on('connection', (socket) => {
                 mode: modeChoisi || 'classique',
                 options: optionsBonus || { voirQuestions: false },
                 estPublic: estPublic,
-                intervalle: null, joueurActif: null,
+                intervalle: null, botTimeout: null, joueurActif: null, enPause: false, // NOUVEAU PAUSE
                 reponsesAttendues: [], votesSkip: [],
                 partieCommencee: false, ordreJoueurs: [], indexTour: -1,
                 createur: socket.id,
@@ -150,6 +191,18 @@ io.on('connection', (socket) => {
             salon.pseudos[socket.id] = pseudo + " (Présentateur)";
         }
 
+        // NOUVEAU : Ajout automatique de Bots si Mode Test
+        if (isBotTest && salon.joueurs.length === 1) {
+            const bots = ['BOT_1', 'BOT_2', 'BOT_3'];
+            const nomsBots = ['🤖 Alpha', '🤖 Beta', '🤖 Gamma'];
+            bots.forEach((idBot, index) => {
+                salon.joueurs.push(idBot);
+                salon.pseudos[idBot] = nomsBots[index];
+                salon.temps[idBot] = salon.tempsInitial;
+                salon.scores[idBot] = 0;
+            });
+        }
+
         socket.emit('info_role', { estChef: salon.createur === socket.id, estPresentateur: estPresentateur, mode: salon.mode });
         io.to(codeSalon).emit('maj_joueurs', salon.joueurs.length);
         io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
@@ -160,7 +213,6 @@ io.on('connection', (socket) => {
     socket.on('lancer_partie', (codeSalon) => {
         const salon = salons[codeSalon];
         if (!salon || salon.partieCommencee || socket.id !== salon.createur) return;
-        if (salon.joueurs.length < 1) return;
 
         salon.partieCommencee = true;
         salon.ordreJoueurs = [...salon.joueurs].sort(() => Math.random() - 0.5);
@@ -171,10 +223,45 @@ io.on('connection', (socket) => {
         diffuserSalonsPublics();
     });
 
+    // NOUVEAU : Quitter volontairement
+    socket.on('quitter_salon', (codeSalon) => {
+        socket.leave(codeSalon);
+        gererDepartJoueur(io, socket.id, codeSalon, false);
+    });
+
+    // NOUVEAU : Commandes Admin (Kick & Pause)
+    socket.on('kick_joueur', (data) => {
+        const { codeSalon, targetId } = data;
+        const salon = salons[codeSalon];
+        if (salon && socket.id === salon.createur) {
+            gererDepartJoueur(io, targetId, codeSalon, true); // true = c'est un kick
+        }
+    });
+
+    socket.on('toggle_pause', (codeSalon) => {
+        const salon = salons[codeSalon];
+        if (salon && socket.id === salon.createur && salon.partieCommencee) {
+            salon.enPause = !salon.enPause;
+            io.to(codeSalon).emit('etat_pause', salon.enPause);
+            if (salon.enPause) {
+                io.to(codeSalon).emit('message_serveur', `⏸️ Le jeu est en PAUSE.`);
+            } else {
+                io.to(codeSalon).emit('message_serveur', `▶️ Le jeu reprend !`);
+                // Relance le timer du bot s'il était en train de jouer
+                if (salon.joueurActif && salon.joueurActif.startsWith('BOT_') && salon.mode !== 'buzzer') {
+                    salon.botTimeout = setTimeout(() => {
+                        io.to(codeSalon).emit('message_serveur', `🤖 ${salon.pseudos[salon.joueurActif]} passe son tour...`);
+                        lancerProchainTour(io, codeSalon, salon);
+                    }, 4000);
+                }
+            }
+        }
+    });
+
     socket.on('clic_buzzer', (codeSalon) => {
         const salon = salons[codeSalon];
-        if (!salon || salon.mode !== 'buzzer' || salon.joueurActif !== null) return;
-        if (!salon.ordreJoueurs.includes(socket.id) && salon.temps[socket.id] <= 0) return; // Un mort ne buzz pas
+        if (!salon || salon.mode !== 'buzzer' || salon.joueurActif !== null || salon.enPause) return;
+        if (!salon.ordreJoueurs.includes(socket.id) && salon.temps[socket.id] <= 0) return;
 
         salon.joueurActif = socket.id;
         io.to(codeSalon).emit('message_serveur', `🚨 ${salon.pseudos[socket.id]} a buzzé ! (5s)`);
@@ -185,6 +272,7 @@ io.on('connection', (socket) => {
 
         clearInterval(salon.intervalle);
         salon.intervalle = setInterval(() => {
+            if (salon.enPause) return; // Ne descend pas si pause
             tempsRestant -= 1;
             io.to(codeSalon).emit('tic_tac_buzzer', tempsRestant);
 
@@ -204,7 +292,7 @@ io.on('connection', (socket) => {
     socket.on('proposer_reponse', (data) => {
         const { codeSalon, reponseJoueur } = data;
         const salon = salons[codeSalon];
-        if (!salon || socket.id !== salon.joueurActif) return;
+        if (!salon || socket.id !== salon.joueurActif || salon.enPause) return;
 
         let reponseValidee = false;
         for (let reponse of salon.reponsesAttendues) {
@@ -248,7 +336,7 @@ io.on('connection', (socket) => {
     socket.on('jugement_presentateur', (data) => {
         const { codeSalon, estCorrect } = data;
         const salon = salons[codeSalon];
-        if (!salon || salon.mode !== 'presentateur' || socket.id !== salon.createur) return;
+        if (!salon || salon.mode !== 'presentateur' || socket.id !== salon.createur || salon.enPause) return;
 
         if (estCorrect) {
             io.to(codeSalon).emit('bonne_reponse', `✅ Le présentateur a validé !`);
@@ -271,7 +359,7 @@ io.on('connection', (socket) => {
 
     socket.on('skip_question', (codeSalon) => {
         const salon = salons[codeSalon];
-        if (!salon) return;
+        if (!salon || salon.enPause) return;
 
         if (salon.mode === 'buzzer') {
             if (salon.joueurActif !== null) return;
@@ -307,27 +395,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        const codeSalon = socket.codeSalon;
-        if (codeSalon && salons[codeSalon]) {
-            io.to(codeSalon).emit('message_serveur', `👋 ${socket.pseudo || 'Un joueur'} a quitté le salon.`);
-            if (salons[codeSalon].temps[socket.id]) {
-                delete salons[codeSalon].temps[socket.id];
-                delete salons[codeSalon].pseudos[socket.id];
-                delete salons[codeSalon].scores[socket.id];
-
-                salons[codeSalon].votesSkip = salons[codeSalon].votesSkip.filter(id => id !== socket.id);
-                salons[codeSalon].joueurs = salons[codeSalon].joueurs.filter(id => id !== socket.id);
-                salons[codeSalon].ordreJoueurs = salons[codeSalon].ordreJoueurs.filter(id => id !== socket.id);
-
-                io.to(codeSalon).emit('maj_temps', { temps: salons[codeSalon].temps, pseudos: salons[codeSalon].pseudos, scores: salons[codeSalon].scores });
-                io.to(codeSalon).emit('maj_lobby', Object.values(salons[codeSalon].pseudos));
-
-                if (salons[codeSalon].joueurs.length === 0 && salons[codeSalon].createur !== socket.id) {
-                    delete salons[codeSalon];
-                }
-                diffuserSalonsPublics();
-            }
-        }
+        if (socket.codeSalon) gererDepartJoueur(io, socket.id, socket.codeSalon, false);
     });
 });
 

@@ -1,854 +1,1988 @@
 [
     {
-        "question": "Quelle est la capitale de la France ?",
+        "question": "Quel était le tout premier nom de Mario lors de sa première apparition dans le jeu d'arcade Donkey Kong ?",
         "reponses": [
-            "paris"
+            "Jumpman",
+            "Jump Man",
+            "Mr. Video"
         ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Dans quel anime trouve-t-on Sukuna et Gojo ?",
-        "reponses": [
-            "jujutsu kaisen",
-            "jjk"
-        ],
-        "theme": "Anime",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel jeu de tir tactique a été créé par Riot Games ?",
-        "reponses": [
-            "valorant",
-            "valo"
-        ],
-        "theme": "Jeux Vidéo",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quelle est la monnaie de l'Algérie ?",
-        "reponses": [
-            "dinar",
-            "dinar algerien"
-        ],
-        "theme": "Culture G",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Qui a écrit 'Les Misérables' ?",
-        "reponses": [
-            "victor hugo",
-            "hugo"
-        ],
-        "theme": "Littérature",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quel est le nom du monde virtuel dans Sword Art Online ?",
+        "question": "Dans quel jeu vidéo culte explore-t-on la dystopique ville sous-marine de Rapture ?",
         "reponses": [
-            "aincrad"
+            "Bioshock",
+            "Bio shock",
+            "Bio-shock"
         ],
-        "theme": "Anime",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quel gaz les plantes absorbent-elles pour la photosynthèse ?",
-        "reponses": [
-            "co2",
-            "dioxyde de carbone"
-        ],
-        "theme": "Science",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Combien y a-t-il de joueurs dans une équipe de basket sur le terrain ?",
-        "reponses": [
-            "5",
-            "cinq"
-        ],
-        "theme": "Sport",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel logiciel de dessin utilise l'icône d'un écureuil bleu ?",
+        "question": "Quel est le vrai nom de l'héroïne de la saga Tomb Raider ?",
         "reponses": [
-            "krita"
+            "Lara Croft",
+            "Croft",
+            "Laura Croft"
         ],
-        "theme": "Informatique",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quelle est la capitale du Japon ?",
-        "reponses": [
-            "tokyo"
-        ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel est le vrai nom de l'agent Sova dans Valorant ?",
+        "question": "Dans The Legend of Zelda, comment s'appelle l'épée mythique capable de repousser le mal ?",
         "reponses": [
-            "sasha novikov",
-            "sasha"
+            "Excalibur",
+            "Master Sword",
+            "Épée de légende"
         ],
-        "theme": "Jeux Vidéo",
+        "theme": "Jeux vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom du monde dans lequel se déroule Final Fantasy VII ?",
+        "reponses": [
+            "Gaia",
+            "Gaïa",
+            "La Planète"
+        ],
+        "theme": "Jeux vidéo",
         "difficulte": "Difficile"
     },
     {
-        "question": "Qui a peint 'La Nuit étoilée' ?",
+        "question": "Comment s'appelle l'Intelligence Artificielle cynique et manipulatrice de la série Portal ?",
         "reponses": [
-            "vincent van gogh",
-            "van gogh"
+            "GLaDOS",
+            "Glados",
+            "G.L.A.D.O.S."
         ],
-        "theme": "Art",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la langue la plus parlée au monde ?",
+        "question": "Quelle est la profession du personnage de Gordon Freeman dans Half-Life ?",
         "reponses": [
-            "mandarin",
-            "chinois"
+            "Physicien",
+            "Scientifique",
+            "Chercheur"
         ],
-        "theme": "Culture G",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Dans One Piece, comment s'appelle l'épéiste aux trois sabres ?",
+        "question": "Dans Minecraft, quel minerai est nécessaire pour créer des circuits logiques ?",
         "reponses": [
-            "zoro",
-            "roronoa zoro"
+            "Redstone",
+            "La redstone",
+            "Poudre de redstone"
         ],
-        "theme": "Anime",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel pays a remporté la Coupe du Monde de Football 2018 ?",
+        "question": "Quel célèbre créateur japonais a imaginé les séries Metal Gear et Death Stranding ?",
         "reponses": [
-            "france"
+            "Hideo Kojima",
+            "Kojima",
+            "Kojima Hideo"
         ],
-        "theme": "Sport",
-        "difficulte": "Facile"
+        "theme": "Jeux vidéo",
+        "difficulte": "Moyen"
     },
     {
-        "question": "Quel est l'élément chimique représenté par le symbole 'Au' ?",
+        "question": "Dans Skyrim, comment s'appelle la langue parlée par les dragons ?",
         "reponses": [
-            "or"
+            "Dovahzul",
+            "Le langage draconique",
+            "Draconique"
         ],
-        "theme": "Science",
+        "theme": "Jeux vidéo",
         "difficulte": "Difficile"
     },
     {
-        "question": "Comment s'appelle l'IA de Tony Stark dans Iron Man ?",
+        "question": "Dans l'univers de Halo, quel est le numéro du Master Chief ?",
         "reponses": [
-            "jarvis"
+            "117",
+            "John-117",
+            "Spartan 117"
         ],
-        "theme": "Cinéma",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quel est le plus grand océan du monde ?",
+        "question": "Quel est le nom de la ville fictive inspirée de Los Angeles dans GTA V ?",
         "reponses": [
-            "pacifique",
-            "ocean pacifique"
+            "Los Santos",
+            "Losantos",
+            "LS"
         ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Dans Pokémon, quel objet permet de capturer les créatures ?",
+        "question": "Comment s'appelle le célèbre renard à deux queues, compagnon de Sonic ?",
         "reponses": [
-            "poke ball",
-            "pokeball"
+            "Tails",
+            "Miles Prower",
+            "Miles"
         ],
-        "theme": "Jeux Vidéo",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel est le nom du bateau dans One Piece après le Vogue Merry ?",
+        "question": "Dans quel jeu affronte-t-on le boss final nommé 'L'Ender Dragon' ?",
         "reponses": [
-            "thousand sunny",
-            "sunny"
+            "Minecraft",
+            "Mine craft",
+            "MC"
         ],
-        "theme": "Anime",
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom du cheval de Geralt de Riv dans la saga The Witcher ?",
+        "reponses": [
+            "Ablette",
+            "Roach",
+            "Plotka"
+        ],
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Qui a inventé l'ampoule électrique ?",
+        "question": "Quelle entreprise pharmaceutique maléfique est responsable de l'apocalypse dans Resident Evil ?",
         "reponses": [
-            "thomas edison",
-            "edison"
+            "Umbrella Corporation",
+            "Umbrella",
+            "Umbrella Corp"
         ],
-        "theme": "Histoire",
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans quel jeu incarne-t-on Arthur Morgan, membre de la bande de Dutch van der Linde ?",
+        "reponses": [
+            "Red Dead Redemption 2",
+            "RDR2",
+            "Red Dead 2"
+        ],
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est l'artefact principal au centre du conflit dans la série Assassin's Creed ?",
+        "reponses": [
+            "La Pomme d'Éden",
+            "Pomme d'Eden",
+            "Fragment d'Eden"
+        ],
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale de l'Italie ?",
+        "question": "Dans Super Smash Bros., quel accessoire permet d'effectuer l'attaque ultime d'un personnage ?",
         "reponses": [
-            "rome"
+            "Balle Smash",
+            "Smash Ball",
+            "La Balle Smash"
         ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel est l'auto-battler de l'univers Dota ?",
+        "question": "Quel héros de jeu vidéo est connu pour sa phrase 'It's time to kick ass and chew bubble gum' ?",
         "reponses": [
-            "underlords",
-            "dota underlords"
+            "Duke Nukem",
+            "Duke",
+            "Nukem"
         ],
-        "theme": "Jeux Vidéo",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Dans Attack on Titan, comment s'appelle le personnage principal ?",
-        "reponses": [
-            "eren yeager",
-            "eren"
-        ],
-        "theme": "Anime",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel pays possède la plus grande superficie ?",
-        "reponses": [
-            "russie"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est le langage utilisé pour le style d'un site web ?",
-        "reponses": [
-            "css"
-        ],
-        "theme": "Informatique",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Qui a remporté le plus de ballons d'or ?",
-        "reponses": [
-            "lionel messi",
-            "messi"
-        ],
-        "theme": "Sport",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quelle planète est surnommée la Planète Rouge ?",
-        "reponses": [
-            "mars"
-        ],
-        "theme": "Science",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Dans Naruto, qui est le professeur de l'équipe 7 ?",
-        "reponses": [
-            "kakashi",
-            "kakashi hatake"
-        ],
-        "theme": "Anime",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est le nom du moteur de jeu d'Epic Games ?",
-        "reponses": [
-            "unreal engine",
-            "unreal"
-        ],
-        "theme": "Informatique",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quelle est la capitale du Canada ?",
-        "reponses": [
-            "ottawa"
-        ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
         "difficulte": "Difficile"
     },
     {
-        "question": "Qui est le dieu de la foudre dans la mythologie grecque ?",
+        "question": "Dans l'anime Sword Art Online, quel est le nom du créateur du jeu mortel ?",
         "reponses": [
-            "zeus"
+            "Akihiko Kayaba",
+            "Kayaba",
+            "Kayaba Akihiko"
         ],
-        "theme": "Culture G",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est le mode de jeu 'Battle Royale' de Call of Duty ?",
-        "reponses": [
-            "warzone"
-        ],
-        "theme": "Jeux Vidéo",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Comment s'appelle l'oiseau de feu légendaire ?",
-        "reponses": [
-            "phenix",
-            "phoenix"
-        ],
-        "theme": "Culture G",
+        "theme": "Animés",
         "difficulte": "Moyen"
     },
     {
-        "question": "Dans quel pays se trouve la Grande Muraille ?",
+        "question": "Quel est le nom du village natal de Naruto Uzumaki ?",
         "reponses": [
-            "chine"
+            "Konoha",
+            "Le village caché des feuilles",
+            "Konohagakure"
         ],
-        "theme": "Géographie",
+        "theme": "Animés",
         "difficulte": "Facile"
     },
     {
-        "question": "Quelle est la capitale du Maroc ?",
+        "question": "Dans One Piece, comment s'appelle le fruit du démon mangé par Luffy ?",
         "reponses": [
-            "rabat"
+            "Gomu Gomu no Mi",
+            "Fruit du Gum-Gum",
+            "Fruit de l'humain modèle Nika"
         ],
-        "theme": "Géographie",
+        "theme": "Animés",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quel Pokémon est le numéro 025 du Pokédex ?",
+        "question": "Comment s'appelle le dieu de la mort (Shinigami) qui laisse tomber le Death Note dans le monde des humains ?",
         "reponses": [
-            "pikachu"
+            "Ryuk",
+            "Ryuuku",
+            "Riuk"
         ],
-        "theme": "Jeux Vidéo",
+        "theme": "Animés",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel est l'os le plus long du corps humain ?",
+        "question": "Quel est le nom de l'entité colossale qui attaque le district de Shiganshina au début de l'Attaque des Titans ?",
         "reponses": [
-            "femur"
+            "Titan Colossal",
+            "Le Titan Colossal",
+            "Bertolt Hoover"
         ],
-        "theme": "Science",
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Fullmetal Alchemist, dans quelle armure l'âme d'Alphonse Elric est-elle scellée ?",
+        "reponses": [
+            "Armure de fer",
+            "Une armure",
+            "Armure vide"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom du Stand de Jotaro Kujo dans JoJo's Bizarre Adventure ?",
+        "reponses": [
+            "Star Platinum",
+            "Star Platinium",
+            "Platinum"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Demon Slayer (Kimetsu no Yaiba), comment s'appelle la petite sœur de Tanjiro transformée en démon ?",
+        "reponses": [
+            "Nezuko",
+            "Nezuko Kamado",
+            "Kamado Nezuko"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans My Hero Academia, comment s'appelle l'alter (pouvoir) transmis par All Might à Izuku Midoriya ?",
+        "reponses": [
+            "One For All",
+            "Le One For All",
+            "One 4 All"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est l'objectif ultime de Gon Freecss dans Hunter x Hunter ?",
+        "reponses": [
+            "Retrouver son père",
+            "Trouver Ging",
+            "Devenir un Hunter pour trouver son père"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Comment s'appelle l'organisation chargée de combattre les Anges dans Neon Genesis Evangelion ?",
+        "reponses": [
+            "Nerv",
+            "La Nerv",
+            "L'agence Nerv"
+        ],
+        "theme": "Animés",
         "difficulte": "Difficile"
     },
     {
-        "question": "Dans Death Note, que mange le dieu de la mort Ryuk ?",
+        "question": "Quel art martial maîtrise Goku dans Dragon Ball Z ?",
         "reponses": [
-            "pommes",
-            "pomme"
+            "École de la Tortue",
+            "Kame Sen",
+            "Arts martiaux de Tortue Géniale"
         ],
-        "theme": "Anime",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quelle est la capitale de l'Espagne ?",
-        "reponses": [
-            "madrid"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel célèbre détective vit au 221B Baker Street ?",
-        "reponses": [
-            "sherlock holmes",
-            "holmes"
-        ],
-        "theme": "Littérature",
+        "theme": "Animés",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale de l'Angleterre ?",
+        "question": "Dans quel anime suit-on les aventures de chasseurs de primes à bord du vaisseau Bebop ?",
         "reponses": [
-            "londres",
-            "london"
+            "Cowboy Bebop",
+            "Cow boy Bebop",
+            "Cowboy Beebop"
         ],
-        "theme": "Géographie",
+        "theme": "Animés",
         "difficulte": "Facile"
     },
     {
-        "question": "Qui a fondé Microsoft ?",
+        "question": "Comment se nomme le sabre de Shinigami (Zanpakutō) d'Ichigo Kurosaki dans Bleach ?",
         "reponses": [
-            "bill gates",
-            "gates"
+            "Zangetsu",
+            "Lune tranchante",
+            "Tensa Zangetsu"
         ],
-        "theme": "Informatique",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quelle est la distance entre la Terre et le Soleil ?",
-        "reponses": [
-            "150 millions de km",
-            "150000000 km"
-        ],
-        "theme": "Science",
+        "theme": "Animés",
         "difficulte": "Difficile"
     },
     {
-        "question": "Dans Demon Slayer, quelle est la couleur du sabre de Tanjiro ?",
+        "question": "Dans Tokyo Ghoul, quel est le café où Ken Kaneki trouve refuge ?",
         "reponses": [
-            "noir"
+            "L'Antique",
+            "L'Anteiku",
+            "Anteiku"
         ],
-        "theme": "Anime",
+        "theme": "Animés",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel pseudo utilise Rintaro Okabe dans l'anime Steins;Gate ?",
+        "reponses": [
+            "Hououin Kyouma",
+            "Okarin",
+            "Kyouma"
+        ],
+        "theme": "Animés",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Dans Jujutsu Kaisen, comment s'appelle le Roi des Fléaux ?",
+        "reponses": [
+            "Sukuna",
+            "Ryomen Sukuna",
+            "Ryōmen Sukuna"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans One Punch Man, quel est le nom de cyborg qui devient le disciple de Saitama ?",
+        "reponses": [
+            "Genos",
+            "Génos",
+            "Le démon cyborg"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la véritable identité de Sailor Moon ?",
+        "reponses": [
+            "Usagi Tsukino",
+            "Bunny Rivière",
+            "Princesse Serenity"
+        ],
+        "theme": "Animés",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quel est le pays du Soleil Levant ?",
+        "question": "Dans Cyberpunk: Edgerunners, quel puissant implant vertébral David Martinez se fait-il poser ?",
         "reponses": [
-            "japon"
+            "Sandevistan",
+            "Le Sandevistan",
+            "Un Sandevistan"
         ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est le nom du monstre dans Mary Shelley ?",
-        "reponses": [
-            "frankenstein",
-            "monstre de frankenstein"
-        ],
-        "theme": "Littérature",
+        "theme": "Animés",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale de l'Allemagne ?",
+        "question": "Dans Star Wars, quel est le nom de naissance de Dark Vador ?",
         "reponses": [
-            "berlin"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est l'animal le plus rapide au monde ?",
-        "reponses": [
-            "guepard"
-        ],
-        "theme": "Science",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel rappeur a sorti l'album 'Civilisation' ?",
-        "reponses": [
-            "orelsan"
-        ],
-        "theme": "Musique",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Dans Dragon Ball Z, qui est le père de Gohan ?",
-        "reponses": [
-            "goku",
-            "sangoku"
-        ],
-        "theme": "Anime",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quelle est la capitale de la Belgique ?",
-        "reponses": [
-            "bruxelles"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Qui a écrit 'Le Petit Prince' ?",
-        "reponses": [
-            "antoine de saint-exupery",
-            "saint-exupery"
-        ],
-        "theme": "Littérature",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quel est le nom de la ville de Batman ?",
-        "reponses": [
-            "gotham",
-            "gotham city"
+            "Anakin Skywalker",
+            "Anakin",
+            "Ani"
         ],
         "theme": "Cinéma",
         "difficulte": "Facile"
     },
     {
-        "question": "Quelle est la capitale du Portugal ?",
+        "question": "Quelle est la première règle du Fight Club ?",
         "reponses": [
-            "lisbonne"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est le plus haut sommet du monde ?",
-        "reponses": [
-            "everest",
-            "mont everest"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel organe pompe le sang ?",
-        "reponses": [
-            "coeur"
-        ],
-        "theme": "Science",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Dans Valorant, quelle est la nationalité de Jett ?",
-        "reponses": [
-            "coreenne",
-            "coree du sud"
-        ],
-        "theme": "Jeux Vidéo",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quelle est la capitale de la Suisse ?",
-        "reponses": [
-            "berne"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Difficile"
-    },
-    {
-        "question": "Qui a inventé le World Wide Web ?",
-        "reponses": [
-            "tim berners-lee",
-            "berners-lee"
-        ],
-        "theme": "Informatique",
-        "difficulte": "Difficile"
-    },
-    {
-        "question": "Quel est le nom de l'agent 007 ?",
-        "reponses": [
-            "james bond",
-            "bond"
+            "Ne pas parler du Fight Club",
+            "Il est interdit de parler du Fight Club",
+            "On ne parle pas du Fight Club"
         ],
         "theme": "Cinéma",
         "difficulte": "Facile"
     },
     {
-        "question": "Quelle est la capitale de la Russie ?",
+        "question": "Dans Matrix, quelle pilule permet à Neo de découvrir la réalité ?",
         "reponses": [
-            "moscou"
+            "La pilule rouge",
+            "Pilule rouge",
+            "Rouge"
         ],
-        "theme": "Géographie",
+        "theme": "Cinéma",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel est le métal liquide à température ambiante ?",
+        "question": "Comment s'appelle la voiture qui sert de machine à voyager dans le temps dans Retour vers le Futur ?",
         "reponses": [
-            "mercure"
+            "DeLorean",
+            "La DeLorean",
+            "DMC-12"
         ],
-        "theme": "Science",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Dans Jujutsu Kaisen, qui est le roi des fléaux ?",
-        "reponses": [
-            "sukuna"
-        ],
-        "theme": "Anime",
+        "theme": "Cinéma",
         "difficulte": "Facile"
     },
     {
-        "question": "Quelle est la capitale de la Turquie ?",
+        "question": "Quel acteur autrichien prononce la célèbre phrase 'I'll be back' dans Terminator ?",
         "reponses": [
-            "ankara"
+            "Arnold Schwarzenegger",
+            "Schwarzenegger",
+            "Schwarzy"
         ],
-        "theme": "Géographie",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quel studio a créé le film 'Le Voyage de Chihiro' ?",
-        "reponses": [
-            "ghibli",
-            "studio ghibli"
-        ],
-        "theme": "Anime",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quelle est la capitale du Brésil ?",
-        "reponses": [
-            "brasilia"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quel est le nom du pirate au chapeau de paille ?",
-        "reponses": [
-            "luffy",
-            "monkey d luffy"
-        ],
-        "theme": "Anime",
+        "theme": "Cinéma",
         "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Le Seigneur des Anneaux, quel est le vrai nom de Gollum avant qu'il ne trouve l'Anneau ?",
+        "reponses": [
+            "Sméagol",
+            "Smeagol",
+            "Trahal"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel milliardaire fonde le parc d'attractions de dinosaures dans Jurassic Park ?",
+        "reponses": [
+            "John Hammond",
+            "Hammond",
+            "Monsieur Hammond"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel objet utilise Cobb pour vérifier s'il est dans un rêve dans Inception ?",
+        "reponses": [
+            "Une toupie",
+            "Toupie",
+            "Son totem"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Pulp Fiction, qu'y a-t-il à l'intérieur de la mystérieuse mallette de Marsellus Wallace (selon la légende urbaine) ?",
+        "reponses": [
+            "Son âme",
+            "L'âme de Marsellus",
+            "Une âme"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel artiste suisse a conçu le monstre terrifiant du film Alien le huitième passager ?",
+        "reponses": [
+            "H.R. Giger",
+            "Giger",
+            "Hans Ruedi Giger"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Comment s'appelle le véhicule emblématique des Ghostbusters (SOS Fantômes) ?",
+        "reponses": [
+            "Ecto-1",
+            "Ecto 1",
+            "L'Ecto-1"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Blade Runner, comme des larmes dans la... ?",
+        "reponses": [
+            "Pluie",
+            "La pluie",
+            "Rain"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom de la planète luxuriante où se déroule le film Avatar de James Cameron ?",
+        "reponses": [
+            "Pandora",
+            "Pandore"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Le Cinquième Élément, quelle chanteuse alien donne un concert mémorable ?",
+        "reponses": [
+            "La Diva Plavalaguna",
+            "Plavalaguna",
+            "Diva Plavalaguna"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "De quoi a une peur bleue Indiana Jones ?",
+        "reponses": [
+            "Des serpents",
+            "Les serpents",
+            "Serpents"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel était le surnom affectueux donné au requin mécanique sur le tournage des Dents de la Mer ?",
+        "reponses": [
+            "Bruce",
+            "Le grand Bruce",
+            "Brucie"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Dans Mad Max: Fury Road, qui est l'impératrice rebelle jouée par Charlize Theron ?",
+        "reponses": [
+            "Furiosa",
+            "Imperator Furiosa",
+            "L'impératrice Furiosa"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le sort interdit utilisé par Voldemort pour tuer dans Harry Potter ?",
+        "reponses": [
+            "Avada Kedavra",
+            "Le sortilège de la mort",
+            "Sortilège de la mort"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans le film E.T., avec quels bonbons le petit garçon attire-t-il l'extraterrestre ?",
+        "reponses": [
+            "Reese's Pieces",
+            "Reese's",
+            "Des Reese's Pieces"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Quel est le nom de l'ordinateur de bord rebelle dans 2001, l'Odyssée de l'espace ?",
+        "reponses": [
+            "HAL 9000",
+            "HAL",
+            "Carl"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le vrai nom de Spider-Man ?",
+        "reponses": [
+            "Peter Parker",
+            "Parker",
+            "Peter Benjamin Parker"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle le marteau de Thor dans la mythologie nordique et les comics Marvel ?",
+        "reponses": [
+            "Mjolnir",
+            "Mjöllnir",
+            "Mjölnir"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans l'univers DC, de quelle planète est originaire Superman ?",
+        "reponses": [
+            "Krypton",
+            "La planète Krypton",
+            "Kripton"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle le vaisseau du Docteur dans la série Doctor Who ?",
+        "reponses": [
+            "TARDIS",
+            "Le TARDIS",
+            "T.A.R.D.I.S."
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle était la couleur originale de la faiblesse de Green Lantern ?",
+        "reponses": [
+            "Jaune",
+            "Le jaune",
+            "La couleur jaune"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Qui a créé la plupart des super-héros emblématiques de l'univers Marvel, dont Spider-Man et les X-Men ?",
+        "reponses": [
+            "Stan Lee",
+            "Stanley Martin Lieber",
+            "Lee"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle l'asile psychiatrique de Gotham City où finissent les ennemis de Batman ?",
+        "reponses": [
+            "Arkham",
+            "Asile d'Arkham",
+            "Arkham Asylum"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans le jeu de rôle Donjons et Dragons, quel type de dé est généralement utilisé pour résoudre une action ?",
+        "reponses": [
+            "D20",
+            "Dé à 20 faces",
+            "Un dé 20"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel écrivain a imaginé l'entité cosmique Cthulhu ?",
+        "reponses": [
+            "H.P. Lovecraft",
+            "Lovecraft",
+            "Howard Phillips Lovecraft"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la véritable identité de Wonder Woman ?",
+        "reponses": [
+            "Diana Prince",
+            "Princesse Diana",
+            "Diana de Themyscira"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Watchmen, quel personnage meurt en premier, portant un badge smiley taché de sang ?",
+        "reponses": [
+            "Le Comédien",
+            "Edward Blake",
+            "The Comedian"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Comment se nomme la main géante en pierre rouge de Hellboy ?",
+        "reponses": [
+            "La main droite de la destruction",
+            "Right Hand of Doom",
+            "Main de la destruction"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Comment s'appelle l'Intelligence Artificielle de Tony Stark avant Friday ?",
+        "reponses": [
+            "J.A.R.V.I.S.",
+            "Jarvis",
+            "JARVIS"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Les noms des Tortues Ninja sont inspirés par des artistes de quelle époque ?",
+        "reponses": [
+            "La Renaissance",
+            "Renaissance italienne",
+            "Renaissance"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom du créateur du jeu de cartes Magic : L'Assemblée (Magic: The Gathering) ?",
+        "reponses": [
+            "Richard Garfield",
+            "Garfield",
+            "R. Garfield"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Dans les comics, qui est considéré comme le tout premier super-héros grand public (apparu en 1938) ?",
+        "reponses": [
+            "Superman",
+            "Clark Kent",
+            "L'homme d'acier"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Comment s'appelle le métal fictif indestructible dont est composé le squelette de Wolverine ?",
+        "reponses": [
+            "Adamantium",
+            "L'adamantium",
+            "Proto-adamantium"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans The Boys, quel est le nom du leader des Sept, l'antagoniste principal ultra-puissant ?",
+        "reponses": [
+            "Le Protecteur",
+            "Homelander",
+            "John"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui est le grand méchant cosmique de Marvel obsédé par l'équilibre de l'univers avec son gant d'infinité ?",
+        "reponses": [
+            "Thanos",
+            "Le titan fou"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans la pop culture, quel chiffre est considéré comme 'La réponse à la grande question sur la vie, l'univers et le reste' (H2G2) ?",
+        "reponses": [
+            "42",
+            "Quarante-deux",
+            "Quarante deux"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel mammifère est physiquement incapable de sauter ?",
+        "reponses": [
+            "L'éléphant",
+            "Éléphant",
+            "Elephant"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Sur quelle planète de notre système solaire pleut-il littéralement des diamants ?",
+        "reponses": [
+            "Neptune",
+            "Uranus",
+            "Jupiter"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est l'organe le plus lourd du corps humain ?",
+        "reponses": [
+            "La peau",
+            "Peau",
+            "Le foie"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
     },
     {
         "question": "Combien de cœurs possède une pieuvre ?",
         "reponses": [
+            "Trois",
             "3",
-            "trois"
+            "3 coeurs"
         ],
-        "theme": "Science",
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le seul métal qui reste à l'état liquide à température ambiante ?",
+        "reponses": [
+            "Le mercure",
+            "Mercure",
+            "Hg"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Combien d'estomacs possède une vache pour digérer son alimentation ?",
+        "reponses": [
+            "Quatre",
+            "4",
+            "Quatre estomacs"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le seul mammifère capable de véritablement voler (et non de planer) ?",
+        "reponses": [
+            "La chauve-souris",
+            "Chauve-souris",
+            "Chauve souris"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel os de la gorge humaine a la particularité de n'être articulé avec aucun autre os ?",
+        "reponses": [
+            "L'os hyoïde",
+            "Hyoïde",
+            "Os hyoïde"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Quel gaz compose à plus de 78% l'atmosphère terrestre ?",
+        "reponses": [
+            "L'azote",
+            "Azote",
+            "N2"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Les empreintes digitales de quel marsupial sont si proches des nôtres qu'elles peuvent tromper la police ?",
+        "reponses": [
+            "Le koala",
+            "Koala",
+            "Le paresseux"
+        ],
+        "theme": "Sciences insolites",
         "difficulte": "Difficile"
     },
     {
-        "question": "Quel est le nom de l'adversaire de Sherlock Holmes ?",
+        "question": "Quel est le plus petit os du corps humain, situé dans l'oreille ?",
         "reponses": [
-            "moriarty"
+            "L'étrier",
+            "Étrier",
+            "Stapes"
         ],
-        "theme": "Littérature",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quelle est la capitale de l'Argentine ?",
-        "reponses": [
-            "buenos aires"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Qui a peint la chapelle Sixtine ?",
-        "reponses": [
-            "michel-ange",
-            "michel ange"
-        ],
-        "theme": "Art",
+        "theme": "Sciences insolites",
         "difficulte": "Difficile"
     },
     {
-        "question": "Quel est le pays d'origine de Cristiano Ronaldo ?",
+        "question": "Comment appelle-t-on scientifiquement un groupe de corbeaux en anglais (terme souvent repris dans la culture) ?",
         "reponses": [
-            "portugal"
+            "Un meurtre",
+            "Murder",
+            "A murder"
         ],
-        "theme": "Sport",
-        "difficulte": "Facile"
+        "theme": "Sciences insolites",
+        "difficulte": "Expert"
     },
     {
-        "question": "Quel est le réseau social racheté par Elon Musk ?",
+        "question": "Quel est le seul fruit dont les graines poussent à l'extérieur ?",
         "reponses": [
-            "twitter",
-            "x"
+            "La fraise",
+            "Fraise",
+            "Les fraises"
         ],
-        "theme": "Culture G",
-        "difficulte": "Facile"
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale de l'Egypte ?",
+        "question": "De quelle couleur étonnante est la sueur d'un hippopotame (qui lui sert de crème solaire) ?",
         "reponses": [
-            "le caire",
-            "caire"
+            "Rouge",
+            "Rose",
+            "Rougeâtre"
         ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est le plus grand mammifère du monde ?",
-        "reponses": [
-            "baleine bleue",
-            "baleine"
-        ],
-        "theme": "Science",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Dans SAO, quelle arme Kirito utilise-t-il principalement ?",
-        "reponses": [
-            "epee",
-            "epées"
-        ],
-        "theme": "Anime",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quelle est la capitale du Canada ?",
-        "reponses": [
-            "ottawa"
-        ],
-        "theme": "Géographie",
+        "theme": "Sciences insolites",
         "difficulte": "Difficile"
     },
     {
-        "question": "Qui a découvert la gravité ?",
+        "question": "Combien de nez possède une limace ?",
         "reponses": [
-            "isaac newton",
-            "newton"
+            "Quatre",
+            "4",
+            "4 nez"
         ],
-        "theme": "Science",
-        "difficulte": "Facile"
+        "theme": "Sciences insolites",
+        "difficulte": "Expert"
     },
     {
-        "question": "Quel est l'auto-battler de Pokémon ?",
+        "question": "Quelle espèce animale aquatique est biologiquement considérée comme 'immortelle' ?",
         "reponses": [
-            "pokemon unite"
+            "La méduse",
+            "Méduse",
+            "Turritopsis dohrnii"
         ],
-        "theme": "Jeux Vidéo",
+        "theme": "Sciences insolites",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale de la Chine ?",
+        "question": "À quelle température exacte les échelles Celsius et Fahrenheit affichent-elles le même chiffre ?",
         "reponses": [
-            "pekin",
-            "beijing"
+            "-40",
+            "Moins quarante",
+            "Moins 40"
         ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
+        "theme": "Sciences insolites",
+        "difficulte": "Expert"
     },
     {
-        "question": "Qui chante 'Blinding Lights' ?",
+        "question": "Quelle planète du système solaire tourne sur elle-même à l'envers par rapport aux autres (rotation rétrograde) ?",
         "reponses": [
-            "the weeknd",
-            "weeknd"
+            "Vénus",
+            "Venus",
+            "La planète Vénus"
         ],
-        "theme": "Musique",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quelle est la capitale de la Grèce ?",
-        "reponses": [
-            "athenes"
-        ],
-        "theme": "Géographie",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quel est le nom du chat dans Alice au pays des merveilles ?",
-        "reponses": [
-            "cheshire"
-        ],
-        "theme": "Littérature",
+        "theme": "Sciences insolites",
         "difficulte": "Difficile"
     },
     {
-        "question": "Quel est l'ingrédient principal du guacamole ?",
+        "question": "Quelle est la forme très géométrique et atypique des crottes du wombat ?",
         "reponses": [
-            "avocat"
+            "Cube",
+            "Cubique",
+            "En forme de cube"
         ],
-        "theme": "Cuisine",
-        "difficulte": "Facile"
-    },
-    {
-        "question": "Quelle est la capitale de la Pologne ?",
-        "reponses": [
-            "varsovie"
-        ],
-        "theme": "Géographie",
+        "theme": "Sciences insolites",
         "difficulte": "Moyen"
     },
     {
-        "question": "Qui est le créateur de Facebook ?",
+        "question": "La phobie connue sous le nom de 'Paraskevidékatriaphobie' désigne la peur de quoi ?",
         "reponses": [
-            "mark zuckerberg",
-            "zuckerberg"
+            "Le vendredi 13",
+            "Vendredi 13",
+            "Vendredi treize"
         ],
-        "theme": "Informatique",
+        "theme": "Sciences insolites",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Comment s'appelle le fantôme rouge qui poursuit inlassablement Pac-Man ?",
+        "reponses": [
+            "Blinky",
+            "Shadow",
+            "Oikake"
+        ],
+        "theme": "Jeux vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom du frère peureux de Mario, chasseur de fantômes à ses heures perdues ?",
+        "reponses": [
+            "Luigi",
+            "Luigi Mario",
+            "Luidgi"
+        ],
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Dans Pokémon, quelle est l'évolution de Salamèche ?",
+        "question": "Quelle est l'attaque emblématique de Ryu et Ken dans Street Fighter, consistant à lancer une boule d'énergie ?",
         "reponses": [
-            "reptincel"
+            "Hadouken",
+            "Hadoken",
+            "Hado-ken"
         ],
-        "theme": "Jeux Vidéo",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Quelle est la capitale de l'Australie ?",
+        "question": "Comment s'appelle le célèbre tanuki capitaliste qui vous vend votre maison dans Animal Crossing ?",
         "reponses": [
-            "canberra"
+            "Tom Nook",
+            "Nook",
+            "Tanooki"
         ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom du célèbre jeu de cartes très populaire dans l'univers de The Witcher 3 ?",
+        "reponses": [
+            "Le Gwynt",
+            "Gwent",
+            "Gwynt"
+        ],
+        "theme": "Jeux vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel studio de développement américain est à l'origine du jeu League of Legends ?",
+        "reponses": [
+            "Riot Games",
+            "Riot",
+            "Riotgames"
+        ],
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle héroïne britannique capable de remonter le temps figure sur la pochette originale du jeu Overwatch ?",
+        "reponses": [
+            "Tracer",
+            "Lena Oxton",
+            "Oxton"
+        ],
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle la monnaie que le joueur récolte en tuant des insectes dans Hollow Knight ?",
+        "reponses": [
+            "Géo",
+            "Le Géo",
+            "Geo"
+        ],
+        "theme": "Jeux vidéo",
         "difficulte": "Difficile"
     },
     {
-        "question": "Quel est le langage pour les bases de données ?",
+        "question": "Quel est le grade militaire du héros (ou de l'héroïne) de la trilogie Mass Effect ?",
         "reponses": [
-            "sql"
+            "Commandant",
+            "Commander",
+            "Commandant Shepard"
         ],
-        "theme": "Informatique",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale des USA ?",
+        "question": "Dans le jeu vidéo Doom, comment les fans surnomment-ils traditionnellement le soldat de l'espace que l'on incarne ?",
         "reponses": [
-            "washington",
-            "washington dc"
+            "Doomguy",
+            "Le Doom Slayer",
+            "Doom Slayer"
         ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans quel pays Alexey Pajitnov a-t-il inventé le jeu Tetris en 1984 ?",
+        "reponses": [
+            "URSS",
+            "Russie",
+            "Union Soviétique"
+        ],
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Qui a peint 'Le Cri' ?",
+        "question": "Dans Persona 5, quel est le nom de code du protagoniste principal au sein des Voleurs Fantômes ?",
         "reponses": [
-            "edvard munch",
-            "munch"
+            "Joker",
+            "Ren Amamiya",
+            "Akira Kurusu"
         ],
-        "theme": "Art",
-        "difficulte": "Difficile"
-    },
-    {
-        "question": "Dans Valorant, quel agent utilise des drones ?",
-        "reponses": [
-            "skye",
-            "raze",
-            "sova"
-        ],
-        "theme": "Jeux Vidéo",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale des Pays-Bas ?",
+        "question": "Dans Mortal Kombat, quel ninja mort-vivant hurle la célèbre phrase 'Get over here!' ?",
         "reponses": [
-            "amsterdam"
+            "Scorpion",
+            "Hanzo Hasashi",
+            "Hanzo"
         ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Quelle est la vitesse de la lumière ?",
+        "question": "Quel est le nom du flic recrue qui survit à Raccoon City et devient agent du gouvernement dans Resident Evil 4 ?",
         "reponses": [
-            "300000 km/s",
-            "300000"
+            "Leon S. Kennedy",
+            "Leon Kennedy",
+            "Leon"
         ],
-        "theme": "Science",
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans World of Warcraft, quelle faction s'oppose à la Horde ?",
+        "reponses": [
+            "L'Alliance",
+            "Alliance",
+            "The Alliance"
+        ],
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle l'androïde de combat féminin que l'on incarne au début de NieR: Automata ?",
+        "reponses": [
+            "2B",
+            "YoRHa No.2 Type B",
+            "Numéro 2 Type B"
+        ],
+        "theme": "Jeux vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans quel univers gothique et victorien se déroule principalement le jeu Bloodborne ?",
+        "reponses": [
+            "Yharnam",
+            "La ville de Yharnam"
+        ],
+        "theme": "Jeux vidéo",
         "difficulte": "Difficile"
     },
     {
-        "question": "Quelle est la capitale de la Suède ?",
+        "question": "Dans StarCraft, comment s'appelle la race extraterrestre de créatures insectoïdes assimilatrices ?",
         "reponses": [
-            "stockholm"
+            "Les Zergs",
+            "Zerg",
+            "La Nuée Zerg"
         ],
-        "theme": "Géographie",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quel est l'inventeur du téléphone ?",
+        "question": "Comment s'appelle l'héroïne qui tente de gravir la montagne dans le jeu de plateforme Celeste ?",
         "reponses": [
-            "alexander graham bell",
-            "bell"
+            "Madeline",
+            "Maddy"
         ],
-        "theme": "Histoire",
+        "theme": "Jeux vidéo",
         "difficulte": "Moyen"
     },
     {
-        "question": "Dans Hunter x Hunter, quelle est la spécialité de Gon ?",
+        "question": "Dans le reboot de God of War (2018), comment s'appelle le fils de Kratos ?",
         "reponses": [
-            "renforcement",
-            "pierre papier ciseau"
+            "Atreus",
+            "Loki",
+            "Boy"
         ],
-        "theme": "Anime",
+        "theme": "Jeux vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel célèbre mangaka, décédé en 2024, est le créateur de Dragon Ball ?",
+        "reponses": [
+            "Akira Toriyama",
+            "Toriyama",
+            "Toriyama Akira"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom du protagoniste principal de L'Attaque des Titans ?",
+        "reponses": [
+            "Eren Yeager",
+            "Eren Jäger",
+            "Eren"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel studio d'animation japonais est à l'origine du Voyage de Chihiro et de Mon Voisin Totoro ?",
+        "reponses": [
+            "Studio Ghibli",
+            "Ghibli",
+            "Le Studio Ghibli"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Chainsaw Man, comment s'appelle le démon-tronçonneuse aux allures de petit chien ?",
+        "reponses": [
+            "Pochita",
+            "Le démon tronçonneuse"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Naruto, quel ninja copieur est le premier maître de l'équipe 7 ?",
+        "reponses": [
+            "Kakashi Hatake",
+            "Kakashi",
+            "Le ninja copieur"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui était le célèbre 'Roi des Pirates' qui a laissé le One Piece derrière lui ?",
+        "reponses": [
+            "Gol D. Roger",
+            "Gold Roger",
+            "Roger"
+        ],
+        "theme": "Animés",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quelle est la capitale du Vietnam ?",
+        "question": "Dans Hunter x Hunter, de quelle célèbre famille d'assassins Killua fait-il partie ?",
         "reponses": [
-            "hanoi"
+            "Zoldyck",
+            "Famille Zoldyck",
+            "Les Zoldyck"
         ],
-        "theme": "Géographie",
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Qui est le grand antagoniste immortel de la partie 3 de JoJo's Bizarre Adventure (Stardust Crusaders) ?",
+        "reponses": [
+            "DIO",
+            "Dio Brando",
+            "Brando"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Neon Genesis Evangelion, comment s'appelle le jeune pilote de l'EVA-01 ?",
+        "reponses": [
+            "Shinji Ikari",
+            "Shinji",
+            "Ikari Shinji"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel lycéen roux devient un Shinigami remplaçant dans l'anime Bleach ?",
+        "reponses": [
+            "Ichigo Kurosaki",
+            "Ichigo",
+            "Kurosaki Ichigo"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Death Note, quelle est la lettre utilisée comme pseudonyme par le plus grand détective du monde ?",
+        "reponses": [
+            "L",
+            "L Lawliet",
+            "Ryuzaki"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Demon Slayer, quel personnage se bat avec deux sabres ébréchés et porte un masque de sanglier ?",
+        "reponses": [
+            "Inosuke Hashibira",
+            "Inosuke",
+            "Hashibira Inosuke"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le prénom de l'antihéros de Code Geass qui porte le masque de Zero ?",
+        "reponses": [
+            "Lelouch",
+            "Lelouch vi Britannia",
+            "Lelouch Lamperouge"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Fairy Tail, comment s'appelle le chasseur de dragons de feu élevé par Ignir ?",
+        "reponses": [
+            "Natsu Dragneel",
+            "Natsu",
+            "Salamander"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le tout premier Pokémon reçu par Sacha dans l'anime ?",
+        "reponses": [
+            "Pikachu",
+            "Un Pikachu"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle la chatte noire parlante qui accompagne et guide Sailor Moon ?",
+        "reponses": [
+            "Luna",
+            "Louna"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le véritable prénom du héros aux puissants pouvoirs psychiques dans Mob Psycho 100 ?",
+        "reponses": [
+            "Shigeo",
+            "Shigeo Kageyama",
+            "Mob"
+        ],
+        "theme": "Animés",
         "difficulte": "Difficile"
     },
     {
-        "question": "Quel est le plus petit pays du monde ?",
+        "question": "Dans Spy x Family, comment s'appelle la petite fille télépathe fan de cacahuètes ?",
         "reponses": [
-            "vatican"
+            "Anya",
+            "Anya Forger",
+            "Sujet 007"
         ],
-        "theme": "Géographie",
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle le jeune viking protagoniste de Vinland Saga ?",
+        "reponses": [
+            "Thorfinn",
+            "Thorfinn Karlsefni",
+            "Karlsefni"
+        ],
+        "theme": "Animés",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Autour de quel sport se concentre l'anime Haikyuu!! ?",
+        "reponses": [
+            "Volleyball",
+            "Volley-ball",
+            "Volley"
+        ],
+        "theme": "Animés",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel réalisateur américain a dirigé la trilogie culte Le Parrain ?",
+        "reponses": [
+            "Francis Ford Coppola",
+            "Coppola",
+            "F. F. Coppola"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "En quelle année est sorti le tout premier film Star Wars (Un Nouvel Espoir) au cinéma ?",
+        "reponses": [
+            "1977",
+            "77",
+            "Mille neuf cent soixante-dix-sept"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelles sœurs réalisatrices ont créé la saga Matrix ?",
+        "reponses": [
+            "Les sœurs Wachowski",
+            "Lana et Lilly Wachowski",
+            "Les Wachowski"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel réalisateur néo-zélandais a adapté Le Seigneur des Anneaux au cinéma ?",
+        "reponses": [
+            "Peter Jackson",
+            "Jackson",
+            "Sir Peter Jackson"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle la chouette blanche de Harry Potter ?",
+        "reponses": [
+            "Hedwige",
+            "Hedwig"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Jurassic Park, quel composant extrait du sang d'un moustique fossilisé permet de recréer les dinosaures ?",
+        "reponses": [
+            "ADN",
+            "L'ADN",
+            "DNA"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Terminator 2, quel est le modèle du cyborg en métal liquide joué par Robert Patrick ?",
+        "reponses": [
+            "T-1000",
+            "Le T-1000",
+            "Terminator 1000"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est l'arme de prédilection, outre son pistolet, de l'archéologue Indiana Jones ?",
+        "reponses": [
+            "Un fouet",
+            "Le fouet",
+            "Fouet"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle le magnifique collier en diamant bleu cherché par Brock Lovett dans Titanic ?",
+        "reponses": [
+            "Le Cœur de l'Océan",
+            "Cœur de l'océan",
+            "Heart of the Ocean"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle créature géante sucrée sème la terreur à New York à la fin du premier film SOS Fantômes ?",
+        "reponses": [
+            "Le Bibendum Chamallow",
+            "Stay Puft",
+            "Un chamallow géant"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Selon Forrest Gump, à quoi la vie ressemble-t-elle ('on ne sait jamais sur quoi on va tomber') ?",
+        "reponses": [
+            "Une boîte de chocolats",
+            "Boîte de chocolats",
+            "Des chocolats"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle l'espèce d'humanoïdes bleus géants dans le film Avatar ?",
+        "reponses": [
+            "Les Na'vi",
+            "Na'vi",
+            "Navi"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Inception, à qui appartenait originellement la toupie (le totem) de Cobb ?",
+        "reponses": [
+            "Sa femme",
+            "Mal",
+            "Mallorie Cobb"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est le grand antagoniste principal du tout premier film Avengers de 2012 ?",
+        "reponses": [
+            "Loki",
+            "Loki Laufeyson"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel acteur hurle 'Here's Johnny !' (Coucou chérie !) en défonçant une porte dans Shining ?",
+        "reponses": [
+            "Jack Nicholson",
+            "Nicholson",
+            "Jack Torrance"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Gladiator, comment s'appelle le général romain déchu incarné par Russell Crowe ?",
+        "reponses": [
+            "Maximus",
+            "Maximus Decimus Meridius"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom de l'alter-ego charismatique et destructeur inventé par le narrateur dans Fight Club ?",
+        "reponses": [
+            "Tyler Durden",
+            "Tyler",
+            "Durden"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Que demande E.T. l'extra-terrestre lorsqu'il apprend à parler ?",
+        "reponses": [
+            "Téléphone maison",
+            "E.T. téléphone maison",
+            "Phone home"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle le petit chat roux qui survit à bord du Nostromo dans le film Alien ?",
+        "reponses": [
+            "Jonesy",
+            "Jones",
+            "Le chat Jones"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Dans V pour Vendetta, quel conspirateur historique anglais le masque de V représente-t-il ?",
+        "reponses": [
+            "Guy Fawkes",
+            "Fawkes",
+            "Guido Fawkes"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Comment s'appelle le fidèle majordome de Bruce Wayne dans Batman ?",
+        "reponses": [
+            "Alfred",
+            "Alfred Pennyworth",
+            "Pennyworth"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans quelle ville fictive du Kansas le vaisseau de Superman s'est-il écrasé lors de son enfance ?",
+        "reponses": [
+            "Smallville",
+            "Small ville"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui est le puissant télépathe chauve à la tête des X-Men ?",
+        "reponses": [
+            "Charles Xavier",
+            "Professeur X",
+            "Le Professeur Xavier"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle le journal new-yorkais pour lequel Peter Parker vend ses photos de Spider-Man ?",
+        "reponses": [
+            "Daily Bugle",
+            "Le Daily Bugle",
+            "The Daily Bugle"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le véritable nom du super-héros The Flash (le plus connu des comics) ?",
+        "reponses": [
+            "Barry Allen",
+            "Bartholomew Henry Allen",
+            "Allen"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Sous l'armure d'Iron Man, qui se cache selon la célèbre phrase prononcée à la fin du film de 2008 ?",
+        "reponses": [
+            "Tony Stark",
+            "Anthony Edward Stark",
+            "Stark"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans le jargon du jeu de rôle Donjons et Dragons, quel chiffre correspond à un 'coup critique' parfait ?",
+        "reponses": [
+            "20",
+            "Vingt",
+            "Un 20 naturel"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Combien de couleurs de mana de base existe-t-il dans le jeu de cartes Magic l'Assemblée ?",
+        "reponses": [
+            "5",
+            "Cinq",
+            "Cinq couleurs"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans la mythologie de H.P. Lovecraft, dans quelle cité engloutie le grand Cthulhu sommeille-t-il ?",
+        "reponses": [
+            "R'lyeh",
+            "Rlyeh",
+            "R'Lyeh"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Dans Warhammer 40,000, sur quel trône l'Empereur de l'Humanité est-il maintenu en vie ?",
+        "reponses": [
+            "Le Trône d'Or",
+            "Trône d'Or",
+            "Golden Throne"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est le nom du tout premier ordinateur créé par Steve Wozniak et Steve Jobs en 1976 ?",
+        "reponses": [
+            "Apple I",
+            "Apple 1",
+            "L'Apple 1"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Comment s'appelle le manchot dodu, mascotte officielle du système d'exploitation Linux ?",
+        "reponses": [
+            "Tux",
+            "Le pingouin Tux"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Doctor Who, quelle race d'aliens cyborgs a pour cri de guerre 'Exterminer !' ?",
+        "reponses": [
+            "Les Daleks",
+            "Dalek",
+            "Daleks"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans la franchise Star Trek, comment s'appelle le vaisseau mythique commandé par le Capitaine Kirk ?",
+        "reponses": [
+            "USS Enterprise",
+            "L'Enterprise",
+            "Enterprise"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Game of Thrones, à partir de quel objet forgé par le feu d'un dragon est fait le trône du roi ?",
+        "reponses": [
+            "Des épées",
+            "1000 épées",
+            "Les épées des vaincus"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle le plus ancien des Ents (les hommes-arbres) dans Le Seigneur des Anneaux ?",
+        "reponses": [
+            "Sylvebarbe",
+            "Treebeard",
+            "Fangorn"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Dans l'univers Marvel, quel métal ultra-résistant extrait au Wakanda compose le bouclier de Captain America ?",
+        "reponses": [
+            "Vibranium",
+            "Le Vibranium",
+            "Proto-adamantium"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle arme emblématique de Wonder Woman oblige quiconque est ligoté avec à ne dire que la vérité ?",
+        "reponses": [
+            "Le lasso de la vérité",
+            "Lasso de la vérité",
+            "Le lasso d'Hestia"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom de la toute première console de jeux vidéo de salon commercialisée en 1972 ?",
+        "reponses": [
+            "Magnavox Odyssey",
+            "L'Odyssey",
+            "Odyssey"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Quel écrivain polonais est l'auteur des romans Le Sorceleur, à l'origine des jeux The Witcher ?",
+        "reponses": [
+            "Andrzej Sapkowski",
+            "Sapkowski",
+            "A. Sapkowski"
+        ],
+        "theme": "Culture Geek",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel animal microscopique, presque indestructible, est aussi surnommé 'ourson d'eau' ?",
+        "reponses": [
+            "Le tardigrade",
+            "Tardigrade",
+            "Les tardigrades"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est l'animal terrestre le plus rapide au monde ?",
+        "reponses": [
+            "Le guépard",
+            "Guépard",
+            "Un guepard"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel animal possède les plus grands yeux du règne animal (de la taille d'une assiette) ?",
+        "reponses": [
+            "Le calmar géant",
+            "Calmar géant",
+            "Le calmar colossal"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle planète du système solaire est célèbre pour posséder le système d'anneaux le plus visible ?",
+        "reponses": [
+            "Saturne",
+            "La planète Saturne"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Combien d'os possède un corps humain adulte classique ?",
+        "reponses": [
+            "206",
+            "Deux cent six",
+            "Deux cents six"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel groupe sanguin est considéré comme le 'donneur universel' pour les globules rouges ?",
+        "reponses": [
+            "O négatif",
+            "O-",
+            "O negatif"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel mammifère marin a la particularité de dormir avec un seul hémisphère du cerveau à la fois ?",
+        "reponses": [
+            "Le dauphin",
+            "Dauphin",
+            "Le grand dauphin"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel élément chimique est représenté par la lettre K dans le tableau périodique ?",
+        "reponses": [
+            "Le potassium",
+            "Potassium",
+            "Kalium"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est l'animal le plus bruyant de la planète, dont le chant peut être entendu sous l'eau à des milliers de kilomètres ?",
+        "reponses": [
+            "La baleine bleue",
+            "Baleine bleue",
+            "Le cachalot"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel fruit jaune très commun est connu en physique pour être légèrement radioactif à cause de son potassium ?",
+        "reponses": [
+            "La banane",
+            "Banane",
+            "Les bananes"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Comment nomme-t-on scientifiquement la peur irrationnelle des araignées ?",
+        "reponses": [
+            "Arachnophobie",
+            "L'arachnophobie",
+            "Arachnophobia"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la forme géométrique bien connue de la molécule d'ADN ?",
+        "reponses": [
+            "Double hélice",
+            "Une double hélice",
+            "La double hélice"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Combien de couleurs principales distingue-t-on traditionnellement dans un arc-en-ciel ?",
+        "reponses": [
+            "Sept",
+            "7",
+            "Sept couleurs"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Selon une célèbre légende urbaine tenace (mais fausse), quel insecte serait le seul à survivre à une explosion nucléaire ?",
+        "reponses": [
+            "Le cafard",
+            "La blatte",
+            "Le cancrelat"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le seul oiseau capable de voler en arrière ou de faire du surplace ?",
+        "reponses": [
+            "Le colibri",
+            "Colibri",
+            "L'oiseau-mouche"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Sous une très forte pression et température, en quoi le carbone (comme celui du charbon ou des mines de crayon) se transforme-t-il ?",
+        "reponses": [
+            "En diamant",
+            "Diamant",
+            "Le diamant"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Au prorata de sa taille, quel muscle de la mâchoire est considéré comme le plus puissant du corps humain ?",
+        "reponses": [
+            "Le masséter",
+            "Masséter",
+            "Le muscle masséter"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Expert"
+    },
+    {
+        "question": "Quel grand mammifère au long cou terrestre est réputé pour n'avoir pas de cordes vocales ?",
+        "reponses": [
+            "La girafe",
+            "Girafe",
+            "Les girafes"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la formule chimique du sel de table ordinaire ?",
+        "reponses": [
+            "NaCl",
+            "Chlorure de sodium",
+            "Sodium Chloride"
+        ],
+        "theme": "Sciences insolites",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quelle est la planète de notre système solaire la plus proche de notre Soleil ?",
+        "reponses": [
+            "Mercure",
+            "La planète Mercure"
+        ],
+        "theme": "Sciences insolites",
         "difficulte": "Facile"
     }
 ]
