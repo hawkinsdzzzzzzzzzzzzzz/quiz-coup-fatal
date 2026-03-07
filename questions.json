@@ -8,88 +8,847 @@
         "difficulte": "Facile"
     },
     {
-        "question": "Qui a peint La Joconde ?",
+        "question": "Dans quel anime trouve-t-on Sukuna et Gojo ?",
         "reponses": [
-            "léonard de vinci",
-            "leonard de vinci",
-            "da vinci",
-            "de vinci"
+            "jujutsu kaisen",
+            "jjk"
         ],
-        "theme": "Art & Histoire",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Dans quel anime les joueurs sont-ils piégés dans un jeu de réalité virtuelle par Akihiko Kayaba ?",
-        "reponses": [
-            "sword art online",
-            "sao"
-        ],
-        "theme": "Anime & Manga",
+        "theme": "Anime",
         "difficulte": "Facile"
     },
     {
-        "question": "Quel est le nom du réceptacle de Sukuna ?",
+        "question": "Quel jeu de tir tactique a été créé par Riot Games ?",
         "reponses": [
-            "yuji itadori",
-            "itadori",
-            "yuji"
-        ],
-        "theme": "Anime & Manga",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Sur quelle carte classique se jouent les parties classées de League of Legends ?",
-        "reponses": [
-            "faille de l'invocateur",
-            "faille de l invocateur",
-            "summoner's rift",
-            "summoners rift"
-        ],
-        "theme": "Jeux Vidéo",
-        "difficulte": "Moyen"
-    },
-    {
-        "question": "Quel agent russe de Valorant utilise un arc et des flèches de reconnaissance ?",
-        "reponses": [
-            "sova"
+            "valorant",
+            "valo"
         ],
         "theme": "Jeux Vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Dans Pokémon, de quel type est l'attaque 'Tonnerre' ?",
+        "question": "Quelle est la monnaie de l'Algérie ?",
         "reponses": [
-            "électrique",
-            "electrique",
-            "electrik"
+            "dinar",
+            "dinar algerien"
+        ],
+        "theme": "Culture G",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui a écrit 'Les Misérables' ?",
+        "reponses": [
+            "victor hugo",
+            "hugo"
+        ],
+        "theme": "Littérature",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom du monde virtuel dans Sword Art Online ?",
+        "reponses": [
+            "aincrad"
+        ],
+        "theme": "Anime",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel gaz les plantes absorbent-elles pour la photosynthèse ?",
+        "reponses": [
+            "co2",
+            "dioxyde de carbone"
+        ],
+        "theme": "Science",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Combien y a-t-il de joueurs dans une équipe de basket sur le terrain ?",
+        "reponses": [
+            "5",
+            "cinq"
+        ],
+        "theme": "Sport",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel logiciel de dessin utilise l'icône d'un écureuil bleu ?",
+        "reponses": [
+            "krita"
+        ],
+        "theme": "Informatique",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale du Japon ?",
+        "reponses": [
+            "tokyo"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le vrai nom de l'agent Sova dans Valorant ?",
+        "reponses": [
+            "sasha novikov",
+            "sasha"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Qui a peint 'La Nuit étoilée' ?",
+        "reponses": [
+            "vincent van gogh",
+            "van gogh"
+        ],
+        "theme": "Art",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la langue la plus parlée au monde ?",
+        "reponses": [
+            "mandarin",
+            "chinois"
+        ],
+        "theme": "Culture G",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans One Piece, comment s'appelle l'épéiste aux trois sabres ?",
+        "reponses": [
+            "zoro",
+            "roronoa zoro"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel pays a remporté la Coupe du Monde de Football 2018 ?",
+        "reponses": [
+            "france"
+        ],
+        "theme": "Sport",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est l'élément chimique représenté par le symbole 'Au' ?",
+        "reponses": [
+            "or"
+        ],
+        "theme": "Science",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Comment s'appelle l'IA de Tony Stark dans Iron Man ?",
+        "reponses": [
+            "jarvis"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le plus grand océan du monde ?",
+        "reponses": [
+            "pacifique",
+            "ocean pacifique"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Pokémon, quel objet permet de capturer les créatures ?",
+        "reponses": [
+            "poke ball",
+            "pokeball"
         ],
         "theme": "Jeux Vidéo",
         "difficulte": "Facile"
     },
     {
-        "question": "Que signifie la lettre 'H' dans le langage web HTML ?",
+        "question": "Quel est le nom du bateau dans One Piece après le Vogue Merry ?",
         "reponses": [
-            "hypertext",
-            "hypertexte"
+            "thousand sunny",
+            "sunny"
+        ],
+        "theme": "Anime",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Qui a inventé l'ampoule électrique ?",
+        "reponses": [
+            "thomas edison",
+            "edison"
+        ],
+        "theme": "Histoire",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale de l'Italie ?",
+        "reponses": [
+            "rome"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est l'auto-battler de l'univers Dota ?",
+        "reponses": [
+            "underlords",
+            "dota underlords"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Attack on Titan, comment s'appelle le personnage principal ?",
+        "reponses": [
+            "eren yeager",
+            "eren"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel pays possède la plus grande superficie ?",
+        "reponses": [
+            "russie"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le langage utilisé pour le style d'un site web ?",
+        "reponses": [
+            "css"
+        ],
+        "theme": "Informatique",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui a remporté le plus de ballons d'or ?",
+        "reponses": [
+            "lionel messi",
+            "messi"
+        ],
+        "theme": "Sport",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle planète est surnommée la Planète Rouge ?",
+        "reponses": [
+            "mars"
+        ],
+        "theme": "Science",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Naruto, qui est le professeur de l'équipe 7 ?",
+        "reponses": [
+            "kakashi",
+            "kakashi hatake"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom du moteur de jeu d'Epic Games ?",
+        "reponses": [
+            "unreal engine",
+            "unreal"
+        ],
+        "theme": "Informatique",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale du Canada ?",
+        "reponses": [
+            "ottawa"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Qui est le dieu de la foudre dans la mythologie grecque ?",
+        "reponses": [
+            "zeus"
+        ],
+        "theme": "Culture G",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le mode de jeu 'Battle Royale' de Call of Duty ?",
+        "reponses": [
+            "warzone"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Comment s'appelle l'oiseau de feu légendaire ?",
+        "reponses": [
+            "phenix",
+            "phoenix"
+        ],
+        "theme": "Culture G",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans quel pays se trouve la Grande Muraille ?",
+        "reponses": [
+            "chine"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale du Maroc ?",
+        "reponses": [
+            "rabat"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel Pokémon est le numéro 025 du Pokédex ?",
+        "reponses": [
+            "pikachu"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est l'os le plus long du corps humain ?",
+        "reponses": [
+            "femur"
+        ],
+        "theme": "Science",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Dans Death Note, que mange le dieu de la mort Ryuk ?",
+        "reponses": [
+            "pommes",
+            "pomme"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale de l'Espagne ?",
+        "reponses": [
+            "madrid"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel célèbre détective vit au 221B Baker Street ?",
+        "reponses": [
+            "sherlock holmes",
+            "holmes"
+        ],
+        "theme": "Littérature",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale de l'Angleterre ?",
+        "reponses": [
+            "londres",
+            "london"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui a fondé Microsoft ?",
+        "reponses": [
+            "bill gates",
+            "gates"
+        ],
+        "theme": "Informatique",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la distance entre la Terre et le Soleil ?",
+        "reponses": [
+            "150 millions de km",
+            "150000000 km"
+        ],
+        "theme": "Science",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Dans Demon Slayer, quelle est la couleur du sabre de Tanjiro ?",
+        "reponses": [
+            "noir"
+        ],
+        "theme": "Anime",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le pays du Soleil Levant ?",
+        "reponses": [
+            "japon"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom du monstre dans Mary Shelley ?",
+        "reponses": [
+            "frankenstein",
+            "monstre de frankenstein"
+        ],
+        "theme": "Littérature",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale de l'Allemagne ?",
+        "reponses": [
+            "berlin"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est l'animal le plus rapide au monde ?",
+        "reponses": [
+            "guepard"
+        ],
+        "theme": "Science",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel rappeur a sorti l'album 'Civilisation' ?",
+        "reponses": [
+            "orelsan"
+        ],
+        "theme": "Musique",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Dragon Ball Z, qui est le père de Gohan ?",
+        "reponses": [
+            "goku",
+            "sangoku"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale de la Belgique ?",
+        "reponses": [
+            "bruxelles"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui a écrit 'Le Petit Prince' ?",
+        "reponses": [
+            "antoine de saint-exupery",
+            "saint-exupery"
+        ],
+        "theme": "Littérature",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom de la ville de Batman ?",
+        "reponses": [
+            "gotham",
+            "gotham city"
+        ],
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale du Portugal ?",
+        "reponses": [
+            "lisbonne"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le plus haut sommet du monde ?",
+        "reponses": [
+            "everest",
+            "mont everest"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel organe pompe le sang ?",
+        "reponses": [
+            "coeur"
+        ],
+        "theme": "Science",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Valorant, quelle est la nationalité de Jett ?",
+        "reponses": [
+            "coreenne",
+            "coree du sud"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale de la Suisse ?",
+        "reponses": [
+            "berne"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Qui a inventé le World Wide Web ?",
+        "reponses": [
+            "tim berners-lee",
+            "berners-lee"
         ],
         "theme": "Informatique",
         "difficulte": "Difficile"
     },
     {
-        "question": "Quel logiciel open-source est très populaire pour le storyboard et la peinture numérique ?",
+        "question": "Quel est le nom de l'agent 007 ?",
         "reponses": [
-            "krita"
+            "james bond",
+            "bond"
         ],
-        "theme": "Informatique & Design",
+        "theme": "Cinéma",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale de la Russie ?",
+        "reponses": [
+            "moscou"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le métal liquide à température ambiante ?",
+        "reponses": [
+            "mercure"
+        ],
+        "theme": "Science",
         "difficulte": "Moyen"
     },
     {
-        "question": "Quel est le nom du jeu de type auto-battler créé par Riot Games ?",
+        "question": "Dans Jujutsu Kaisen, qui est le roi des fléaux ?",
         "reponses": [
-            "teamfight tactics",
-            "tft"
+            "sukuna"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale de la Turquie ?",
+        "reponses": [
+            "ankara"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel studio a créé le film 'Le Voyage de Chihiro' ?",
+        "reponses": [
+            "ghibli",
+            "studio ghibli"
+        ],
+        "theme": "Anime",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale du Brésil ?",
+        "reponses": [
+            "brasilia"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom du pirate au chapeau de paille ?",
+        "reponses": [
+            "luffy",
+            "monkey d luffy"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Combien de cœurs possède une pieuvre ?",
+        "reponses": [
+            "3",
+            "trois"
+        ],
+        "theme": "Science",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est le nom de l'adversaire de Sherlock Holmes ?",
+        "reponses": [
+            "moriarty"
+        ],
+        "theme": "Littérature",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale de l'Argentine ?",
+        "reponses": [
+            "buenos aires"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Qui a peint la chapelle Sixtine ?",
+        "reponses": [
+            "michel-ange",
+            "michel ange"
+        ],
+        "theme": "Art",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est le pays d'origine de Cristiano Ronaldo ?",
+        "reponses": [
+            "portugal"
+        ],
+        "theme": "Sport",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le réseau social racheté par Elon Musk ?",
+        "reponses": [
+            "twitter",
+            "x"
+        ],
+        "theme": "Culture G",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale de l'Egypte ?",
+        "reponses": [
+            "le caire",
+            "caire"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le plus grand mammifère du monde ?",
+        "reponses": [
+            "baleine bleue",
+            "baleine"
+        ],
+        "theme": "Science",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans SAO, quelle arme Kirito utilise-t-il principalement ?",
+        "reponses": [
+            "epee",
+            "epées"
+        ],
+        "theme": "Anime",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale du Canada ?",
+        "reponses": [
+            "ottawa"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Qui a découvert la gravité ?",
+        "reponses": [
+            "isaac newton",
+            "newton"
+        ],
+        "theme": "Science",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est l'auto-battler de Pokémon ?",
+        "reponses": [
+            "pokemon unite"
         ],
         "theme": "Jeux Vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale de la Chine ?",
+        "reponses": [
+            "pekin",
+            "beijing"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui chante 'Blinding Lights' ?",
+        "reponses": [
+            "the weeknd",
+            "weeknd"
+        ],
+        "theme": "Musique",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale de la Grèce ?",
+        "reponses": [
+            "athenes"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom du chat dans Alice au pays des merveilles ?",
+        "reponses": [
+            "cheshire"
+        ],
+        "theme": "Littérature",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est l'ingrédient principal du guacamole ?",
+        "reponses": [
+            "avocat"
+        ],
+        "theme": "Cuisine",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale de la Pologne ?",
+        "reponses": [
+            "varsovie"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Qui est le créateur de Facebook ?",
+        "reponses": [
+            "mark zuckerberg",
+            "zuckerberg"
+        ],
+        "theme": "Informatique",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Pokémon, quelle est l'évolution de Salamèche ?",
+        "reponses": [
+            "reptincel"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la capitale de l'Australie ?",
+        "reponses": [
+            "canberra"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est le langage pour les bases de données ?",
+        "reponses": [
+            "sql"
+        ],
+        "theme": "Informatique",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale des USA ?",
+        "reponses": [
+            "washington",
+            "washington dc"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui a peint 'Le Cri' ?",
+        "reponses": [
+            "edvard munch",
+            "munch"
+        ],
+        "theme": "Art",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Dans Valorant, quel agent utilise des drones ?",
+        "reponses": [
+            "skye",
+            "raze",
+            "sova"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale des Pays-Bas ?",
+        "reponses": [
+            "amsterdam"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quelle est la vitesse de la lumière ?",
+        "reponses": [
+            "300000 km/s",
+            "300000"
+        ],
+        "theme": "Science",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quelle est la capitale de la Suède ?",
+        "reponses": [
+            "stockholm"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est l'inventeur du téléphone ?",
+        "reponses": [
+            "alexander graham bell",
+            "bell"
+        ],
+        "theme": "Histoire",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans Hunter x Hunter, quelle est la spécialité de Gon ?",
+        "reponses": [
+            "renforcement",
+            "pierre papier ciseau"
+        ],
+        "theme": "Anime",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quelle est la capitale du Vietnam ?",
+        "reponses": [
+            "hanoi"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel est le plus petit pays du monde ?",
+        "reponses": [
+            "vatican"
+        ],
+        "theme": "Géographie",
         "difficulte": "Facile"
     }
 ]
