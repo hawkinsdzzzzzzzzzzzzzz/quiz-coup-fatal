@@ -10,7 +10,6 @@
         rel="stylesheet">
 
     <style>
-        /* --- RESET & VARIABLES --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,23 +19,17 @@
 
         :root {
             --primary: #00E676;
-            /* Vert Fluo */
             --danger: #FF1744;
-            /* Rouge Fluo */
             --warning: #FF9100;
-            /* Orange Fluo */
             --info: #00B0FF;
-            /* Bleu Fluo */
             --glass-bg: rgba(20, 20, 30, 0.65);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             font-family: 'Nunito', sans-serif;
-            /* Arrière-plan stylé Esports / Sombre */
             background-color: #0b0c10;
-            background-image: radial-gradient(circle at 15% 50%, rgba(0, 176, 255, 0.15), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(255, 23, 68, 0.15), transparent 25%);
+            background-image: radial-gradient(circle at 15% 50%, rgba(0, 176, 255, 0.15), transparent 25%), radial-gradient(circle at 85% 30%, rgba(255, 23, 68, 0.15), transparent 25%);
             color: white;
             overflow-x: hidden;
             display: flex;
@@ -46,7 +39,6 @@
             min-height: 100vh;
         }
 
-        /* --- TYPOGRAPHIE --- */
         h1 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
@@ -75,7 +67,6 @@
             line-height: 1.3;
         }
 
-        /* --- ANIMATIONS --- */
         @keyframes popIn {
             0% {
                 opacity: 0;
@@ -127,7 +118,20 @@
             border-color: var(--danger) !important;
         }
 
-        /* --- BOUTONS --- */
+        @keyframes pulseGlowText {
+            0% {
+                text-shadow: 0 0 10px var(--warning);
+            }
+
+            50% {
+                text-shadow: 0 0 25px var(--warning), 0 0 10px var(--warning);
+            }
+
+            100% {
+                text-shadow: 0 0 10px var(--warning);
+            }
+        }
+
         .btn {
             padding: 15px 30px;
             font-family: 'Montserrat', sans-serif;
@@ -170,6 +174,11 @@
             box-shadow: 0 10px 20px rgba(0, 230, 118, 0.3);
         }
 
+        .btn-faux {
+            background: linear-gradient(45deg, var(--danger), #b71c1c);
+            box-shadow: 0 10px 20px rgba(255, 23, 68, 0.3);
+        }
+
         .btn-skip {
             background: linear-gradient(45deg, var(--warning), #ff6d00);
             box-shadow: 0 10px 20px rgba(255, 145, 0, 0.3);
@@ -183,7 +192,29 @@
             animation: popIn 0.5s forwards, pulseGlow 2s infinite;
         }
 
-        /* --- INPUTS --- */
+        #btn-buzzer {
+            background: linear-gradient(135deg, #FF1744, #b71c1c);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            font-size: 2.5rem;
+            border: 8px solid #ff5252;
+            box-shadow: 0 20px 50px rgba(255, 23, 68, 0.5), inset 0 10px 20px rgba(255, 255, 255, 0.3);
+            display: none;
+            margin: 20px auto;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        #btn-buzzer:hover {
+            transform: scale(1.1);
+            box-shadow: 0 25px 60px rgba(255, 23, 68, 0.7), inset 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        #btn-buzzer:active {
+            transform: scale(0.95);
+            box-shadow: 0 10px 20px rgba(255, 23, 68, 0.5);
+        }
+
         input[type="text"],
         select {
             padding: 18px 25px;
@@ -205,7 +236,6 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
 
-        /* --- CONTAINERS GLASSMORPHISM --- */
         .glass-panel {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -220,24 +250,160 @@
         #menu {
             width: 450px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #8a8d91;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--info);
+            text-shadow: 0 0 10px rgba(0, 176, 255, 0.5);
+        }
+
+        .tab-content {
+            display: none;
+            text-align: left;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: popIn 0.3s forwards;
         }
 
         .input-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .input-group label {
             display: block;
             color: #8a8d91;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* --- ZONE JEU --- */
+        #mode-description {
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: var(--info);
+            font-style: italic;
+            text-align: center;
+            background: rgba(0, 176, 255, 0.1);
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        #bonus-presentateur {
+            display: none;
+            background: rgba(255, 145, 0, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px dashed var(--warning);
+            text-align: left;
+        }
+
+        .bonus-title {
+            color: var(--warning);
+            font-size: 0.85rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-container input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--warning);
+            cursor: pointer;
+        }
+
+        .public-room-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .public-room-card:hover {
+            border-color: var(--info);
+            background: rgba(0, 176, 255, 0.1);
+        }
+
+        .room-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-title {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .room-details {
+            font-size: 0.8rem;
+            color: #8a8d91;
+            text-transform: uppercase;
+        }
+
+        .btn-join-room {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            background: var(--info);
+            border-radius: 20px;
+            color: white;
+            border: none;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        #empty-rooms {
+            text-align: center;
+            color: #8a8d91;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
         #zone-jeu {
             display: none;
             width: 100%;
@@ -265,15 +431,23 @@
             letter-spacing: 2px;
         }
 
+        #lobby-players {
+            font-size: 0.95rem;
+            color: #8a8d91;
+            margin-top: 8px;
+            font-weight: 700;
+            font-style: italic;
+        }
+
         #messages {
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--warning);
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
         }
 
-        /* --- CHRONOS (CARTES JOUEURS) --- */
         #chronos {
             width: 100%;
             display: flex;
@@ -296,7 +470,6 @@
             overflow: hidden;
         }
 
-        /* État Actif = C'est son tour */
         .chrono-player.active-turn {
             border-color: var(--primary);
             transform: scale(1.08) translateY(-10px);
@@ -312,7 +485,6 @@
             margin-bottom: 20px;
         }
 
-        /* Avatar Généré */
         .avatar {
             width: 50px;
             height: 50px;
@@ -356,6 +528,31 @@
             color: #8a8d91;
             text-transform: uppercase;
             font-weight: 700;
+        }
+
+        .player-score {
+            font-size: 0.95rem;
+            font-weight: 900;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-top: 5px;
+            display: inline-block;
+            border: 1px solid #333;
+        }
+
+        .score-positive {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .score-negative {
+            color: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .score-neutral {
+            color: #8a8d91;
         }
 
         .time-text {
@@ -407,10 +604,19 @@
 
         .time-critical .time-text {
             color: var(--warning) !important;
-            animation: pulseGlow 0.5s infinite alternate;
+            animation: pulseGlowText 0.5s infinite alternate;
         }
 
-        /* --- VISION ADVERSAIRE --- */
+        #timer-buzzer {
+            display: none;
+            font-family: 'Montserrat';
+            font-weight: 900;
+            font-size: 5rem;
+            color: var(--danger);
+            text-shadow: 0 0 30px rgba(255, 23, 68, 0.8);
+            margin-bottom: 20px;
+        }
+
         #vision-adversaire {
             background: rgba(0, 0, 0, 0.4);
             padding: 15px 30px;
@@ -432,7 +638,6 @@
             font-weight: 900;
         }
 
-        /* --- INTERFACE DE QUESTION (LE CŒUR) --- */
         #interface-jeu {
             width: 100%;
             max-width: 900px;
@@ -486,9 +691,9 @@
             gap: 20px;
             align-items: center;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        /* Input géant stylé */
         #input-reponse {
             width: 100%;
             max-width: 600px;
@@ -512,6 +717,22 @@
             opacity: 0.3;
         }
 
+        #zone-presentateur {
+            display: none;
+            background: rgba(255, 23, 68, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px dashed var(--danger);
+            margin-bottom: 20px;
+        }
+
+        #reponses-attendues {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
         #feedback-reponse {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
@@ -529,37 +750,92 @@
     <h1>Coup Fatal</h1>
 
     <div id="menu" class="glass-panel">
-        <h3 style="color: white;">Rejoindre l'Arène</h3>
-        <div class="input-group">
+        <div class="input-group" style="margin-bottom: 15px;">
             <label>Ton Pseudo</label>
             <input type="text" id="input-pseudo" placeholder="Ex: Faker" autocomplete="off" maxlength="12">
         </div>
-        <div class="input-group">
-            <label>Code Secret</label>
-            <input type="text" id="input-salon" placeholder="Ex: DUEL42" autocomplete="off"
-                style="text-transform: uppercase;">
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('rejoindre')">Rejoindre</button>
+            <button class="tab-btn" onclick="switchTab('creer')">Créer</button>
         </div>
-        <div class="input-group">
-            <label>Pression (Temps)</label>
-            <select id="input-temps">
-                <option value="30">30s - Mort Subite</option>
-                <option value="60" selected>60s - Classique</option>
-                <option value="90">90s - Stratégique</option>
-            </select>
+
+        <div id="tab-rejoindre" class="tab-content active">
+            <div class="input-group">
+                <label>Code Privé (Optionnel)</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="input-salon-rejoindre" placeholder="CODE..."
+                        style="text-transform: uppercase;">
+                    <button class="btn btn-lancer" style="margin: 0; padding: 0 20px;"
+                        onclick="rejoindreSalonPrive()">GO</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <label style="color: #8a8d91; font-size: 0.9rem; font-weight: 900; text-transform: uppercase;">🌐 Salons
+                    Publics</label>
+                <div id="liste-salons-publics">
+                    <div id="empty-rooms">Aucun salon public disponible.</div>
+                </div>
+            </div>
         </div>
-        <button class="btn btn-lancer" onclick="rejoindreSalon()">Entrer dans l'arène</button>
+
+        <div id="tab-creer" class="tab-content">
+            <div class="input-group">
+                <label>Visibilité</label>
+                <select id="input-visibilite" onchange="toggleCodePerso()">
+                    <option value="public" selected>🌍 Public (Visible de tous)</option>
+                    <option value="prive">🔒 Privé (Caché)</option>
+                </select>
+            </div>
+
+            <div class="input-group" id="div-code-perso" style="display: none;">
+                <label>Code Secret Personnalisé</label>
+                <input type="text" id="input-salon-creer" placeholder="Code secret" style="text-transform: uppercase;">
+            </div>
+
+            <div class="input-group">
+                <label>Mode de Jeu</label>
+                <select id="input-mode" onchange="changerDescriptionMode()">
+                    <option value="classique" selected>Mode Classique (Clavier)</option>
+                    <option value="buzzer">Mode Buzzer (Écrit)</option>
+                    <option value="presentateur">Mode Présentateur (Vocal)</option>
+                </select>
+            </div>
+            <div id="mode-description">Chacun son tour, tapez la réponse le plus vite possible.</div>
+
+            <div id="bonus-presentateur">
+                <div class="bonus-title">👑 Options du Maître du Jeu</div>
+                <label class="checkbox-container">
+                    <input type="checkbox" id="opt-voir-questions">
+                    Les joueurs peuvent lire la question
+                </label>
+            </div>
+
+            <div class="input-group" id="div-temps-global">
+                <label>Pression (Temps)</label>
+                <select id="input-temps">
+                    <option value="30">30s - Mort Subite</option>
+                    <option value="60" selected>60s - Classique</option>
+                    <option value="90">90s - Stratégique</option>
+                </select>
+            </div>
+            <button class="btn btn-lancer" onclick="creerNouveauSalon()">Créer la partie</button>
+        </div>
     </div>
 
     <div id="zone-jeu">
         <div class="game-header">
-            <h2>ROOM: <span id="nom-salon"></span></h2>
+            <div>
+                <h2>ROOM: <span id="nom-salon"></span></h2>
+                <div id="lobby-players">👥 En attente de joueurs...</div>
+            </div>
             <div id="messages">Connexion au serveur...</div>
         </div>
 
         <button id="btn-demarrer" class="btn" style="display: none;" onclick="lancerPartie()">Lancer le Match !</button>
 
-        <div id="chronos">
-        </div>
+        <div id="chronos"></div>
 
         <div id="vision-adversaire" style="display: none;"><em>En attente des autres joueurs...</em></div>
 
@@ -571,11 +847,28 @@
 
             <h3 id="texte-question">Préparez-vous...</h3>
 
-            <div class="action-row">
+            <div id="zone-presentateur">
+                <p style="color: white; margin-bottom: 5px;">RÉPONSES ACCEPTÉES :</p>
+                <div id="reponses-attendues">...</div>
+            </div>
+
+            <div id="timer-buzzer">5</div>
+
+            <div class="action-row" id="zone-actions">
+                <button id="btn-buzzer" class="btn" onclick="appuyerBuzzer()">BUZZ !</button>
+
                 <input type="text" id="input-reponse" placeholder="TA RÉPONSE..." autocomplete="off"
                     onkeypress="gererToucheEntree(event)" oninput="transmettreFrappe()">
                 <button id="btn-valider" class="btn btn-valider" onclick="envoyerReponse()">Valider</button>
-                <button id="btn-skip" class="btn btn-skip" onclick="skipQuestion()">Passer</button>
+
+                <button id="btn-presentateur-vrai" class="btn btn-valider"
+                    style="display: none; padding: 25px 50px; font-size: 1.5rem;" onclick="juger(true)">✅
+                    CORRECT</button>
+                <button id="btn-presentateur-faux" class="btn btn-faux"
+                    style="display: none; padding: 25px 50px; font-size: 1.5rem;" onclick="juger(false)">❌ FAUX
+                    (Suivant)</button>
+
+                <button id="btn-skip" class="btn btn-skip" onclick="skipQuestion()">Passer (Skip)</button>
             </div>
 
             <p id="feedback-reponse"></p>
@@ -586,112 +879,154 @@
     <script>
         const socket = io();
         let codeDuSalon = "";
-        let tempsInitialParametre = 60;
+        let monMode = "classique";
         let jeSuisChef = false;
+        let jeSuisPresentateur = false;
 
-        function rejoindreSalon() {
-            codeDuSalon = document.getElementById('input-salon').value.toUpperCase();
-            const monPseudo = document.getElementById('input-pseudo').value;
-            tempsInitialParametre = parseInt(document.getElementById('input-temps').value);
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+        }
 
-            if (codeDuSalon.trim() !== "" && monPseudo.trim() !== "") {
-                socket.emit('rejoindre_salon', { codeSalon: codeDuSalon, pseudo: monPseudo, tempsChoisi: tempsInitialParametre });
-                document.getElementById('menu').style.display = 'none';
-                document.getElementById('zone-jeu').style.display = 'flex';
-                document.getElementById('nom-salon').innerText = codeDuSalon;
+        function toggleCodePerso() {
+            const isPrive = document.getElementById('input-visibilite').value === 'prive';
+            document.getElementById('div-code-perso').style.display = isPrive ? 'block' : 'none';
+        }
+
+        function changerDescriptionMode() {
+            const mode = document.getElementById('input-mode').value;
+            const desc = document.getElementById('mode-description');
+            const bonusMenu = document.getElementById('bonus-presentateur');
+            const divTemps = document.getElementById('div-temps-global');
+
+            if (mode === 'classique') {
+                desc.innerText = "Chacun son tour, tapez la réponse le plus vite possible.";
+                bonusMenu.style.display = 'none'; divTemps.style.display = 'block';
+            }
+            if (mode === 'presentateur') {
+                desc.innerText = "Le créateur lit la question en vocal et juge vos réponses !";
+                bonusMenu.style.display = 'block'; divTemps.style.display = 'block';
+            }
+            if (mode === 'buzzer') {
+                desc.innerText = "🚨 Système de vote pour passer. +10 Pts si juste, -5 Pts si faux ou trop lent (5s) !";
+                bonusMenu.style.display = 'none'; divTemps.style.display = 'none';
             }
         }
+
+        function rejoindreSalon(codeSpecifique = null) {
+            const monPseudo = document.getElementById('input-pseudo').value;
+            codeDuSalon = codeSpecifique || document.getElementById('input-salon-rejoindre').value.toUpperCase();
+            if (codeDuSalon.trim() !== "" && monPseudo.trim() !== "") {
+                socket.emit('rejoindre_salon', { codeSalon: codeDuSalon, pseudo: monPseudo, estPublic: false });
+                afficherZoneJeu();
+            } else { alert("N'oublie pas ton pseudo !"); }
+        }
+        function rejoindreSalonPrive() { rejoindreSalon(null); }
+
+        function creerNouveauSalon() {
+            const monPseudo = document.getElementById('input-pseudo').value;
+            const visibilite = document.getElementById('input-visibilite').value;
+            let code = document.getElementById('input-salon-creer').value.toUpperCase();
+            if (visibilite === 'public' || code.trim() === "") code = Math.random().toString(36).substring(2, 6).toUpperCase();
+
+            codeDuSalon = code;
+            const tempsInitialParametre = parseInt(document.getElementById('input-temps').value);
+            const modeChoisi = document.getElementById('input-mode').value;
+            const optionsBonus = { voirQuestions: document.getElementById('opt-voir-questions').checked };
+
+            if (monPseudo.trim() !== "") {
+                socket.emit('rejoindre_salon', { codeSalon: codeDuSalon, pseudo: monPseudo, tempsChoisi: tempsInitialParametre, modeChoisi: modeChoisi, optionsBonus: optionsBonus, estPublic: (visibilite === 'public') });
+                afficherZoneJeu();
+            } else { alert("Tu dois choisir un pseudo !"); }
+        }
+
+        function afficherZoneJeu() {
+            document.getElementById('menu').style.display = 'none';
+            document.getElementById('zone-jeu').style.display = 'flex';
+            document.getElementById('nom-salon').innerText = codeDuSalon;
+        }
+
+        socket.on('maj_salons_publics', (salons) => {
+            const conteneur = document.getElementById('liste-salons-publics');
+            if (salons.length === 0) { conteneur.innerHTML = `<div id="empty-rooms">Aucun salon public disponible.</div>`; return; }
+            let html = "";
+            salons.forEach(salon => {
+                let modeTxt = salon.mode === 'presentateur' ? '🎤 Vocal' : (salon.mode === 'buzzer' ? '🚨 Buzzer' : '⌨️ Classique');
+                html += `
+                    <div class="public-room-card">
+                        <div class="room-info"><span class="room-title">Partie de ${salon.createur}</span><span class="room-details">${modeTxt} • Joueurs: ${salon.nbJoueurs}</span></div>
+                        <button class="btn-join-room" onclick="rejoindreSalon('${salon.code}')">Rejoindre</button>
+                    </div>`;
+            });
+            conteneur.innerHTML = html;
+        });
+
+        socket.on('maj_lobby', (pseudos) => {
+            const lobbyDiv = document.getElementById('lobby-players');
+            if (lobbyDiv) lobbyDiv.innerText = "👥 Joueurs présents : " + pseudos.join(', ');
+        });
 
         function lancerPartie() { socket.emit('lancer_partie', codeDuSalon); }
+        function transmettreFrappe() { socket.emit('en_train_de_taper', { codeSalon: codeDuSalon, texte: document.getElementById('input-reponse').value }); }
+        function envoyerReponse() { socket.emit('proposer_reponse', { codeSalon: codeDuSalon, reponseJoueur: document.getElementById('input-reponse').value }); }
+        function gererToucheEntree(event) { if (event.key === "Enter" && !document.getElementById('input-reponse').disabled) envoyerReponse(); }
+        function skipQuestion() { socket.emit('skip_question', codeDuSalon); document.getElementById('input-reponse').value = ""; document.getElementById('feedback-reponse').innerText = ""; transmettreFrappe(); }
+        function juger(estCorrect) { socket.emit('jugement_presentateur', { codeSalon: codeDuSalon, estCorrect: estCorrect }); }
+        function appuyerBuzzer() { socket.emit('clic_buzzer', codeDuSalon); }
 
-        function transmettreFrappe() {
-            const texteActuel = document.getElementById('input-reponse').value;
-            socket.emit('en_train_de_taper', { codeSalon: codeDuSalon, texte: texteActuel });
-        }
-
-        function envoyerReponse() {
-            const reponse = document.getElementById('input-reponse').value;
-            socket.emit('proposer_reponse', { codeSalon: codeDuSalon, reponseJoueur: reponse });
-        }
-
-        function gererToucheEntree(event) {
-            if (event.key === "Enter") {
-                const input = document.getElementById('input-reponse');
-                if (!input.disabled) envoyerReponse();
-            }
-        }
-
-        function skipQuestion() {
-            socket.emit('skip_question', codeDuSalon);
-            document.getElementById('input-reponse').value = "";
-            document.getElementById('feedback-reponse').innerText = "";
-            transmettreFrappe();
-        }
-
-        socket.on('info_role', (data) => { jeSuisChef = data.estChef; });
+        socket.on('info_role', (data) => { jeSuisChef = data.estChef; jeSuisPresentateur = data.estPresentateur; monMode = data.mode; });
 
         socket.on('maj_joueurs', (nbJoueurs) => {
             const btnDemarrer = document.getElementById('btn-demarrer');
             const msg = document.getElementById('messages');
-
             if (jeSuisChef) {
-                if (nbJoueurs >= 2) {
-                    btnDemarrer.style.display = 'block';
-                    msg.innerText = "PRÊT POUR LE MATCH";
-                    msg.style.color = "var(--primary)";
+                if ((monMode === 'presentateur' && nbJoueurs >= 1) || (monMode !== 'presentateur' && nbJoueurs >= 2)) {
+                    btnDemarrer.style.display = 'block'; msg.innerText = "PRÊT POUR LE MATCH"; msg.style.color = "var(--primary)";
                 } else {
-                    btnDemarrer.style.display = 'none';
-                    msg.innerText = "EN ATTENTE D'UN ADVERSAIRE...";
-                    msg.style.color = "var(--warning)";
+                    btnDemarrer.style.display = 'none'; msg.innerText = "EN ATTENTE DE JOUEURS..."; msg.style.color = "var(--warning)";
                 }
-            } else {
-                btnDemarrer.style.display = 'none';
-                if (nbJoueurs >= 2) {
-                    msg.innerText = "EN ATTENTE DU CHEF...";
-                } else {
-                    msg.innerText = "EN ATTENTE D'AUTRES JOUEURS...";
-                }
-            }
+            } else { btnDemarrer.style.display = 'none'; msg.innerText = "EN ATTENTE DU CHEF..."; }
         });
 
         socket.on('partie_lancee', () => {
             document.getElementById('btn-demarrer').style.display = 'none';
-            const vision = document.getElementById('vision-adversaire');
-            vision.innerHTML = `<em>Génération du plateau...</em>`;
-            vision.style.display = 'flex';
+            document.getElementById('lobby-players').style.display = 'none';
+
+            if (monMode === 'classique' || monMode === 'buzzer') {
+                document.getElementById('vision-adversaire').style.display = 'flex';
+                document.getElementById('vision-adversaire').innerHTML = `<em>Génération du plateau...</em>`;
+            }
         });
 
-        // NOUVEAU DESIGN DES CHRONOS
         socket.on('maj_temps', (data) => {
-            const { temps, pseudos } = data;
+            const { temps, pseudos, scores } = data;
             const chronosContainer = document.getElementById('chronos');
-
-            const idsTries = Object.keys(temps).sort((a, b) => {
-                if (a === socket.id) return -1;
-                if (b === socket.id) return 1;
-                return 0;
-            });
+            const idsTries = Object.keys(temps).sort((a, b) => { if (a === socket.id) return -1; if (b === socket.id) return 1; return 0; });
 
             const chronosExistants = chronosContainer.querySelectorAll('.chrono-player');
-            chronosExistants.forEach(chrono => {
-                const idDiv = chrono.id.replace('chrono-', '');
-                if (!temps[idDiv]) chrono.remove();
-            });
+            chronosExistants.forEach(chrono => { const idDiv = chrono.id.replace('chrono-', ''); if (!temps[idDiv]) chrono.remove(); });
 
             for (let id of idsTries) {
                 const timeLeft = temps[id];
                 const pseudo = pseudos[id];
                 const isMe = (id === socket.id);
                 const classType = isMe ? 'is-me' : 'is-adversary';
-                const totalTime = tempsInitialParametre || 60;
+                const totalTime = parseInt(document.getElementById('input-temps').value) || 60;
                 const pourcentage = (timeLeft / totalTime) * 100;
                 const classCritical = timeLeft <= 15 ? 'time-critical' : '';
 
-                // Première lettre du pseudo pour l'avatar
-                const initiale = pseudo.charAt(0).toUpperCase();
+                const score = scores && scores[id] !== undefined ? scores[id] : 0;
+                let scoreClass = 'score-neutral';
+                if (score > 0) scoreClass = 'score-positive';
+                if (score < 0) scoreClass = 'score-negative';
+                const scoreHTML = monMode === 'buzzer' ? `<span class="player-score ${scoreClass}">Score: ${score}</span>` : '';
 
+                const initiale = pseudo.charAt(0).toUpperCase();
                 let divChrono = document.getElementById(`chrono-${id}`);
 
+                // CORRECTION DU CRASH: On insère ET on récupère l'élément juste après !
                 if (!divChrono) {
                     const newHTML = `
                         <div id="chrono-${id}" class="chrono-player ${classType} ${classCritical}">
@@ -699,7 +1034,8 @@
                                 <div class="avatar">${initiale}</div>
                                 <div class="player-info-text">
                                     <span class="player-name">${pseudo}</span>
-                                    <span class="player-role">${isMe ? 'Toi' : 'Adversaire'}</span>
+                                    <span class="player-role">${isMe ? 'Toi' : 'Joueur'}</span>
+                                    ${scoreHTML}
                                 </div>
                                 <span class="time-text">${timeLeft}</span>
                             </div>
@@ -709,102 +1045,188 @@
                         </div>
                     `;
                     chronosContainer.insertAdjacentHTML('beforeend', newHTML);
+                    divChrono = document.getElementById(`chrono-${id}`); // INDISPENSABLE
                 } else {
                     divChrono.querySelector('.time-text').innerText = `${timeLeft}`;
                     document.getElementById(`jauge-${id}`).style.width = `${pourcentage}%`;
+                    if (timeLeft <= 15) divChrono.classList.add('time-critical'); else divChrono.classList.remove('time-critical');
 
-                    if (timeLeft <= 15) divChrono.classList.add('time-critical');
-                    else divChrono.classList.remove('time-critical');
+                    const scoreEl = divChrono.querySelector('.player-score');
+                    if (scoreEl) { scoreEl.innerText = `Score: ${score}`; scoreEl.className = `player-score ${scoreClass}`; }
+                }
+
+                if (monMode === 'buzzer' && divChrono) {
+                    divChrono.querySelector('.time-text').style.display = 'none';
+                    divChrono.querySelector('.jauge-container').style.display = 'none';
                 }
             }
         });
 
-        socket.on('changement_tour', (idJoueurActif) => {
+        socket.on('tic_tac_buzzer', (tempsRestant) => {
+            const timer = document.getElementById('timer-buzzer');
+            timer.style.display = 'block';
+            timer.innerText = tempsRestant;
+            if (tempsRestant <= 2) {
+                timer.style.transform = 'scale(1.2)';
+            } else {
+                timer.style.transform = 'scale(1)';
+            }
+        });
+
+        socket.on('maj_votes_skip', (data) => {
+            if (monMode === 'buzzer') {
+                const btnSkip = document.getElementById('btn-skip');
+                btnSkip.innerText = `Voter pour Passer (${data.votes}/${Math.floor(data.total / 2) + 1})`;
+            }
+        });
+
+        socket.on('message_serveur', (msg) => {
+            document.getElementById('messages').innerText = msg;
+            document.getElementById('messages').style.color = "var(--primary)";
+        });
+
+        socket.on('changement_tour', (data) => {
             document.getElementById('interface-jeu').style.display = 'block';
 
             const inputReponse = document.getElementById('input-reponse');
             const btnValider = document.getElementById('btn-valider');
             const btnSkip = document.getElementById('btn-skip');
+            const btnBuzzer = document.getElementById('btn-buzzer');
             const msg = document.getElementById('messages');
-            const inputContainer = document.getElementById('input-reponse');
+            const timer = document.getElementById('timer-buzzer');
 
-            // Nettoie l'animation d'erreur
-            inputContainer.classList.remove('shake-animation');
+            inputReponse.classList.remove('shake-animation');
+
+            const idJoueurActif = typeof data === 'object' ? data.idJoueurActif : data;
 
             const tousLesChronos = document.querySelectorAll('.chrono-player');
             tousLesChronos.forEach(c => c.classList.remove('active-turn'));
-            const divActive = document.getElementById(`chrono-${idJoueurActif}`);
-            if (divActive) divActive.classList.add('active-turn');
 
-            if (socket.id === idJoueurActif) {
-                inputReponse.disabled = false;
-                btnValider.disabled = false;
-                btnSkip.disabled = false;
-                inputReponse.value = "";
-                inputReponse.focus();
-                transmettreFrappe();
-                msg.innerText = "🟢 À TOI DE JOUER !";
-                msg.style.color = "var(--primary)";
-            } else {
-                inputReponse.disabled = true;
-                btnValider.disabled = true;
-                btnSkip.disabled = true;
-                inputReponse.value = "";
-                msg.innerText = "🔴 TOUR DE L'ADVERSAIRE";
-                msg.style.color = "var(--danger)";
+            if (idJoueurActif && idJoueurActif !== 'bloque') {
+                const divActive = document.getElementById(`chrono-${idJoueurActif}`);
+                if (divActive) divActive.classList.add('active-turn');
+            }
+
+            if (jeSuisPresentateur) {
+                inputReponse.style.display = 'none'; btnValider.style.display = 'none'; btnBuzzer.style.display = 'none';
+                document.getElementById('btn-presentateur-vrai').style.display = 'inline-block';
+                document.getElementById('btn-presentateur-faux').style.display = 'inline-block';
+                document.getElementById('zone-presentateur').style.display = 'block';
+                msg.innerText = "🎤 ÉCOUTE ET JUGE !"; msg.style.color = "var(--primary)";
+            }
+            else if (monMode === 'presentateur') {
+                inputReponse.style.display = 'none'; btnValider.style.display = 'none'; btnBuzzer.style.display = 'none';
+                if (socket.id === idJoueurActif) { msg.innerText = "🗣️ PARLE ! C'EST À TOI !"; msg.style.color = "var(--primary)"; btnSkip.disabled = false; }
+                else { msg.innerText = "🎧 ÉCOUTE TON ADVERSAIRE"; msg.style.color = "var(--warning)"; btnSkip.disabled = true; }
+            }
+            else if (monMode === 'buzzer') {
+                if (idJoueurActif === null) {
+                    inputReponse.style.display = 'none'; btnValider.style.display = 'none';
+                    btnSkip.style.display = 'inline-block';
+                    btnSkip.disabled = false;
+                    timer.style.display = 'none';
+
+                    btnBuzzer.style.display = 'block';
+                    msg.innerText = "🚨 PRÉPAREZ-VOUS À BUZZER !";
+                    msg.style.color = "var(--warning)";
+
+                } else if (idJoueurActif === 'bloque') {
+                    btnBuzzer.style.display = 'none';
+                    inputReponse.disabled = true; btnValider.disabled = true; btnSkip.disabled = true;
+                } else {
+                    btnBuzzer.style.display = 'none';
+                    btnSkip.disabled = true;
+
+                    if (socket.id === idJoueurActif) {
+                        inputReponse.style.display = 'inline-block'; btnValider.style.display = 'inline-block';
+                        inputReponse.disabled = false; btnValider.disabled = false;
+                        inputReponse.value = ""; inputReponse.focus(); transmettreFrappe();
+                        msg.innerText = "⚡ TAPE VITE TA RÉPONSE !"; msg.style.color = "var(--primary)";
+                    } else {
+                        inputReponse.style.display = 'inline-block'; btnValider.style.display = 'inline-block';
+                        inputReponse.disabled = true; btnValider.disabled = true;
+                        inputReponse.value = "";
+                        msg.innerText = "🔴 TROP LENT ! L'adversaire a le point."; msg.style.color = "var(--danger)";
+                    }
+                }
+            }
+            else {
+                btnBuzzer.style.display = 'none'; timer.style.display = 'none';
+                inputReponse.style.display = 'inline-block'; btnValider.style.display = 'inline-block';
+
+                if (socket.id === idJoueurActif) {
+                    inputReponse.disabled = false; btnValider.disabled = false; btnSkip.disabled = false;
+                    inputReponse.value = ""; inputReponse.focus(); transmettreFrappe();
+                    msg.innerText = "🟢 À TOI DE JOUER !"; msg.style.color = "var(--primary)";
+                } else {
+                    inputReponse.disabled = true; btnValider.disabled = true; btnSkip.disabled = true;
+                    inputReponse.value = "";
+                    msg.innerText = "🔴 TOUR DE L'ADVERSAIRE"; msg.style.color = "var(--danger)";
+                }
             }
         });
 
         socket.on('nouvelle_question', (data) => {
-            const { question, theme, difficulte } = data;
+            const { question, reponses, theme, difficulte, mode, options } = data;
+            document.getElementById('feedback-reponse').innerText = "";
 
-            document.getElementById('texte-question').innerText = `${question}`;
+            if (mode === 'presentateur' && !jeSuisPresentateur) {
+                if (options && options.voirQuestions) {
+                    document.getElementById('texte-question').innerText = `${question}`;
+                    document.getElementById('texte-question').style.color = "white";
+                } else {
+                    document.getElementById('texte-question').innerText = "🔊 Écoutez la question du présentateur...";
+                    document.getElementById('texte-question').style.color = "var(--warning)";
+                }
+            } else {
+                document.getElementById('texte-question').innerText = `${question}`;
+                document.getElementById('texte-question').style.color = "white";
+            }
+
+            if (jeSuisPresentateur) {
+                document.getElementById('reponses-attendues').innerText = reponses.join(' / ').toUpperCase();
+            }
 
             document.getElementById('question-info').style.display = 'flex';
             document.getElementById('badge-theme').innerText = theme || "Général";
 
             const badgeDiff = document.getElementById('badge-difficulte');
             badgeDiff.innerText = difficulte || "Normal";
-
             badgeDiff.className = 'badge';
             if (difficulte === "Facile") badgeDiff.classList.add('diff-facile');
             else if (difficulte === "Moyen") badgeDiff.classList.add('diff-moyen');
             else if (difficulte === "Difficile") badgeDiff.classList.add('diff-difficile');
-            else badgeDiff.classList.add('diff-moyen');
         });
 
         socket.on('frappe_adversaire', (data) => {
             const divVision = document.getElementById('vision-adversaire');
-            if (data.texte === "") {
-                divVision.innerHTML = `<em>L'adversaire réfléchit...</em>`;
-            } else {
-                divVision.innerHTML = `L'adversaire tape : <span class="typing-text" style="margin-left: 10px;">${data.texte}</span>`;
-            }
+            if (data.texte === "") divVision.innerHTML = `<em>L'adversaire réfléchit...</em>`;
+            else divVision.innerHTML = `L'adversaire tape : <span class="typing-text" style="margin-left: 10px;">${data.texte}</span>`;
         });
 
         socket.on('bonne_reponse', (msg) => {
             const feed = document.getElementById('feedback-reponse');
             feed.style.color = "var(--primary)";
             feed.innerText = msg;
-            document.getElementById('vision-adversaire').innerHTML = `<em>Changement de tour...</em>`;
+            if (monMode !== 'presentateur') document.getElementById('vision-adversaire').innerHTML = `<em>Changement de tour...</em>`;
         });
 
         socket.on('mauvaise_reponse', (msg) => {
             const feed = document.getElementById('feedback-reponse');
-            const inputContainer = document.getElementById('input-reponse');
+            const interfaceContainer = document.getElementById('interface-jeu');
 
             feed.style.color = "var(--danger)";
             feed.innerText = msg;
 
-            // Ajoute l'effet de tremblement
-            inputContainer.classList.remove('shake-animation');
-            void inputContainer.offsetWidth; // Force la réinitialisation de l'animation
-            inputContainer.classList.add('shake-animation');
+            interfaceContainer.classList.remove('shake-animation');
+            void interfaceContainer.offsetWidth;
+            interfaceContainer.classList.add('shake-animation');
         });
 
         socket.on('fin_partie', (msg) => {
             document.getElementById('interface-jeu').style.display = 'none';
             document.getElementById('vision-adversaire').style.display = 'none';
+            document.getElementById('timer-buzzer').style.display = 'none';
 
             const mess = document.getElementById('messages');
             mess.innerText = "🏆 GAME OVER";
