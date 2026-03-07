@@ -1,0 +1,95 @@
+[
+    {
+        "question": "Quelle est la capitale de la France ?",
+        "reponses": [
+            "paris"
+        ],
+        "theme": "Géographie",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Qui a peint La Joconde ?",
+        "reponses": [
+            "léonard de vinci",
+            "leonard de vinci",
+            "da vinci",
+            "de vinci"
+        ],
+        "theme": "Art & Histoire",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Dans quel anime les joueurs sont-ils piégés dans un jeu de réalité virtuelle par Akihiko Kayaba ?",
+        "reponses": [
+            "sword art online",
+            "sao"
+        ],
+        "theme": "Anime & Manga",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Quel est le nom du réceptacle de Sukuna ?",
+        "reponses": [
+            "yuji itadori",
+            "itadori",
+            "yuji"
+        ],
+        "theme": "Anime & Manga",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Sur quelle carte classique se jouent les parties classées de League of Legends ?",
+        "reponses": [
+            "faille de l'invocateur",
+            "faille de l invocateur",
+            "summoner's rift",
+            "summoners rift"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel agent russe de Valorant utilise un arc et des flèches de reconnaissance ?",
+        "reponses": [
+            "sova"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Dans Pokémon, de quel type est l'attaque 'Tonnerre' ?",
+        "reponses": [
+            "électrique",
+            "electrique",
+            "electrik"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Facile"
+    },
+    {
+        "question": "Que signifie la lettre 'H' dans le langage web HTML ?",
+        "reponses": [
+            "hypertext",
+            "hypertexte"
+        ],
+        "theme": "Informatique",
+        "difficulte": "Difficile"
+    },
+    {
+        "question": "Quel logiciel open-source est très populaire pour le storyboard et la peinture numérique ?",
+        "reponses": [
+            "krita"
+        ],
+        "theme": "Informatique & Design",
+        "difficulte": "Moyen"
+    },
+    {
+        "question": "Quel est le nom du jeu de type auto-battler créé par Riot Games ?",
+        "reponses": [
+            "teamfight tactics",
+            "tft"
+        ],
+        "theme": "Jeux Vidéo",
+        "difficulte": "Facile"
+    }
+]
