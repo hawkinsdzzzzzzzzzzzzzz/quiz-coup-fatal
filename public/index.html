@@ -10,6 +10,7 @@
         rel="stylesheet">
 
     <style>
+        /* --- DESIGN DARK MODE DOUX ET MODERNE --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -45,6 +46,7 @@
             position: relative;
         }
 
+        /* EFFETS D'ARRIÈRE-PLAN */
         #bg-effects {
             position: fixed;
             top: 0;
@@ -322,18 +324,44 @@
             letter-spacing: 1px;
         }
 
+        .creation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .parameter-box {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        .parameter-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            padding: 0;
+            text-align: center;
+        }
+
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px;
-            margin-bottom: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
         }
 
         .option-card {
             background: var(--input-bg);
             border: 2px solid var(--border-color);
-            border-radius: 15px;
-            padding: 20px 10px;
+            border-radius: 12px;
+            padding: 15px 5px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -341,7 +369,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             color: var(--text-gray);
         }
 
@@ -359,19 +387,18 @@
         }
 
         .option-card .icon {
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
 
         .option-card .title {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
         }
 
         #mode-description {
-            margin-top: -10px;
-            margin-bottom: 20px;
+            margin-top: 15px;
             font-size: 0.9rem;
             color: #90CDF4;
             font-weight: 600;
@@ -384,38 +411,78 @@
 
         #bonus-presentateur {
             display: none;
-            background: rgba(237, 137, 54, 0.1);
-            padding: 15px;
-            border-radius: 12px;
+            background: linear-gradient(145deg, rgba(45, 55, 72, 0.8), rgba(26, 32, 44, 0.9));
+            padding: 20px;
+            border-radius: 15px;
             margin-bottom: 20px;
-            border: 1px dashed var(--warning);
-            text-align: left;
+            border: 1px solid var(--warning);
+            box-shadow: 0 0 15px rgba(237, 137, 54, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .bonus-title {
             color: var(--warning);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 900;
-            margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-dark);
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .bonus-subtitle {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .checkbox-container input {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--warning);
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
             cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--input-bg);
+            border: 2px solid var(--border-color);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--text-gray);
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--warning);
+            border-color: var(--warning);
+            box-shadow: 0 0 10px rgba(237, 137, 54, 0.5);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+            background-color: white;
         }
 
         .public-room-card {
@@ -481,6 +548,7 @@
             position: relative;
         }
 
+        /* CORRECTION DU BUG DE Z-INDEX ICI : position: relative et z-index: 2001 */
         .game-header {
             width: 100%;
             display: flex;
@@ -491,6 +559,8 @@
             padding: 20px 30px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2001;
         }
 
         #nom-salon {
@@ -515,27 +585,33 @@
             border-radius: 8px;
         }
 
-        /* NOUVEAU : PANNEAU ADMIN */
+        /* CORRECTION DU BUG DE Z-INDEX ICI AUSSI */
         #admin-panel {
             display: none;
-            background: rgba(245, 101, 101, 0.1);
-            border: 1px dashed var(--danger);
-            padding: 10px 20px;
-            border-radius: 12px;
+            background: linear-gradient(145deg, rgba(45, 55, 72, 0.8), rgba(26, 32, 44, 0.9));
+            border: 1px solid var(--danger);
+            box-shadow: 0 0 15px rgba(245, 101, 101, 0.15);
+            padding: 15px 25px;
+            border-radius: 15px;
             margin-bottom: 20px;
             width: 100%;
-            display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
+            position: relative;
+            z-index: 2001;
+            /* Reste au-dessus de l'écran noir ! */
         }
 
         .admin-title {
             color: var(--danger);
             font-weight: 900;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .kick-list {
@@ -545,21 +621,24 @@
         }
 
         .kick-btn {
-            background: var(--danger);
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
+            background: rgba(245, 101, 101, 0.1);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
             cursor: pointer;
             font-weight: 700;
+            transition: 0.2s;
         }
 
         .kick-btn:hover {
-            background: #C53030;
+            background: var(--danger);
+            color: white;
+            box-shadow: 0 0 10px rgba(245, 101, 101, 0.4);
         }
 
-        /* NOUVEAU : OVERLAY PAUSE */
+        /* L'écran noir de pause (Z-index à 2000, donc EN DESSOUS de l'admin panel et du header) */
         #overlay-pause {
             display: none;
             position: fixed;
@@ -567,11 +646,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(3px);
             z-index: 2000;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            pointer-events: none;
         }
 
         #overlay-pause h1 {
@@ -843,7 +924,7 @@
             height: 100%;
             background: rgba(26, 32, 44, 0.85);
             backdrop-filter: blur(5px);
-            z-index: 1000;
+            z-index: 3000;
             align-items: center;
             justify-content: center;
         }
@@ -894,63 +975,6 @@
             border: 1px dashed var(--border-color);
         }
 
-        .creation-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .parameter-box {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            border: 2px solid var(--border-color);
-            transition: all 0.2s;
-            text-align: center;
-        }
-
-        .parameter-box:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
-        }
-
-        .parameter-box h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-gray);
-            margin-bottom: 12px;
-            padding: 0;
-        }
-
-        .parameter-box input,
-        .parameter-box select {
-            margin: 0;
-        }
-
-        #div-code-perso {
-            grid-column: span 2;
-            display: none;
-        }
-
-        #div-temps-global {
-            margin-bottom: 0;
-        }
-
-        #mode-description {
-            margin-top: 10px;
-            margin-bottom: 0;
-            padding: 8px;
-            font-size: 0.85rem;
-        }
-
-        .parameter-box label {
-            display: none;
-        }
-
         #btn-dev {
             position: fixed;
             bottom: 10px;
@@ -959,6 +983,7 @@
             color: var(--text-gray);
             cursor: pointer;
             opacity: 0.5;
+            z-index: 5000;
         }
 
         #btn-dev:hover {
@@ -988,9 +1013,9 @@
     <h1>Quiz Fatal</h1>
 
     <div id="menu" class="card-panel">
-        <div class="input-group" style="margin-bottom: 20px;">
+        <div class="input-group" style="margin-bottom: 25px;">
             <label style="display:block;">Ton Pseudo</label>
-            <input type="text" id="input-pseudo" placeholder="Ex: Joueur1" autocomplete="off" maxlength="12">
+            <input type="text" id="input-pseudo" placeholder="Ex: Faker" autocomplete="off" maxlength="12">
         </div>
 
         <div class="tabs">
@@ -1000,7 +1025,7 @@
 
         <div id="tab-rejoindre" class="tab-content active">
             <div class="input-group">
-                <label style="display:block;">Rejoindre un salon privé</label>
+                <label style="display:block;">Rejoindre un salon privé (Code)</label>
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="input-salon-rejoindre" placeholder="CODE..."
                         style="text-transform: uppercase;">
@@ -1012,7 +1037,7 @@
             <div style="margin-top: 30px;">
                 <label
                     style="display:block; color: var(--text-gray); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">🌐
-                    Salons Publics</label>
+                    Salons Publics En Attente</label>
                 <div id="liste-salons-publics" style="margin-top: 15px;">
                     <div id="empty-rooms">Aucun salon public disponible.</div>
                 </div>
@@ -1020,32 +1045,12 @@
         </div>
 
         <div id="tab-creer" class="tab-content">
+
             <div class="creation-grid">
-                <div class="parameter-box">
-                    <h3>Visibilité</h3>
-                    <select id="input-visibilite" onchange="toggleCodePerso()">
-                        <option value="public" selected>🌍 Public</option>
-                        <option value="prive">🔒 Privé</option>
-                    </select>
-                </div>
-
-                <div class="parameter-box" id="div-temps-global">
-                    <h3>Temps de réflexion</h3>
-                    <select id="input-temps">
-                        <option value="30">30 Secondes</option>
-                        <option value="60" selected>60 Secondes</option>
-                        <option value="90">90 Secondes</option>
-                    </select>
-                </div>
-
-                <div class="parameter-box" id="div-code-perso">
-                    <h3>Code Secret</h3>
-                    <input type="text" id="input-salon-creer" placeholder="Ex: AMIS" style="text-transform: uppercase;">
-                </div>
 
                 <div class="parameter-box" style="grid-column: span 2;">
                     <h3>Mode de Jeu</h3>
-                    <div class="options-grid" style="margin-bottom: 10px;">
+                    <div class="options-grid">
                         <div class="option-card selected" onclick="selectParam('mode', 'classique')" data-group="mode"
                             data-value="classique">
                             <div class="icon">⏳</div>
@@ -1062,19 +1067,66 @@
                             <div class="title">Vocal</div>
                         </div>
                     </div>
-                    <div id="mode-description">Chacun son tour, le chrono descend. 0s = Éliminé !</div>
+                    <div id="mode-description">Chacun son tour, le chrono descend. Si tu es à 0, tu es éliminé !</div>
                 </div>
+
+                <div class="parameter-box" id="div-temps-global">
+                    <h3>Temps par Joueur</h3>
+                    <div class="options-grid" style="grid-template-columns: 1fr;">
+                        <div class="option-card" onclick="selectParam('temps', '30')" data-group="temps"
+                            data-value="30">
+                            <div class="icon">🔥</div>
+                            <div class="title">30 Sec</div>
+                        </div>
+                        <div class="option-card selected" onclick="selectParam('temps', '60')" data-group="temps"
+                            data-value="60">
+                            <div class="icon">⚡</div>
+                            <div class="title">60 Sec</div>
+                        </div>
+                        <div class="option-card" onclick="selectParam('temps', '90')" data-group="temps"
+                            data-value="90">
+                            <div class="icon">🐢</div>
+                            <div class="title">90 Sec</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="parameter-box">
+                    <h3>Visibilité</h3>
+                    <div class="options-grid" style="grid-template-columns: 1fr;">
+                        <div class="option-card selected" onclick="selectParam('visibilite', 'public')"
+                            data-group="visibilite" data-value="public">
+                            <div class="icon">🌍</div>
+                            <div class="title">Public</div>
+                        </div>
+                        <div class="option-card" onclick="selectParam('visibilite', 'prive')" data-group="visibilite"
+                            data-value="prive">
+                            <div class="icon">🔒</div>
+                            <div class="title">Privé</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="parameter-box" id="div-code-perso">
+                    <h3>Personnalise ton Code Secret</h3>
+                    <input type="text" id="input-salon-creer" placeholder="Ex: MES-POTES"
+                        style="text-transform: uppercase;">
+                </div>
+
             </div>
 
             <div id="bonus-presentateur">
-                <div class="bonus-title">👑 Options du Présentateur</div>
-                <label class="checkbox-container">
+                <div>
+                    <div class="bonus-title">👑 Options du Présentateur</div>
+                    <div class="bonus-subtitle">Les joueurs peuvent voir la question à l'écran.</div>
+                </div>
+                <label class="switch">
                     <input type="checkbox" id="opt-voir-questions">
-                    Les joueurs voient la question
+                    <span class="slider"></span>
                 </label>
             </div>
 
-            <button class="btn btn-primary" style="padding: 18px; font-size: 1.2rem; margin-top: 10px;"
+            <button class="btn btn-primary" style="padding: 18px; font-size: 1.2rem; margin-top: 10px; width: 100%;"
                 onclick="creerNouveauSalon(false)">🚀 CRÉER LA PARTIE</button>
         </div>
     </div>
@@ -1098,8 +1150,8 @@
         </div>
 
         <div id="admin-panel">
-            <span class="admin-title">👑 Contrôles Admin</span>
-            <div style="display: flex; gap: 15px; align-items: center;">
+            <div class="admin-title">👑 Contrôles Admin</div>
+            <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-warning" style="padding: 8px 15px; font-size: 0.8rem; margin: 0;"
                     onclick="togglePause()">⏸️ Pause / Reprendre</button>
                 <div id="kick-container" class="kick-list">
@@ -1203,7 +1255,7 @@
                     bonusMenu.style.display = 'none'; divTemps.style.display = 'block';
                 } else if (value === 'presentateur') {
                     desc.innerText = "Le créateur lit les questions en vocal. Les autres s'affrontent sur le clavier.";
-                    bonusMenu.style.display = 'block'; divTemps.style.display = 'block';
+                    bonusMenu.style.display = 'flex'; divTemps.style.display = 'block';
                 } else if (value === 'buzzer') {
                     desc.innerText = "Pas de chrono global ! Le premier qui buzze répond. (+10 Pts / -5 Pts)";
                     bonusMenu.style.display = 'none'; divTemps.style.display = 'none';
@@ -1245,12 +1297,11 @@
             } else { alert("Tu dois choisir un pseudo !"); }
         }
 
-        // NOUVEAU : MODE DÉVELOPPEUR (BOTS)
         function lancerModeTest() {
             const mdp = prompt("Mot de passe développeur :");
             if (mdp === "DEV") {
                 alert("Mode Test activé : 3 Bots vont te rejoindre.");
-                paramVisibilite = 'prive'; // On force privé pour pas déranger
+                paramVisibilite = 'prive';
                 creerNouveauSalon(true);
             }
         }
@@ -1285,7 +1336,6 @@
         function juger(estCorrect) { socket.emit('jugement_presentateur', { codeSalon: codeDuSalon, estCorrect: estCorrect }); }
         function appuyerBuzzer() { socket.emit('clic_buzzer', codeDuSalon); }
 
-        // COMMANDES ADMIN & QUITTER
         function togglePause() { socket.emit('toggle_pause', codeDuSalon); }
         function kickJoueur(id) { if (confirm("Virer ce joueur ?")) socket.emit('kick_joueur', { codeSalon: codeDuSalon, targetId: id }); }
         function quitterJeuGlobal() { socket.emit('quitter_salon', codeDuSalon); window.location.reload(); }
@@ -1307,10 +1357,11 @@
 
         socket.on('info_role', (data) => {
             jeSuisChef = data.estChef; jeSuisPresentateur = data.estPresentateur; paramMode = data.mode;
-            if (jeSuisChef) document.getElementById('admin-panel').style.display = 'flex';
+            if (jeSuisChef) {
+                document.getElementById('admin-panel').style.display = 'flex';
+            }
         });
 
-        // Mise à jour du lobby et du panneau admin
         socket.on('maj_lobby', (pseudosArray) => {
             document.getElementById('lobby-players').innerText = "👥 Joueurs présents : " + pseudosArray.join(', ');
         });
@@ -1342,21 +1393,20 @@
             const chronosExistants = chronosContainer.querySelectorAll('.chrono-player');
             chronosExistants.forEach(chrono => { const idDiv = chrono.id.replace('chrono-', ''); if (!temps[idDiv]) chrono.remove(); });
 
-            if (jeSuisChef) kickContainer.innerHTML = ''; // Reset les boutons kicks
+            if (jeSuisChef) kickContainer.innerHTML = '';
 
             for (let id of idsTries) {
                 const timeLeft = temps[id];
                 const pseudo = pseudos[id];
                 const isMe = (id === socket.id);
 
-                // Remplissage Admin Panel
                 if (jeSuisChef && !isMe) {
                     kickContainer.innerHTML += `<button class="kick-btn" onclick="kickJoueur('${id}')">❌ ${pseudo}</button>`;
                 }
 
                 const estElimine = (timeLeft <= 0 && paramMode !== 'buzzer');
                 let classType = isMe ? 'is-me' : 'is-adversary';
-                const totalTime = parseInt(document.getElementById('input-temps').value) || 60;
+                const totalTime = parseInt(paramTemps) || 60;
                 const pourcentage = (timeLeft / totalTime) * 100;
                 const classCritical = (timeLeft <= 15 && !estElimine) ? 'time-critical' : '';
 
@@ -1538,7 +1588,7 @@
             mess.style.color = "white"; mess.style.background = "var(--success)";
             mess.style.fontSize = "1.5rem"; mess.style.padding = "20px";
 
-            setTimeout(() => { alert(msg); location.reload(); }, 2500);
+            setTimeout(() => { alert(msg); location.reload(); }, 3500);
         });
     </script>
 </body>
