@@ -1026,7 +1026,6 @@
                 const initiale = pseudo.charAt(0).toUpperCase();
                 let divChrono = document.getElementById(`chrono-${id}`);
 
-                // CORRECTION DU CRASH: On insère ET on récupère l'élément juste après !
                 if (!divChrono) {
                     const newHTML = `
                         <div id="chrono-${id}" class="chrono-player ${classType} ${classCritical}">
@@ -1045,7 +1044,7 @@
                         </div>
                     `;
                     chronosContainer.insertAdjacentHTML('beforeend', newHTML);
-                    divChrono = document.getElementById(`chrono-${id}`); // INDISPENSABLE
+                    divChrono = document.getElementById(`chrono-${id}`);
                 } else {
                     divChrono.querySelector('.time-text').innerText = `${timeLeft}`;
                     document.getElementById(`jauge-${id}`).style.width = `${pourcentage}%`;
@@ -1066,6 +1065,7 @@
             const timer = document.getElementById('timer-buzzer');
             timer.style.display = 'block';
             timer.innerText = tempsRestant;
+
             if (tempsRestant <= 2) {
                 timer.style.transform = 'scale(1.2)';
             } else {
@@ -1098,6 +1098,7 @@
             inputReponse.classList.remove('shake-animation');
 
             const idJoueurActif = typeof data === 'object' ? data.idJoueurActif : data;
+            const dejaBuzze = typeof data === 'object' ? (data.dejaBuzze || []) : [];
 
             const tousLesChronos = document.querySelectorAll('.chrono-player');
             tousLesChronos.forEach(c => c.classList.remove('active-turn'));
@@ -1126,10 +1127,15 @@
                     btnSkip.disabled = false;
                     timer.style.display = 'none';
 
-                    btnBuzzer.style.display = 'block';
-                    msg.innerText = "🚨 PRÉPAREZ-VOUS À BUZZER !";
-                    msg.style.color = "var(--warning)";
-
+                    if (dejaBuzze.includes(socket.id)) {
+                        btnBuzzer.style.display = 'none';
+                        msg.innerText = "❌ BLOQUÉ ! Attend les autres...";
+                        msg.style.color = "var(--danger)";
+                    } else {
+                        btnBuzzer.style.display = 'block';
+                        msg.innerText = "🚨 PRÉPAREZ-VOUS À BUZZER !";
+                        msg.style.color = "var(--warning)";
+                    }
                 } else if (idJoueurActif === 'bloque') {
                     btnBuzzer.style.display = 'none';
                     inputReponse.disabled = true; btnValider.disabled = true; btnSkip.disabled = true;

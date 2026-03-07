@@ -98,7 +98,7 @@ io.on('connection', (socket) => {
                 options: optionsBonus || { voirQuestions: false },
                 estPublic: estPublic,
                 intervalle: null, joueurActif: null,
-                reponsesAttendues: [], votesSkip: [],
+                reponsesAttendues: [], votesSkip: [], aBuzze: [],
                 partieCommencee: false, ordreJoueurs: [], indexTour: -1,
                 createur: socket.id,
                 questionsRestantes: [...questionsList]
@@ -158,12 +158,11 @@ io.on('connection', (socket) => {
                 clearInterval(salon.intervalle);
                 salon.scores[salon.joueurActif] -= 5;
                 const exJoueur = salon.joueurActif;
-                salon.joueurActif = 'bloque'; // Empêche de rebuzzer
+                salon.joueurActif = 'bloque';
 
                 io.to(codeSalon).emit('message_serveur', `⏰ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}. Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
-                // SKIPE DIRECT LA QUESTION
                 setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
             }
         }, 1000);
@@ -206,7 +205,6 @@ io.on('connection', (socket) => {
                 io.to(codeSalon).emit('message_serveur', `❌ ${salon.pseudos[exJoueur]} s'est trompé (-5 pts). Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
-                // SKIPE DIRECT LA QUESTION
                 setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
             } else {
                 socket.emit('mauvaise_reponse', "❌ Faux, essaie encore !");
@@ -223,8 +221,21 @@ io.on('connection', (socket) => {
             io.to(codeSalon).emit('bonne_reponse', `✅ Le présentateur a validé !`);
             lancerProchainTour(io, codeSalon, salon);
         } else {
-            io.to(codeSalon).emit('mauvaise_reponse', "❌ FAUX ! Question suivante...");
-            lancerProchainTour(io, codeSalon, salon);
+            // CORRECTION : Si c'est faux, on pioche une nouvelle question MAIS on ne passe pas le tour !
+            io.to(codeSalon).emit('mauvaise_reponse', "❌ FAUX ! Nouvelle question...");
+
+            const questionTiree = tirerQuestion(salon);
+            salon.reponsesAttendues = questionTiree.reponses;
+
+            io.to(codeSalon).emit('nouvelle_question', {
+                question: questionTiree.question,
+                reponses: questionTiree.reponses,
+                theme: questionTiree.theme,
+                difficulte: questionTiree.difficulte,
+                pseudoActif: salon.pseudos[salon.joueurActif],
+                mode: salon.mode,
+                options: salon.options
+            });
         }
     });
 
@@ -245,8 +256,21 @@ io.on('connection', (socket) => {
                 }
             }
         } else {
+            // CORRECTION : Mode Classique/Presentateur -> Skip ne fait que piocher une nouvelle question sans passer le tour
             if (socket.id !== salon.joueurActif && socket.id !== salon.createur) return;
-            lancerProchainTour(io, codeSalon, salon);
+
+            const questionTiree = tirerQuestion(salon);
+            salon.reponsesAttendues = questionTiree.reponses;
+
+            io.to(codeSalon).emit('nouvelle_question', {
+                question: questionTiree.question,
+                reponses: questionTiree.reponses,
+                theme: questionTiree.theme,
+                difficulte: questionTiree.difficulte,
+                pseudoActif: salon.pseudos[salon.joueurActif],
+                mode: salon.mode,
+                options: salon.options
+            });
         }
     });
 
