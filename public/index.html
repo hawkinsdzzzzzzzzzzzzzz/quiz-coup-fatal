@@ -10,7 +10,6 @@
         rel="stylesheet">
 
     <style>
-        /* --- DESIGN DARK MODE DOUX ET MODERNE --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -46,7 +45,6 @@
             position: relative;
         }
 
-        /* EFFETS D'ARRIÈRE-PLAN */
         #bg-effects {
             position: fixed;
             top: 0;
@@ -90,22 +88,6 @@
             margin-bottom: 20px;
             text-align: center;
             text-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.5rem;
-        }
-
-        h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            line-height: 1.4;
-            color: var(--text-dark);
         }
 
         @keyframes popIn {
@@ -548,7 +530,6 @@
             position: relative;
         }
 
-        /* CORRECTION DU BUG DE Z-INDEX ICI : position: relative et z-index: 2001 */
         .game-header {
             width: 100%;
             display: flex;
@@ -585,7 +566,6 @@
             border-radius: 8px;
         }
 
-        /* CORRECTION DU BUG DE Z-INDEX ICI AUSSI */
         #admin-panel {
             display: none;
             background: linear-gradient(145deg, rgba(45, 55, 72, 0.8), rgba(26, 32, 44, 0.9));
@@ -601,7 +581,6 @@
             gap: 15px;
             position: relative;
             z-index: 2001;
-            /* Reste au-dessus de l'écran noir ! */
         }
 
         .admin-title {
@@ -638,7 +617,6 @@
             box-shadow: 0 0 10px rgba(245, 101, 101, 0.4);
         }
 
-        /* L'écran noir de pause (Z-index à 2000, donc EN DESSOUS de l'admin panel et du header) */
         #overlay-pause {
             display: none;
             position: fixed;
@@ -755,12 +733,6 @@
             border-color: rgba(72, 187, 120, 0.3);
         }
 
-        .score-negative {
-            color: var(--danger);
-            background: rgba(245, 101, 101, 0.1);
-            border-color: rgba(245, 101, 101, 0.3);
-        }
-
         .time-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
@@ -824,19 +796,22 @@
             color: white;
         }
 
-        .diff-facile {
-            background: rgba(72, 187, 120, 0.2);
-            color: #9AE6B4;
+        /* Ordre du tour */
+        #tour-suivant {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: none;
+            background: var(--input-bg);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px dashed var(--border-color);
         }
 
-        .diff-moyen {
-            background: rgba(237, 137, 54, 0.2);
-            color: #FBD38D;
-        }
-
-        .diff-difficile {
-            background: rgba(245, 101, 101, 0.2);
-            color: #FEB2B2;
+        #nom-suivant {
+            color: var(--primary);
+            font-weight: 900;
         }
 
         #timer-buzzer {
@@ -854,10 +829,11 @@
             justify-content: center;
             gap: 15px;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
+        /* Input de réponse qui sert aussi de vision adverse */
         #input-reponse {
             flex-grow: 1;
             max-width: 600px;
@@ -870,6 +846,7 @@
             border: 2px solid var(--border-color);
             background: var(--input-bg);
             color: var(--text-dark);
+            transition: all 0.3s;
         }
 
         #input-reponse:focus {
@@ -878,9 +855,16 @@
         }
 
         #input-reponse:disabled {
-            opacity: 0.6;
             background: var(--card-bg);
             border-color: var(--border-color);
+        }
+
+        /* CLASSE POUR LA BONNE RÉPONSE */
+        .input-reponse-correct {
+            color: var(--success) !important;
+            border-color: var(--success) !important;
+            font-weight: 900 !important;
+            background: rgba(72, 187, 120, 0.1) !important;
         }
 
         #zone-presentateur {
@@ -896,23 +880,6 @@
             color: var(--danger);
             font-size: 1.4rem;
             font-weight: 800;
-        }
-
-        #feedback-reponse {
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
-            margin-top: 20px;
-            font-size: 1.3rem;
-            min-height: 30px;
-        }
-
-        #vision-adversaire {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-top: 20px;
-            font-style: italic;
-            font-weight: 600;
-            min-height: 25px;
         }
 
         #modal-defaite {
@@ -1045,9 +1012,7 @@
         </div>
 
         <div id="tab-creer" class="tab-content">
-
             <div class="creation-grid">
-
                 <div class="parameter-box" style="grid-column: span 2;">
                     <h3>Mode de Jeu</h3>
                     <div class="options-grid">
@@ -1112,7 +1077,6 @@
                     <input type="text" id="input-salon-creer" placeholder="Ex: MES-POTES"
                         style="text-transform: uppercase;">
                 </div>
-
             </div>
 
             <div id="bonus-presentateur">
@@ -1154,8 +1118,7 @@
             <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
                 <button class="btn btn-warning" style="padding: 8px 15px; font-size: 0.8rem; margin: 0;"
                     onclick="togglePause()">⏸️ Pause / Reprendre</button>
-                <div id="kick-container" class="kick-list">
-                </div>
+                <div id="kick-container" class="kick-list"></div>
             </div>
         </div>
 
@@ -1166,12 +1129,14 @@
         <div id="chronos"></div>
 
         <div id="interface-jeu" class="card-panel">
-            <div id="question-info" style="display: none;">
+
+            <div id="question-info">
                 <span id="badge-theme" class="badge badge-theme">Thème</span>
-                <span id="badge-difficulte" class="badge">Diff</span>
             </div>
 
-            <h3 id="texte-question">Préparez-vous...</h3>
+            <div id="tour-suivant">▶️ Prochain tour : <span id="nom-suivant"></span></div>
+
+            <h2 id="texte-question" style="margin-bottom: 20px;">Préparez-vous...</h2>
 
             <div id="zone-presentateur">
                 <p style="color: var(--text-gray); margin-bottom: 5px; font-weight: 700; font-size: 0.9rem;">RÉPONSES
@@ -1195,9 +1160,6 @@
                 <button id="btn-presentateur-faux" class="btn btn-danger" style="display: none;"
                     onclick="juger(false)">❌ FAUX</button>
             </div>
-
-            <p id="feedback-reponse"></p>
-            <div id="vision-adversaire">En attente...</div>
         </div>
     </div>
 
@@ -1257,7 +1219,7 @@
                     desc.innerText = "Le créateur lit les questions en vocal. Les autres s'affrontent sur le clavier.";
                     bonusMenu.style.display = 'flex'; divTemps.style.display = 'block';
                 } else if (value === 'buzzer') {
-                    desc.innerText = "Pas de chrono global ! Le premier qui buzze répond. (+10 Pts / -5 Pts)";
+                    desc.innerText = "🚨 Premier à 50 Pts gagne. Le plus rapide répond ! (+10 Pts / -5 Pts)";
                     bonusMenu.style.display = 'none'; divTemps.style.display = 'none';
                 }
             } else if (group === 'temps') {
@@ -1300,7 +1262,6 @@
         function lancerModeTest() {
             const mdp = prompt("Mot de passe développeur :");
             if (mdp === "DEV") {
-                alert("Mode Test activé : 3 Bots vont te rejoindre.");
                 paramVisibilite = 'prive';
                 creerNouveauSalon(true);
             }
@@ -1330,17 +1291,44 @@
 
         function lancerPartie() { socket.emit('lancer_partie', codeDuSalon); }
         function transmettreFrappe() { socket.emit('en_train_de_taper', { codeSalon: codeDuSalon, texte: document.getElementById('input-reponse').value }); }
-        function envoyerReponse() { socket.emit('proposer_reponse', { codeSalon: codeDuSalon, reponseJoueur: document.getElementById('input-reponse').value }); }
-        function gererToucheEntree(event) { if (event.key === "Enter" && !document.getElementById('input-reponse').disabled) envoyerReponse(); }
-        function skipQuestion() { socket.emit('skip_question', codeDuSalon); document.getElementById('input-reponse').value = ""; document.getElementById('feedback-reponse').innerText = ""; }
+
+        function envoyerReponse() {
+            const inputField = document.getElementById('input-reponse');
+            if (!inputField.disabled && inputField.value.trim() !== "") {
+                socket.emit('proposer_reponse', { codeSalon: codeDuSalon, reponseJoueur: inputField.value });
+                inputField.value = "";
+            }
+        }
+        function gererToucheEntree(event) {
+            if (event.key === "Enter") envoyerReponse();
+        }
+
+        function skipQuestion() { socket.emit('skip_question', codeDuSalon); document.getElementById('input-reponse').value = ""; }
         function juger(estCorrect) { socket.emit('jugement_presentateur', { codeSalon: codeDuSalon, estCorrect: estCorrect }); }
         function appuyerBuzzer() { socket.emit('clic_buzzer', codeDuSalon); }
 
         function togglePause() { socket.emit('toggle_pause', codeDuSalon); }
         function kickJoueur(id) { if (confirm("Virer ce joueur ?")) socket.emit('kick_joueur', { codeSalon: codeDuSalon, targetId: id }); }
-        function quitterJeuGlobal() { socket.emit('quitter_salon', codeDuSalon); window.location.reload(); }
 
-        socket.on('tu_es_kick', () => { alert("Vous avez été exclu du salon."); window.location.reload(); });
+        // RETOUR AU MENU PROPRE
+        function quitterJeuGlobal() {
+            if (codeDuSalon !== "") socket.emit('quitter_salon', codeDuSalon);
+
+            document.getElementById('zone-jeu').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'none';
+            document.getElementById('modal-defaite').style.display = 'none';
+            document.getElementById('banniere-spectateur').style.display = 'none';
+            document.getElementById('menu').style.display = 'flex';
+            document.getElementById('btn-dev').style.display = 'block';
+
+            jeSuisSpectateur = false; jeSuisChef = false; jeSuisPresentateur = false; codeDuSalon = "";
+            document.getElementById('chronos').innerHTML = ""; document.getElementById('kick-container').innerHTML = "";
+            document.getElementById('input-reponse').value = ""; document.getElementById('input-reponse').classList.remove('input-reponse-correct');
+            document.getElementById('tour-suivant').style.display = 'none';
+        }
+
+        socket.on('tu_es_kick', () => { alert("Vous avez été exclu du salon."); quitterJeuGlobal(); });
+
         socket.on('etat_pause', (enPause) => {
             if (enPause) document.getElementById('overlay-pause').style.display = 'flex';
             else document.getElementById('overlay-pause').style.display = 'none';
@@ -1357,9 +1345,7 @@
 
         socket.on('info_role', (data) => {
             jeSuisChef = data.estChef; jeSuisPresentateur = data.estPresentateur; paramMode = data.mode;
-            if (jeSuisChef) {
-                document.getElementById('admin-panel').style.display = 'flex';
-            }
+            if (jeSuisChef) document.getElementById('admin-panel').style.display = 'flex';
         });
 
         socket.on('maj_lobby', (pseudosArray) => {
@@ -1380,7 +1366,6 @@
         socket.on('partie_lancee', () => {
             document.getElementById('btn-demarrer').style.display = 'none';
             document.getElementById('lobby-players').style.display = 'none';
-            document.getElementById('vision-adversaire').innerText = `La partie commence !`;
         });
 
         socket.on('maj_temps', (data) => {
@@ -1413,8 +1398,7 @@
                 const score = scores && scores[id] !== undefined ? scores[id] : 0;
                 let scoreClass = 'score-neutral';
                 if (score > 0) scoreClass = 'score-positive';
-                if (score < 0) scoreClass = 'score-negative';
-                const scoreHTML = paramMode === 'buzzer' ? `<span class="player-score ${scoreClass}">Points: ${score}</span>` : '';
+                const scoreHTML = paramMode === 'buzzer' ? `<span class="player-score ${scoreClass}">Points: ${score}/50</span>` : '';
 
                 const initiale = pseudo.charAt(0).toUpperCase();
                 let divChrono = document.getElementById(`chrono-${id}`);
@@ -1445,7 +1429,7 @@
                     if (estElimine) { divChrono.style.opacity = '0.4'; divChrono.style.filter = 'grayscale(1)'; divChrono.classList.remove('active-turn'); }
 
                     const scoreEl = divChrono.querySelector('.player-score');
-                    if (scoreEl) { scoreEl.innerText = `Points: ${score}`; scoreEl.className = `player-score ${scoreClass}`; }
+                    if (scoreEl) { scoreEl.innerText = `Points: ${score}/50`; scoreEl.className = `player-score ${scoreClass}`; }
                 }
 
                 if (paramMode === 'buzzer' && divChrono) {
@@ -1467,8 +1451,22 @@
         });
 
         socket.on('message_serveur', (msg) => {
-            const msgelement = document.getElementById('messages');
-            msgelement.innerText = msg;
+            document.getElementById('messages').innerText = msg;
+        });
+
+        // RÉPONSE DÉVOILÉE DANS L'INPUT
+        socket.on('reponse_devoilee', (reponse) => {
+            const inputReponse = document.getElementById('input-reponse');
+            inputReponse.value = `💡 Réponse : ${reponse}`;
+            inputReponse.classList.add('input-reponse-correct');
+
+            document.getElementById('btn-buzzer').style.display = 'none';
+            document.getElementById('timer-buzzer').style.display = 'none';
+            document.getElementById('btn-skip').style.display = 'none';
+            document.getElementById('btn-valider').style.display = 'none';
+
+            inputReponse.style.display = 'inline-block';
+            inputReponse.disabled = true;
         });
 
         socket.on('changement_tour', (data) => {
@@ -1478,10 +1476,10 @@
             const btnValider = document.getElementById('btn-valider');
             const btnSkip = document.getElementById('btn-skip');
             const btnBuzzer = document.getElementById('btn-buzzer');
-            const msg = document.getElementById('messages');
             const timer = document.getElementById('timer-buzzer');
 
             inputReponse.classList.remove('shake-animation');
+            inputReponse.classList.remove('input-reponse-correct');
 
             const idJoueurActif = typeof data === 'object' ? data.idJoueurActif : data;
 
@@ -1512,17 +1510,18 @@
                     btnSkip.style.display = 'inline-block'; btnSkip.disabled = false;
                     timer.style.display = 'none'; btnBuzzer.style.display = 'block';
                 } else if (idJoueurActif === 'bloque') {
-                    btnBuzzer.style.display = 'none'; inputReponse.disabled = true; btnValider.disabled = true; btnSkip.disabled = true;
+                    // Période de transition (Laisse l'affichage de la réponse tranquille)
                 } else {
                     btnBuzzer.style.display = 'none'; btnSkip.disabled = true;
 
                     if (socket.id === idJoueurActif) {
                         inputReponse.style.display = 'inline-block'; btnValider.style.display = 'inline-block';
                         inputReponse.disabled = false; btnValider.disabled = false;
-                        inputReponse.value = ""; inputReponse.focus(); transmettreFrappe();
+                        inputReponse.value = ""; inputReponse.placeholder = "Tapez votre réponse ici..."; inputReponse.focus();
                     } else {
                         inputReponse.style.display = 'inline-block'; btnValider.style.display = 'inline-block';
                         inputReponse.disabled = true; btnValider.disabled = true; inputReponse.value = "";
+                        inputReponse.placeholder = "L'adversaire tape sa réponse...";
                     }
                 }
             }
@@ -1532,16 +1531,16 @@
 
                 if (socket.id === idJoueurActif) {
                     inputReponse.disabled = false; btnValider.disabled = false; btnSkip.disabled = false;
-                    inputReponse.value = ""; inputReponse.focus(); transmettreFrappe();
+                    inputReponse.value = ""; inputReponse.placeholder = "Tapez votre réponse ici..."; inputReponse.focus();
                 } else {
                     inputReponse.disabled = true; btnValider.disabled = true; btnSkip.disabled = true; inputReponse.value = "";
+                    inputReponse.placeholder = "Au tour de l'adversaire...";
                 }
             }
         });
 
         socket.on('nouvelle_question', (data) => {
-            const { question, reponses, theme, difficulte } = data;
-            document.getElementById('feedback-reponse').innerText = "";
+            const { question, reponses, theme, pseudoSuivant } = data;
             document.getElementById('texte-question').innerText = `${question}`;
 
             if (jeSuisPresentateur) document.getElementById('reponses-attendues').innerText = reponses.join(' ou ').toUpperCase();
@@ -1549,30 +1548,30 @@
             document.getElementById('question-info').style.display = 'flex';
             document.getElementById('badge-theme').innerText = theme || "Général";
 
-            const badgeDiff = document.getElementById('badge-difficulte');
-            badgeDiff.innerText = difficulte || "Normal";
-            badgeDiff.className = 'badge';
-            if (difficulte === "Facile") badgeDiff.classList.add('diff-facile');
-            else if (difficulte === "Moyen") badgeDiff.classList.add('diff-moyen');
-            else if (difficulte === "Difficile") badgeDiff.classList.add('diff-difficile');
+            // ORDRE DU TOUR
+            if (pseudoSuivant && paramMode !== 'buzzer') {
+                document.getElementById('tour-suivant').style.display = 'block';
+                document.getElementById('nom-suivant').innerText = pseudoSuivant;
+            } else {
+                document.getElementById('tour-suivant').style.display = 'none';
+            }
         });
 
+        // FRAPPE VISIBLE DANS L'INPUT POUR TOUS
         socket.on('frappe_adversaire', (data) => {
-            const divVision = document.getElementById('vision-adversaire');
-            if (data.texte === "") divVision.innerText = `L'adversaire réfléchit...`;
-            else divVision.innerText = `${data.pseudo} écrit : ${data.texte}`;
-        });
-
-        socket.on('bonne_reponse', (msg) => {
-            const feed = document.getElementById('feedback-reponse');
-            feed.style.color = "var(--success)"; feed.innerText = msg;
-            document.getElementById('vision-adversaire').innerText = `Question suivante...`;
+            const inputReponse = document.getElementById('input-reponse');
+            if (inputReponse.disabled && !inputReponse.classList.contains('input-reponse-correct')) {
+                if (data.texte === "") {
+                    inputReponse.value = "";
+                    inputReponse.placeholder = `💭 ${data.pseudo} réfléchit...`;
+                } else {
+                    inputReponse.value = data.texte;
+                }
+            }
         });
 
         socket.on('mauvaise_reponse', (msg) => {
-            const feed = document.getElementById('feedback-reponse');
             const inputContainer = document.getElementById('input-reponse');
-            feed.style.color = "var(--danger)"; feed.innerText = msg;
             inputContainer.classList.remove('shake-animation');
             void inputContainer.offsetWidth;
             inputContainer.classList.add('shake-animation');
@@ -1588,7 +1587,7 @@
             mess.style.color = "white"; mess.style.background = "var(--success)";
             mess.style.fontSize = "1.5rem"; mess.style.padding = "20px";
 
-            setTimeout(() => { alert(msg); location.reload(); }, 3500);
+            setTimeout(() => { alert(msg); quitterJeuGlobal(); }, 4000);
         });
     </script>
 </body>

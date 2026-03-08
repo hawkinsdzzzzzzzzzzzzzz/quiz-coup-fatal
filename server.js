@@ -31,10 +31,34 @@ function tirerQuestion(salon) {
     return questionTiree;
 }
 
+// SYSTÈME DE TRANSITION (Évite les bugs de double-skip et affiche la réponse)
+function declencherTransition(io, codeSalon, salon, message, delai = 4000) {
+    if (salon.transitionEnCours) return; // Bloque toute autre action !
+    salon.transitionEnCours = true;
+
+    clearInterval(salon.intervalle);
+    clearTimeout(salon.botTimeout);
+
+    const vraieReponse = salon.reponsesAttendues[0] || "???";
+
+    io.to(codeSalon).emit('message_serveur', message);
+    io.to(codeSalon).emit('reponse_devoilee', vraieReponse); // Dévoile la réponse
+
+    // Reset des votes pour vider l'écran
+    salon.votesSkip = [];
+    io.to(codeSalon).emit('maj_votes_skip', { votes: 0, total: salon.ordreJoueurs.length });
+
+    if (salon.timeoutTransition) clearTimeout(salon.timeoutTransition);
+
+    salon.timeoutTransition = setTimeout(() => {
+        if (salons[codeSalon]) lancerProchainTour(io, codeSalon, salon);
+    }, delai);
+}
+
 function demarrerChrono(io, codeSalon, salon) {
     clearInterval(salon.intervalle);
     salon.intervalle = setInterval(() => {
-        if (salon.enPause) return; // NOUVEAU : Bloque le temps si pause
+        if (salon.enPause || salon.transitionEnCours) return;
 
         if (salon.temps[salon.joueurActif] > 0) {
             salon.temps[salon.joueurActif] -= 1;
@@ -45,17 +69,15 @@ function demarrerChrono(io, codeSalon, salon) {
             clearInterval(salon.intervalle);
 
             if (salon.mode === 'buzzer') {
-                salon.scores[salon.joueurActif] -= 5;
+                // Pas de points en dessous de 0
+                salon.scores[salon.joueurActif] = Math.max(0, salon.scores[salon.joueurActif] - 5);
                 const exJoueur = salon.joueurActif;
                 salon.joueurActif = 'bloque';
-                io.to(codeSalon).emit('message_serveur', `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}. Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
-                setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
+
+                declencherTransition(io, codeSalon, salon, `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
             } else {
                 const joueurElimine = salon.joueurActif;
-                io.to(codeSalon).emit('message_serveur', `👋 ${salon.pseudos[joueurElimine]} n'a plus de temps et est éliminé !`);
-
-                // Ne pas envoyer l'écran de défaite aux bots
                 if (!joueurElimine.startsWith('BOT_')) io.to(joueurElimine).emit('afficher_ecran_defaite');
 
                 salon.ordreJoueurs = salon.ordreJoueurs.filter(id => id !== joueurElimine);
@@ -67,7 +89,7 @@ function demarrerChrono(io, codeSalon, salon) {
                 } else if (salon.ordreJoueurs.length === 0) {
                     io.to(codeSalon).emit('fin_partie', `🏁 La partie est terminée !`);
                 } else {
-                    setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
+                    declencherTransition(io, codeSalon, salon, `👋 ${salon.pseudos[joueurElimine]} est éliminé !`);
                 }
             }
         }
@@ -75,15 +97,23 @@ function demarrerChrono(io, codeSalon, salon) {
 }
 
 function lancerProchainTour(io, codeSalon, salon) {
+    salon.transitionEnCours = false; // On débloque le jeu
     clearInterval(salon.intervalle);
     clearTimeout(salon.botTimeout);
 
     salon.votesSkip = [];
     io.to(codeSalon).emit('maj_votes_skip', { votes: 0, total: salon.ordreJoueurs.length });
 
+    let pseudoSuivant = null;
+
     if (salon.mode === 'classique' || salon.mode === 'presentateur') {
         salon.indexTour = (salon.indexTour + 1) % salon.ordreJoueurs.length;
         salon.joueurActif = salon.ordreJoueurs[salon.indexTour];
+
+        if (salon.ordreJoueurs.length > 1) {
+            const indexSuivant = (salon.indexTour + 1) % salon.ordreJoueurs.length;
+            pseudoSuivant = salon.pseudos[salon.ordreJoueurs[indexSuivant]];
+        }
     } else if (salon.mode === 'buzzer') {
         salon.joueurActif = null;
     }
@@ -95,8 +125,8 @@ function lancerProchainTour(io, codeSalon, salon) {
         question: questionTiree.question,
         reponses: questionTiree.reponses,
         theme: questionTiree.theme,
-        difficulte: questionTiree.difficulte,
         pseudoActif: salon.joueurActif ? salon.pseudos[salon.joueurActif] : null,
+        pseudoSuivant: pseudoSuivant,
         mode: salon.mode,
         options: salon.options
     });
@@ -105,27 +135,23 @@ function lancerProchainTour(io, codeSalon, salon) {
 
     if (salon.joueurActif !== null && salon.mode !== 'buzzer') {
         demarrerChrono(io, codeSalon, salon);
-
-        // NOUVEAU : INTELLIGENCE ARTIFICIELLE DES BOTS (Si le joueur actif est un bot)
         if (salon.joueurActif.startsWith('BOT_') && !salon.enPause) {
             salon.botTimeout = setTimeout(() => {
                 if (!salon.enPause && salon.joueurActif.startsWith('BOT_')) {
-                    io.to(codeSalon).emit('message_serveur', `🤖 ${salon.pseudos[salon.joueurActif]} passe son tour...`);
-                    lancerProchainTour(io, codeSalon, salon);
+                    declencherTransition(io, codeSalon, salon, `🤖 ${salon.pseudos[salon.joueurActif]} passe son tour...`);
                 }
-            }, 4000); // Le bot réfléchit 4 secondes puis passe la question
+            }, 4000);
         }
     }
 }
 
-// NOUVEAU : Fonction globale pour gérer un départ (Quitter, Kick, Déco)
 function gererDepartJoueur(io, id, codeSalon, estKick = false) {
     const salon = salons[codeSalon];
     if (!salon) return;
     const pseudo = salon.pseudos[id];
     if (!pseudo) return;
 
-    if (estKick) io.to(id).emit('tu_es_kick'); // Envoie l'ordre au joueur de recharger sa page
+    if (estKick) io.to(id).emit('tu_es_kick');
 
     io.to(codeSalon).emit('message_serveur', `🚪 ${pseudo} a quitté le jeu.`);
 
@@ -145,11 +171,10 @@ function gererDepartJoueur(io, id, codeSalon, estKick = false) {
         return;
     }
 
-    // Si c'était son tour, on passe la main
-    if (salon.partieCommencee && salon.joueurActif === id) {
+    if (salon.partieCommencee && salon.joueurActif === id && !salon.transitionEnCours) {
         salon.indexTour -= 1;
         if (salon.indexTour < -1) salon.indexTour = -1;
-        setTimeout(() => lancerProchainTour(io, codeSalon, salon), 1000);
+        declencherTransition(io, codeSalon, salon, `⚠️ ${pseudo} a quitté. Suivant...`, 3000);
     }
 }
 
@@ -171,7 +196,7 @@ io.on('connection', (socket) => {
                 mode: modeChoisi || 'classique',
                 options: optionsBonus || { voirQuestions: false },
                 estPublic: estPublic,
-                intervalle: null, botTimeout: null, joueurActif: null, enPause: false, // NOUVEAU PAUSE
+                intervalle: null, botTimeout: null, joueurActif: null, enPause: false, transitionEnCours: false,
                 reponsesAttendues: [], votesSkip: [],
                 partieCommencee: false, ordreJoueurs: [], indexTour: -1,
                 createur: socket.id,
@@ -191,7 +216,6 @@ io.on('connection', (socket) => {
             salon.pseudos[socket.id] = pseudo + " (Présentateur)";
         }
 
-        // NOUVEAU : Ajout automatique de Bots si Mode Test
         if (isBotTest && salon.joueurs.length === 1) {
             const bots = ['BOT_1', 'BOT_2', 'BOT_3'];
             const nomsBots = ['🤖 Alpha', '🤖 Beta', '🤖 Gamma'];
@@ -213,54 +237,36 @@ io.on('connection', (socket) => {
     socket.on('lancer_partie', (codeSalon) => {
         const salon = salons[codeSalon];
         if (!salon || salon.partieCommencee || socket.id !== salon.createur) return;
-
         salon.partieCommencee = true;
         salon.ordreJoueurs = [...salon.joueurs].sort(() => Math.random() - 0.5);
         salon.indexTour = -1;
-
         io.to(codeSalon).emit('partie_lancee');
         lancerProchainTour(io, codeSalon, salon);
         diffuserSalonsPublics();
     });
 
-    // NOUVEAU : Quitter volontairement
     socket.on('quitter_salon', (codeSalon) => {
         socket.leave(codeSalon);
         gererDepartJoueur(io, socket.id, codeSalon, false);
     });
 
-    // NOUVEAU : Commandes Admin (Kick & Pause)
     socket.on('kick_joueur', (data) => {
         const { codeSalon, targetId } = data;
         const salon = salons[codeSalon];
-        if (salon && socket.id === salon.createur) {
-            gererDepartJoueur(io, targetId, codeSalon, true); // true = c'est un kick
-        }
+        if (salon && socket.id === salon.createur) gererDepartJoueur(io, targetId, codeSalon, true);
     });
 
     socket.on('toggle_pause', (codeSalon) => {
         const salon = salons[codeSalon];
-        if (salon && socket.id === salon.createur && salon.partieCommencee) {
+        if (salon && socket.id === salon.createur && salon.partieCommencee && !salon.transitionEnCours) {
             salon.enPause = !salon.enPause;
             io.to(codeSalon).emit('etat_pause', salon.enPause);
-            if (salon.enPause) {
-                io.to(codeSalon).emit('message_serveur', `⏸️ Le jeu est en PAUSE.`);
-            } else {
-                io.to(codeSalon).emit('message_serveur', `▶️ Le jeu reprend !`);
-                // Relance le timer du bot s'il était en train de jouer
-                if (salon.joueurActif && salon.joueurActif.startsWith('BOT_') && salon.mode !== 'buzzer') {
-                    salon.botTimeout = setTimeout(() => {
-                        io.to(codeSalon).emit('message_serveur', `🤖 ${salon.pseudos[salon.joueurActif]} passe son tour...`);
-                        lancerProchainTour(io, codeSalon, salon);
-                    }, 4000);
-                }
-            }
         }
     });
 
     socket.on('clic_buzzer', (codeSalon) => {
         const salon = salons[codeSalon];
-        if (!salon || salon.mode !== 'buzzer' || salon.joueurActif !== null || salon.enPause) return;
+        if (!salon || salon.mode !== 'buzzer' || salon.joueurActif !== null || salon.enPause || salon.transitionEnCours) return;
         if (!salon.ordreJoueurs.includes(socket.id) && salon.temps[socket.id] <= 0) return;
 
         salon.joueurActif = socket.id;
@@ -272,19 +278,17 @@ io.on('connection', (socket) => {
 
         clearInterval(salon.intervalle);
         salon.intervalle = setInterval(() => {
-            if (salon.enPause) return; // Ne descend pas si pause
+            if (salon.enPause || salon.transitionEnCours) return;
             tempsRestant -= 1;
             io.to(codeSalon).emit('tic_tac_buzzer', tempsRestant);
 
             if (tempsRestant <= 0) {
                 clearInterval(salon.intervalle);
-                salon.scores[salon.joueurActif] -= 5;
+                salon.scores[salon.joueurActif] = Math.max(0, salon.scores[salon.joueurActif] - 5);
                 const exJoueur = salon.joueurActif;
                 salon.joueurActif = 'bloque';
-
-                io.to(codeSalon).emit('message_serveur', `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}. Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
-                setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
+                declencherTransition(io, codeSalon, salon, `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
             }
         }, 1000);
     });
@@ -292,7 +296,7 @@ io.on('connection', (socket) => {
     socket.on('proposer_reponse', (data) => {
         const { codeSalon, reponseJoueur } = data;
         const salon = salons[codeSalon];
-        if (!salon || socket.id !== salon.joueurActif || salon.enPause) return;
+        if (!salon || socket.id !== salon.joueurActif || salon.enPause || salon.transitionEnCours) return;
 
         let reponseValidee = false;
         for (let reponse of salon.reponsesAttendues) {
@@ -306,29 +310,29 @@ io.on('connection', (socket) => {
                 clearInterval(salon.intervalle);
                 salon.scores[socket.id] += 10;
                 salon.joueurActif = 'bloque';
-            }
-            io.to(codeSalon).emit('bonne_reponse', `✅ Bonne réponse de ${salon.pseudos[socket.id]} ! ${salon.mode === 'buzzer' ? '(+10 pts)' : ''}`);
-            io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
+                io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
-            if (salon.mode === 'buzzer') {
-                setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
+                // LA VICTOIRE À 50 POINTS
+                if (salon.scores[socket.id] >= 50) {
+                    io.to(codeSalon).emit('fin_partie', `🏆 ${salon.pseudos[socket.id]} a atteint 50 points et GAGNE LA PARTIE !`);
+                    return;
+                }
+                declencherTransition(io, codeSalon, salon, `✅ Bonne réponse de ${salon.pseudos[socket.id]} ! (+10 pts)`);
             } else {
-                lancerProchainTour(io, codeSalon, salon);
+                io.to(codeSalon).emit('bonne_reponse', `✅ Bonne réponse de ${salon.pseudos[socket.id]} !`);
+                declencherTransition(io, codeSalon, salon, `La bonne réponse était bien : ${salon.reponsesAttendues[0]}`);
             }
         } else {
             if (salon.mode === 'buzzer') {
                 clearInterval(salon.intervalle);
-                salon.scores[socket.id] -= 5;
+                salon.scores[socket.id] = Math.max(0, salon.scores[socket.id] - 5);
                 const exJoueur = socket.id;
                 salon.joueurActif = 'bloque';
-
-                socket.emit('mauvaise_reponse', "Faux ! -5 Points.");
-                io.to(codeSalon).emit('message_serveur', `❌ ${salon.pseudos[exJoueur]} s'est trompé (-5 pts). Suivante...`);
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
-                setTimeout(() => lancerProchainTour(io, codeSalon, salon), 2000);
+                declencherTransition(io, codeSalon, salon, `❌ Faux ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
             } else {
-                socket.emit('mauvaise_reponse', "Ce n'est pas ça, réessaie !");
+                socket.emit('mauvaise_reponse', "❌ Faux, réessaie vite !");
             }
         }
     });
@@ -336,30 +340,18 @@ io.on('connection', (socket) => {
     socket.on('jugement_presentateur', (data) => {
         const { codeSalon, estCorrect } = data;
         const salon = salons[codeSalon];
-        if (!salon || salon.mode !== 'presentateur' || socket.id !== salon.createur || salon.enPause) return;
+        if (!salon || salon.mode !== 'presentateur' || socket.id !== salon.createur || salon.enPause || salon.transitionEnCours) return;
 
         if (estCorrect) {
-            io.to(codeSalon).emit('bonne_reponse', `✅ Le présentateur a validé !`);
-            lancerProchainTour(io, codeSalon, salon);
+            declencherTransition(io, codeSalon, salon, `✅ Le présentateur a validé !`);
         } else {
-            io.to(codeSalon).emit('mauvaise_reponse', "❌ FAUX ! Nouvelle question...");
-            const questionTiree = tirerQuestion(salon);
-            salon.reponsesAttendues = questionTiree.reponses;
-            io.to(codeSalon).emit('nouvelle_question', {
-                question: questionTiree.question,
-                reponses: questionTiree.reponses,
-                theme: questionTiree.theme,
-                difficulte: questionTiree.difficulte,
-                pseudoActif: salon.pseudos[salon.joueurActif],
-                mode: salon.mode,
-                options: salon.options
-            });
+            declencherTransition(io, codeSalon, salon, `❌ Refusé ! La réponse était : ${salon.reponsesAttendues[0]}`);
         }
     });
 
     socket.on('skip_question', (codeSalon) => {
         const salon = salons[codeSalon];
-        if (!salon || salon.enPause) return;
+        if (!salon || salon.enPause || salon.transitionEnCours) return;
 
         if (salon.mode === 'buzzer') {
             if (salon.joueurActif !== null) return;
@@ -368,24 +360,14 @@ io.on('connection', (socket) => {
                 salon.votesSkip.push(socket.id);
                 io.to(codeSalon).emit('maj_votes_skip', { votes: salon.votesSkip.length, total: salon.ordreJoueurs.length });
 
+                // VÉRIFICATION MAJORITÉ BLINDÉE
                 if (salon.votesSkip.length > salon.ordreJoueurs.length / 2) {
-                    io.to(codeSalon).emit('message_serveur', `⏭️ Majorité atteinte ! On passe la question...`);
-                    setTimeout(() => lancerProchainTour(io, codeSalon, salon), 1500);
+                    declencherTransition(io, codeSalon, salon, `⏭️ Majorité atteinte ! La réponse était : ${salon.reponsesAttendues[0]}`);
                 }
             }
         } else {
             if (socket.id !== salon.joueurActif && socket.id !== salon.createur) return;
-            const questionTiree = tirerQuestion(salon);
-            salon.reponsesAttendues = questionTiree.reponses;
-            io.to(codeSalon).emit('nouvelle_question', {
-                question: questionTiree.question,
-                reponses: questionTiree.reponses,
-                theme: questionTiree.theme,
-                difficulte: questionTiree.difficulte,
-                pseudoActif: salon.pseudos[salon.joueurActif],
-                mode: salon.mode,
-                options: salon.options
-            });
+            declencherTransition(io, codeSalon, salon, `⏭️ Question passée. La réponse était : ${salon.reponsesAttendues[0]}`);
         }
     });
 
