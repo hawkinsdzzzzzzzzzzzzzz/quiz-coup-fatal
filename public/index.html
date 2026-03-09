@@ -45,6 +45,21 @@
             position: relative;
         }
 
+        #app-version {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            opacity: 0.4;
+            letter-spacing: 2px;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
         #bg-effects {
             position: fixed;
             top: 0;
@@ -210,7 +225,8 @@
             background: #C53030;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="password"] {
             padding: 16px 20px;
             font-family: 'Nunito', sans-serif;
             font-size: 1.1rem;
@@ -223,7 +239,8 @@
             transition: all 0.2s;
         }
 
-        input[type="text"]:focus {
+        input[type="text"]:focus,
+        input[type="password"]:focus {
             border-color: var(--primary);
             outline: none;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
@@ -733,6 +750,12 @@
             border-color: rgba(72, 187, 120, 0.3);
         }
 
+        .score-negative {
+            color: var(--danger);
+            background: rgba(245, 101, 101, 0.1);
+            border-color: rgba(245, 101, 101, 0.3);
+        }
+
         .time-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
@@ -796,7 +819,6 @@
             color: white;
         }
 
-        /* Ordre du tour */
         #tour-suivant {
             font-size: 1.1rem;
             color: var(--text-gray);
@@ -833,7 +855,6 @@
             flex-wrap: wrap;
         }
 
-        /* Input de réponse qui sert aussi de vision adverse */
         #input-reponse {
             flex-grow: 1;
             max-width: 600px;
@@ -859,7 +880,6 @@
             border-color: var(--border-color);
         }
 
-        /* CLASSE POUR LA BONNE RÉPONSE */
         .input-reponse-correct {
             color: var(--success) !important;
             border-color: var(--success) !important;
@@ -882,7 +902,8 @@
             font-weight: 800;
         }
 
-        #modal-defaite {
+        /* MODALS */
+        .modal-overlay {
             display: none;
             position: fixed;
             top: 0;
@@ -909,7 +930,6 @@
         }
 
         .modal-content h2 {
-            color: var(--danger);
             font-size: 2rem;
             margin-bottom: 15px;
             font-family: 'Montserrat', sans-serif;
@@ -951,15 +971,22 @@
             cursor: pointer;
             opacity: 0.5;
             z-index: 5000;
+            background: var(--input-bg);
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
         }
 
         #btn-dev:hover {
             opacity: 1;
+            border-color: var(--primary);
         }
     </style>
 </head>
 
 <body>
+
+    <div id="app-version">VERSION 1.7</div>
 
     <div id="bg-effects">
         <script>
@@ -1163,10 +1190,10 @@
         </div>
     </div>
 
-    <div id="modal-defaite">
+    <div id="modal-defaite" class="modal-overlay">
         <div class="modal-content">
-            <h2>ÉLIMINÉ !</h2>
-            <p>Ton temps est écoulé. La partie continue pour les autres ! Que veux-tu faire ?</p>
+            <h2 style="color: var(--danger);">ÉLIMINÉ !</h2>
+            <p>Tu es éliminé de la partie ! Que veux-tu faire ?</p>
             <div class="modal-actions">
                 <button class="btn btn-primary" onclick="devenirSpectateur()">Regarder</button>
                 <button class="btn btn-danger" onclick="quitterJeuGlobal()">Quitter</button>
@@ -1174,7 +1201,20 @@
         </div>
     </div>
 
-    <div id="btn-dev" onclick="lancerModeTest()">[ 🛠️ Test ]</div>
+    <div id="modal-dev" class="modal-overlay">
+        <div class="modal-content">
+            <h2 style="color: var(--primary);">🛠️ Mode Développeur</h2>
+            <p>Entrez le code d'accès pour invoquer les bots de test.</p>
+            <input type="password" id="input-mdp-dev" placeholder="Mot de passe..."
+                style="margin-bottom: 20px; text-align: center;">
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="validerMdpDev()">Lancer Test</button>
+                <button class="btn btn-danger" onclick="fermerModalDev()">Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="btn-dev" onclick="ouvrirModalDev()">[ 🛠️ Test ]</div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -1219,7 +1259,7 @@
                     desc.innerText = "Le créateur lit les questions en vocal. Les autres s'affrontent sur le clavier.";
                     bonusMenu.style.display = 'flex'; divTemps.style.display = 'block';
                 } else if (value === 'buzzer') {
-                    desc.innerText = "🚨 Premier à 50 Pts gagne. Le plus rapide répond ! (+10 Pts / -5 Pts)";
+                    desc.innerText = "🚨 Premier à 50 Pts gagne. Élimination à -30 Pts. (+10 Pts / -5 Pts)";
                     bonusMenu.style.display = 'none'; divTemps.style.display = 'none';
                 }
             } else if (group === 'temps') {
@@ -1259,11 +1299,25 @@
             } else { alert("Tu dois choisir un pseudo !"); }
         }
 
-        function lancerModeTest() {
-            const mdp = prompt("Mot de passe développeur :");
+        // NOUVEAU : GESTION DU MODAL DEVELOPPEUR
+        function ouvrirModalDev() {
+            document.getElementById('modal-dev').style.display = 'flex';
+            document.getElementById('input-mdp-dev').value = '';
+            document.getElementById('input-mdp-dev').focus();
+        }
+
+        function fermerModalDev() {
+            document.getElementById('modal-dev').style.display = 'none';
+        }
+
+        function validerMdpDev() {
+            const mdp = document.getElementById('input-mdp-dev').value;
             if (mdp === "DEV") {
+                fermerModalDev();
                 paramVisibilite = 'prive';
                 creerNouveauSalon(true);
+            } else {
+                alert("Mot de passe incorrect.");
             }
         }
 
@@ -1310,7 +1364,6 @@
         function togglePause() { socket.emit('toggle_pause', codeDuSalon); }
         function kickJoueur(id) { if (confirm("Virer ce joueur ?")) socket.emit('kick_joueur', { codeSalon: codeDuSalon, targetId: id }); }
 
-        // RETOUR AU MENU PROPRE
         function quitterJeuGlobal() {
             if (codeDuSalon !== "") socket.emit('quitter_salon', codeDuSalon);
 
@@ -1389,15 +1442,19 @@
                     kickContainer.innerHTML += `<button class="kick-btn" onclick="kickJoueur('${id}')">❌ ${pseudo}</button>`;
                 }
 
-                const estElimine = (timeLeft <= 0 && paramMode !== 'buzzer');
+                const score = scores && scores[id] !== undefined ? scores[id] : 0;
+
+                // UN JOUEUR EST ELIMINÉ S'IL N'A PLUS DE TEMPS (CLASSIQUE) OU S'IL ATTEINT -30 (BUZZER)
+                const estElimine = (paramMode !== 'buzzer' && timeLeft <= 0) || (paramMode === 'buzzer' && score <= -30);
+
                 let classType = isMe ? 'is-me' : 'is-adversary';
                 const totalTime = parseInt(paramTemps) || 60;
                 const pourcentage = (timeLeft / totalTime) * 100;
                 const classCritical = (timeLeft <= 15 && !estElimine) ? 'time-critical' : '';
 
-                const score = scores && scores[id] !== undefined ? scores[id] : 0;
                 let scoreClass = 'score-neutral';
                 if (score > 0) scoreClass = 'score-positive';
+                if (score < 0) scoreClass = 'score-negative';
                 const scoreHTML = paramMode === 'buzzer' ? `<span class="player-score ${scoreClass}">Points: ${score}/50</span>` : '';
 
                 const initiale = pseudo.charAt(0).toUpperCase();
@@ -1405,7 +1462,7 @@
 
                 if (!divChrono) {
                     const newHTML = `
-                        <div id="chrono-${id}" class="chrono-player ${classType} ${classCritical}" style="${estElimine ? 'opacity:0.4; filter:grayscale(1);' : ''}">
+                        <div id="chrono-${id}" class="chrono-player ${classType} ${classCritical}" style="${estElimine ? 'opacity:0.4; filter:grayscale(1); pointer-events:none;' : ''}">
                             <div class="player-header">
                                 <div class="avatar">${initiale}</div>
                                 <div class="player-info-text">
@@ -1426,7 +1483,12 @@
                     divChrono.querySelector('.time-text').innerText = timeLeft > 0 ? timeLeft : 'X';
                     document.getElementById(`jauge-${id}`).style.width = estElimine ? '0%' : `${pourcentage}%`;
                     if (timeLeft <= 15) divChrono.classList.add('time-critical'); else divChrono.classList.remove('time-critical');
-                    if (estElimine) { divChrono.style.opacity = '0.4'; divChrono.style.filter = 'grayscale(1)'; divChrono.classList.remove('active-turn'); }
+
+                    if (estElimine) {
+                        divChrono.style.opacity = '0.4';
+                        divChrono.style.filter = 'grayscale(1)';
+                        divChrono.classList.remove('active-turn');
+                    }
 
                     const scoreEl = divChrono.querySelector('.player-score');
                     if (scoreEl) { scoreEl.innerText = `Points: ${score}/50`; scoreEl.className = `player-score ${scoreClass}`; }
@@ -1454,7 +1516,6 @@
             document.getElementById('messages').innerText = msg;
         });
 
-        // RÉPONSE DÉVOILÉE DANS L'INPUT
         socket.on('reponse_devoilee', (reponse) => {
             const inputReponse = document.getElementById('input-reponse');
             inputReponse.value = `💡 Réponse : ${reponse}`;
@@ -1510,7 +1571,7 @@
                     btnSkip.style.display = 'inline-block'; btnSkip.disabled = false;
                     timer.style.display = 'none'; btnBuzzer.style.display = 'block';
                 } else if (idJoueurActif === 'bloque') {
-                    // Période de transition (Laisse l'affichage de la réponse tranquille)
+                    // Transition en cours
                 } else {
                     btnBuzzer.style.display = 'none'; btnSkip.disabled = true;
 
@@ -1548,7 +1609,6 @@
             document.getElementById('question-info').style.display = 'flex';
             document.getElementById('badge-theme').innerText = theme || "Général";
 
-            // ORDRE DU TOUR
             if (pseudoSuivant && paramMode !== 'buzzer') {
                 document.getElementById('tour-suivant').style.display = 'block';
                 document.getElementById('nom-suivant').innerText = pseudoSuivant;
@@ -1557,7 +1617,6 @@
             }
         });
 
-        // FRAPPE VISIBLE DANS L'INPUT POUR TOUS
         socket.on('frappe_adversaire', (data) => {
             const inputReponse = document.getElementById('input-reponse');
             if (inputReponse.disabled && !inputReponse.classList.contains('input-reponse-correct')) {

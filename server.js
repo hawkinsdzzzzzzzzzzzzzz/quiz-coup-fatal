@@ -31,9 +31,8 @@ function tirerQuestion(salon) {
     return questionTiree;
 }
 
-// SYSTÈME DE TRANSITION (Évite les bugs de double-skip et affiche la réponse)
 function declencherTransition(io, codeSalon, salon, message, delai = 4000) {
-    if (salon.transitionEnCours) return; // Bloque toute autre action !
+    if (salon.transitionEnCours) return;
     salon.transitionEnCours = true;
 
     clearInterval(salon.intervalle);
@@ -42,9 +41,8 @@ function declencherTransition(io, codeSalon, salon, message, delai = 4000) {
     const vraieReponse = salon.reponsesAttendues[0] || "???";
 
     io.to(codeSalon).emit('message_serveur', message);
-    io.to(codeSalon).emit('reponse_devoilee', vraieReponse); // Dévoile la réponse
+    io.to(codeSalon).emit('reponse_devoilee', vraieReponse);
 
-    // Reset des votes pour vider l'écran
     salon.votesSkip = [];
     io.to(codeSalon).emit('maj_votes_skip', { votes: 0, total: salon.ordreJoueurs.length });
 
@@ -69,13 +67,27 @@ function demarrerChrono(io, codeSalon, salon) {
             clearInterval(salon.intervalle);
 
             if (salon.mode === 'buzzer') {
-                // Pas de points en dessous de 0
-                salon.scores[salon.joueurActif] = Math.max(0, salon.scores[salon.joueurActif] - 5);
+                // CORRECTION : Retire vraiment 5 points (peut être négatif)
+                salon.scores[salon.joueurActif] -= 5;
                 const exJoueur = salon.joueurActif;
                 salon.joueurActif = 'bloque';
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
-                declencherTransition(io, codeSalon, salon, `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
+                if (salon.scores[exJoueur] <= -30) {
+                    if (!exJoueur.startsWith('BOT_')) io.to(exJoueur).emit('afficher_ecran_defaite');
+                    salon.ordreJoueurs = salon.ordreJoueurs.filter(id => id !== exJoueur);
+
+                    if (salon.ordreJoueurs.length === 1 && salon.joueurs.length > 1) {
+                        io.to(codeSalon).emit('fin_partie', `🏆 Victoire de ${salon.pseudos[salon.ordreJoueurs[0]]} !`);
+                    } else if (salon.ordreJoueurs.length === 0) {
+                        io.to(codeSalon).emit('fin_partie', `🏁 La partie est terminée !`);
+                    } else {
+                        declencherTransition(io, codeSalon, salon, `💀 ${salon.pseudos[exJoueur]} éliminé (-30 pts) !`);
+                    }
+                } else {
+                    declencherTransition(io, codeSalon, salon, `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
+                }
+
             } else {
                 const joueurElimine = salon.joueurActif;
                 if (!joueurElimine.startsWith('BOT_')) io.to(joueurElimine).emit('afficher_ecran_defaite');
@@ -97,7 +109,7 @@ function demarrerChrono(io, codeSalon, salon) {
 }
 
 function lancerProchainTour(io, codeSalon, salon) {
-    salon.transitionEnCours = false; // On débloque le jeu
+    salon.transitionEnCours = false;
     clearInterval(salon.intervalle);
     clearTimeout(salon.botTimeout);
 
@@ -267,7 +279,7 @@ io.on('connection', (socket) => {
     socket.on('clic_buzzer', (codeSalon) => {
         const salon = salons[codeSalon];
         if (!salon || salon.mode !== 'buzzer' || salon.joueurActif !== null || salon.enPause || salon.transitionEnCours) return;
-        if (!salon.ordreJoueurs.includes(socket.id) && salon.temps[socket.id] <= 0) return;
+        if (!salon.ordreJoueurs.includes(socket.id)) return;
 
         salon.joueurActif = socket.id;
         io.to(codeSalon).emit('message_serveur', `🚨 ${salon.pseudos[socket.id]} a buzzé ! (5s)`);
@@ -284,11 +296,26 @@ io.on('connection', (socket) => {
 
             if (tempsRestant <= 0) {
                 clearInterval(salon.intervalle);
-                salon.scores[salon.joueurActif] = Math.max(0, salon.scores[salon.joueurActif] - 5);
+                // CORRECTION : Retire 5 points
+                salon.scores[salon.joueurActif] -= 5;
                 const exJoueur = salon.joueurActif;
                 salon.joueurActif = 'bloque';
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
-                declencherTransition(io, codeSalon, salon, `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
+
+                if (salon.scores[exJoueur] <= -30) {
+                    if (!exJoueur.startsWith('BOT_')) io.to(exJoueur).emit('afficher_ecran_defaite');
+                    salon.ordreJoueurs = salon.ordreJoueurs.filter(id => id !== exJoueur);
+
+                    if (salon.ordreJoueurs.length === 1 && salon.joueurs.length > 1) {
+                        io.to(codeSalon).emit('fin_partie', `🏆 Victoire de ${salon.pseudos[salon.ordreJoueurs[0]]} !`);
+                    } else if (salon.ordreJoueurs.length === 0) {
+                        io.to(codeSalon).emit('fin_partie', `🏁 La partie est terminée !`);
+                    } else {
+                        declencherTransition(io, codeSalon, salon, `💀 ${salon.pseudos[exJoueur]} éliminé (-30 pts) !`);
+                    }
+                } else {
+                    declencherTransition(io, codeSalon, salon, `⏱️ Trop lent ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
+                }
             }
         }, 1000);
     });
@@ -312,7 +339,6 @@ io.on('connection', (socket) => {
                 salon.joueurActif = 'bloque';
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
-                // LA VICTOIRE À 50 POINTS
                 if (salon.scores[socket.id] >= 50) {
                     io.to(codeSalon).emit('fin_partie', `🏆 ${salon.pseudos[socket.id]} a atteint 50 points et GAGNE LA PARTIE !`);
                     return;
@@ -325,12 +351,26 @@ io.on('connection', (socket) => {
         } else {
             if (salon.mode === 'buzzer') {
                 clearInterval(salon.intervalle);
-                salon.scores[socket.id] = Math.max(0, salon.scores[socket.id] - 5);
+                // CORRECTION : Retire 5 points
+                salon.scores[socket.id] -= 5;
                 const exJoueur = socket.id;
                 salon.joueurActif = 'bloque';
                 io.to(codeSalon).emit('maj_temps', { temps: salon.temps, pseudos: salon.pseudos, scores: salon.scores });
 
-                declencherTransition(io, codeSalon, salon, `❌ Faux ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
+                if (salon.scores[exJoueur] <= -30) {
+                    if (!exJoueur.startsWith('BOT_')) io.to(exJoueur).emit('afficher_ecran_defaite');
+                    salon.ordreJoueurs = salon.ordreJoueurs.filter(id => id !== exJoueur);
+
+                    if (salon.ordreJoueurs.length === 1 && salon.joueurs.length > 1) {
+                        io.to(codeSalon).emit('fin_partie', `🏆 Victoire de ${salon.pseudos[salon.ordreJoueurs[0]]} !`);
+                    } else if (salon.ordreJoueurs.length === 0) {
+                        io.to(codeSalon).emit('fin_partie', `🏁 La partie est terminée !`);
+                    } else {
+                        declencherTransition(io, codeSalon, salon, `💀 ${salon.pseudos[exJoueur]} éliminé (-30 pts) !`);
+                    }
+                } else {
+                    declencherTransition(io, codeSalon, salon, `❌ Faux ! -5 pts pour ${salon.pseudos[exJoueur]}.`);
+                }
             } else {
                 socket.emit('mauvaise_reponse', "❌ Faux, réessaie vite !");
             }
@@ -360,7 +400,6 @@ io.on('connection', (socket) => {
                 salon.votesSkip.push(socket.id);
                 io.to(codeSalon).emit('maj_votes_skip', { votes: salon.votesSkip.length, total: salon.ordreJoueurs.length });
 
-                // VÉRIFICATION MAJORITÉ BLINDÉE
                 if (salon.votesSkip.length > salon.ordreJoueurs.length / 2) {
                     declencherTransition(io, codeSalon, salon, `⏭️ Majorité atteinte ! La réponse était : ${salon.reponsesAttendues[0]}`);
                 }
